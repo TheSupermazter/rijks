@@ -7,12 +7,10 @@ const express = require('express');
 const app = express();
 
 // Definieer een route die "Hello World" terugstuurt als reactie
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
+app
+  .get('/', onhome)
+  .listen(8000)
 
-// Luister naar inkomende verzoeken op poort 3000
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
-});
+function onhome(req, res) {
+  res.send('<h1>Hallo wereld</h1>')
+}
