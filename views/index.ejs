@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+</head>
+<body>
+    <header>
+        <!-- HEADER -->
+    </header>
+
+    <main>
+        <section class="welcome-section">
+            <h1>Welcome to Our Application!</h1>
+            <p>Please log in or sign up to access your dashboard.</p>
+            <!-- CONTENT -->
+            <form action="/register" method="POST">
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username" required><br>
+                <label for="password">Wachtwoord:</label><br>
+                <input type="password" id="password" name="password" required><br><br>
+                <input type="submit" value="Login">
+              </form>
+            
+            <h2>Or register now</h2>
+            <a href="/register">Register now</a>
+        </section>
+    </main>
+
+    <footer>
+        <!-- FOOTER -->
+    </footer>
+
+</body>
+</html>

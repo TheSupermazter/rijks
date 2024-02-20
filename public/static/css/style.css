@@ -1,0 +1,31 @@
+:root{
+    --bg-color: #1a2369;
+    --f-color: #bbdaec;
+
+    --ff: 'Courier New', Courier, monospace;
+    --fs: 1.2em;
+
+    --border: 2px solid #bbdaec;
+}
+
+body{
+    background-color: var(--bg-color);
+    font-family: var(--ff);
+    font-size: var(--fs);
+    color: var(--f-color);
+}
+
+
+h1, h2, h3, h4, h5, h6{
+    font-size: var(--fs);
+    font-family: var(--ff);
+    color: var(--f-color);
+}
+
+a{
+    font-family: var(--ff);
+    color: var(--f-color);
+    padding: .8em 1em;
+    border: var(--border);
+    text-decoration: none;
+}
