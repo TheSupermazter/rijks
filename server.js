@@ -1,11 +1,22 @@
+require('dotenv').config() 
+
 const express = require('express');
 const app = express();
 const path = require('path');
-const { MongoClient } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId, CommandStartedEvent } = require('mongodb')
 
 // MongoDB connection URI
-const uri = "mongodb+srv://kimdekker:JxPsDQvHQPnLHvHx@clusterprojecttech.bm8nqim.mongodb.net/?retryWrites=true&w=majority";
-const client = new MongoClient(uri);
+// const uri = "mongodb+srv://kimdekker:JxPsDQvHQPnLHvHx@clusterprojecttech.bm8nqim.mongodb.net/?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`
+
+const client = new MongoClient(uri, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    }
+})
+
 
 // Connect to MongoDB
 client.connect().then(() => {
