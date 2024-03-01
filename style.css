@@ -1,0 +1,117 @@
+/*********************/
+/* FONT FACES */
+/*********************/
+
+@font-face {
+	/* For the headers - Bold */
+	font-family: "Rijksmuseum";
+	src: url('../fonts/Rijksmuseum-Bold.woff2') format('woff2'), url('../fonts/Rijksmuseum-Bold.ttf') format('ttf');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	/* For the headers - Normal */
+	font-family: "Rijksmuseum";
+	src: url('../fonts/Rijksmuseum-Normal.woff2') format('woff2'), url('../fonts/Rijksmuseum-Normal.ttf') format('ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/*********************/
+/* CUSTOM PROPERTIES */
+/*********************/
+
+:root{
+    /* Colors */
+    --bg-color: #2C3035;
+    --f-color: #E0DEDE;
+    --btn-color:#363636;
+    --main-color: #D55140;
+
+	/* Font families */
+	--ff: 'Rijksmuseum', sans-serif;
+
+	/* Font weights */
+	--fw-n: normal;
+	--fw-b: bold;
+
+	/* Font sizes */
+	--fs-p: 1em;
+	--fs-1: calc(var(--fs-p) * 8);
+	--fs-2: calc(var(--fs-p) * 5);
+	--fs-3: calc(var(--fs-p) * 4);
+	--fs-4: calc(var(--fs-p) * 3);
+	--fs-5: calc(var(--fs-p) * 2);
+	--fs-6: calc(var(--fs-p) * 1.5);
+
+    /* Button */
+    --btn-padding: .8em 1em;
+
+	/* Spacers for margins, gaps or paddings */
+	--spacer: 1em;
+	--spacer-md: calc(var(--spacer) * 2);
+	--spacer-lg: calc(var(--spacer) * 3);
+
+
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: var(--ff);
+    color: var(--f-color);
+    margin: 0em;
+}
+
+h1{
+    font-size: var(--fs-1);
+}
+
+h2{
+    font-size: var(--fs-2);
+}
+
+h3{
+    font-size: var(--fs-3);
+}
+
+h4{
+    font-size: var(--fs-4);
+}
+
+h5{
+    font-size: var(--fs-5);
+}
+
+h6{
+    font-size: var(--fs-6);
+}
+
+a, input[type=submit]{
+    font-family: var(--ff);
+    text-decoration: none;
+    font-size: var(--fs-p);
+    color: var(--f-color);
+    background-color: var(--main-color);
+    padding: var(--btn-padding);
+    margin: 0em;
+    border: none;
+}
+
+.subBtn{
+    font-family: var(--ff);
+    text-decoration: none;
+    font-size: var(--fs-p);
+    color: var(--main-color);
+    background-color: transparent;
+    margin: 0em;
+    padding: 0em;
+    border: none;
+}
+
+
+body{
+    background-color: var(--bg-color);
+    font-family: var(--ff);
+    font-size: var(--fs);
+    color: var(--f-color);
+}
