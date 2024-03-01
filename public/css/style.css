@@ -95,6 +95,7 @@ a, input[type=submit]{
     padding: var(--btn-padding);
     margin: 0em;
     border: none;
+    cursor:pointer;
 }
 
 .subBtn{
@@ -106,6 +107,7 @@ a, input[type=submit]{
     margin: 0em;
     padding: 0em;
     border: none;
+    cursor:pointer;
 }
 
 
