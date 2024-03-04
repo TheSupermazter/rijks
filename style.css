@@ -118,7 +118,7 @@ body{
 
 
 /* VANAF HIER START MIJN EIGEN CODE */
-body {
+.bodyStartQuiz {
     background-image: url('img/rembrandt_zelfportret.jpg');
     background-repeat: no-repeat;
     background-size: cover;
