@@ -6,8 +6,8 @@
 
     <main>
         <section>
-            <h1>Create an account</h1>
-            <p>Fill in your prefered information to create your account</p>
+            <h1>Maak een account aan</h1>
+            <p>Vul de gegevens in om uw account aan te maken</p>
             <form action="/register" method="POST">
                 <label for="username">gebruikersnaam:</label>
                 <input type="text" id="username" name="username" required>
@@ -19,7 +19,17 @@
                 <input type="password" id="password" name="password" required>
 
                 <input type="submit" value="Registreren">
-              </form>
+
+            </form>
+
+            <% if (typeof error !== 'undefined' && error !== null) { %>
+                <p class="pError"><%= error %></p>
+            <% } %>
+
+            <p>Of</p>
+            <a class="subBtn" href="/login">Log in</a>
+
+
         </section>
     </main>
 

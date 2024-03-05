@@ -29,6 +29,7 @@
     --f-color: #E0DEDE;
     --btn-color:#363636;
     --main-color: #D55140;
+    --error-color: #d5514064;
 
 	/* Font families */
 	--ff: 'Rijksmuseum', sans-serif;
@@ -57,7 +58,7 @@
 
 }
 
-h1, h2, h3, h4, h5, h6{
+h1, h2, h3, h4, h5, h6, p{
     font-family: var(--ff);
     color: var(--f-color);
     margin: 0em;
@@ -86,6 +87,23 @@ h5{
 h6{
     font-size: var(--fs-6);
 }
+
+h6{
+    font-size: var(--fs-6);
+}
+
+p{
+    font-size: var(--fs-p);
+}
+
+.pError{
+    font-weight: bold;
+    background-color: var(--error-color);
+    padding: .5em;
+    border-radius: 2px;
+    margin: var(--spacer);
+}
+
 
 a, input[type=submit]{
     font-family: var(--ff);
@@ -167,7 +185,7 @@ form {
 }
 
 
-form input:not(:last-child){
+form input:not([type=submit]){
     margin: 3px 0em var(--spacer) 0em;
     height: var(--spacer-md);
     border: none;
@@ -181,11 +199,11 @@ form input:not(:last-child){
 
 }
 
-form input:not(:last-child):focus{
+form input:not([type=submit]):focus{
     border-bottom: 1px solid var(--f-color);
 }
 
-form input:last-child{
+form input[type=submit]{
     margin-top: var(--spacer);
 }
 

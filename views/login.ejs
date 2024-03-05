@@ -6,23 +6,25 @@
     <main>
         <section>
             <h1>Login</h1>
-            <p>Please log in or sign up to access your dashboard.</p>
+            <p>Log in of meld u aan</p>
             
             <form action="/login" method="post">
                 <label for="username">gebruikersnaam:</label>
                 <input type="text" id="username" name="username" required>
+
                 <label for="password">Wachtwoord:</label>
                 <input type="password" id="password" name="password" required>
+
                 <input type="submit" value="Inloggen">
             </form>
 
-            <% if (error) { %>
-                <p><%= error %></p>
+
+            <% if (typeof error !== 'undefined' && error !== null) { %>
+                <p class="pError"><%= error %></p>
             <% } %>
 
-
-            <p>Or register now</p>
-            <a class="subBtn" href="/register">Register now</a>
+            <p>Of</p>
+            <a class="subBtn" href="/register">Registreer nu</a>
         </section>
     </main>
 

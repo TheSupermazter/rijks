@@ -58,6 +58,18 @@ app.get('/login', (req, res) => {
     res.render('login');
 });
 
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+    const user = await usersCollection.findOne({ username, password });
+
+    if (user) {
+        res.redirect(`/dashboard/${user._id}`);
+    } else {
+        res.render('login', { error: 'ongeldige gebruikersnaam of wachtwoord' });
+    }
+});
+
+
 
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
@@ -66,7 +78,7 @@ app.post('/login', async (req, res) => {
     if (user) {
         res.redirect(`/dashboard/${user._id}`);
     } else {
-        res.render('login', { error: 'Invalid username or password' });
+        res.render('login', { error: 'ongeldige gebruikersnaam of wachtwoord' });
     }    
 
 });
@@ -85,7 +97,7 @@ app.post('/register', async (req, res) => {
     const existingUser = await usersCollection.findOne({ username });
 
     if (existingUser) {
-        res.render('register', { error: 'Username already exists' });
+        res.render('register', { error: 'Gebruikersnaam bestaat al' });
     } else {
         const insertedUser = await usersCollection.insertOne({ username, email, password });
         res.redirect(`/dashboard/${insertedUser.insertedId}`);
