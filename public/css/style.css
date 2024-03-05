@@ -175,8 +175,10 @@ form input:not(:last-child){
     outline: none;
     background-color: var(--bg-color);
     background-size: 0 1px;
+    color: var(--f-color);
     position: relative;
     transition: .3s ease-in-out;
+
 }
 
 form input:not(:last-child):focus{

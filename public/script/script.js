@@ -8,6 +8,18 @@ inputs.forEach(input => {
     });
 
     input.addEventListener('blur', () => {
-        label.classList.remove('focus');
+        if (!input.value.trim()) {
+            label.classList.remove('focus');
+        }
     });
+
+    input.addEventListener('input', () => {
+        if (input.value.trim()) {
+            label.classList.add('focus');
+        }
+    });
+
+    if (input.value.trim()) {
+        label.classList.add('focus');
+    }
 });
