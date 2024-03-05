@@ -6,7 +6,7 @@ const path = require('path');
 const { MongoClient, ServerApiVersion, ObjectId, CommandStartedEvent } = require('mongodb');
 
 // MongoDB connection URI
-const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`
+const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/?retryWrites=true&w=majority`
 const client = new MongoClient(uri, {
     serverApi: {
       version: ServerApiVersion.v1,
@@ -34,43 +34,46 @@ app.listen(process.env.PORT, () => {
   })
 
 
-// Server errors
 
-// 404
-// app.use((req, res) => {
-// console.error('404 error at URL: ' + req.url)
-// res.status(404).send('404 error at URL: ' + req.url)
-//     })
 
-// // 500
-// app.use((err, req, res) => {
-//     console.error(err.stack)
-//     res.status(500).send('500: server error')
-//   })
+// FUNCTIONS ____________________________________________________________________________________________________________________
+
+// global constants
+const db = client.db(process.env.DB_NAME);  //process.env.DB_NAME
+const usersCollection = db.collection(process.env.DB_USER_COLLECTION);
 
 
 
-  // FUNCTIONS ____________________________________________________________________________________________________________________
+// INDEX
 
 app.get('/', (req, res) => {
     res.render('index');
 });
 
-app.post('/', async (req, res) => {
-    const { username, password } = req.body;
-    const db = client.db('clusterProjectTech');
-    const usersCollection = db.collection('users');
 
+
+// Login
+
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
     const user = await usersCollection.findOne({username, password});
 
     if (user) {
         res.redirect(`/dashboard/${user._id}`);
     } else {
-        res.render('index', { error: 'Invalid username or password' });
+        res.render('login', { error: 'Invalid username or password' });
     }    
 
 });
 
+
+
+// REGISTER
 
 app.get('/register', (req, res) => {
     res.render('register');
@@ -79,9 +82,6 @@ app.get('/register', (req, res) => {
 
 app.post('/register', async (req, res) => {
     const { username, email, password } = req.body;
-    const db = client.db('clusterProjectTech');
-    const usersCollection = db.collection('users');
-
     const existingUser = await usersCollection.findOne({ username });
 
     if (existingUser) {
@@ -94,11 +94,10 @@ app.post('/register', async (req, res) => {
 });
 
 
+// DASHBOARD
+
 app.get('/dashboard/:id', async (req, res) => {
     const userId = req.params.id;
-    const db = client.db('clusterProjectTech');
-    const usersCollection = db.collection('users');
-
     const user = await usersCollection.findOne({ _id: new ObjectId(userId) });
     
     if (user) {
@@ -111,4 +110,16 @@ app.get('/dashboard/:id', async (req, res) => {
 
 
 
+// SERVER ERRORS ____________________________________________________________________________________________________________________
 
+// 404
+app.use((req, res) => {
+console.error('404 error at URL: ' + req.url)
+res.status(404).send('404 error at URL: ' + req.url)
+    })
+
+// 500
+app.use((err, req, res) => {
+    console.error(err.stack)
+    res.status(500).send('500: server error')
+  })

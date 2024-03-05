@@ -25,6 +25,7 @@
 :root{
     /* Colors */
     --bg-color: #2C3035;
+    --bg-color-light: hsla(0,0%,100%,.2);
     --f-color: #E0DEDE;
     --btn-color:#363636;
     --main-color: #D55140;
@@ -90,24 +91,57 @@ a, input[type=submit]{
     font-family: var(--ff);
     text-decoration: none;
     font-size: var(--fs-p);
+    font-weight: bold;
     color: var(--f-color);
     background-color: var(--main-color);
     padding: var(--btn-padding);
     margin: 0em;
     border: none;
     cursor:pointer;
+    border-radius: 2px;
+    transition: .3s ease-in-out;
+}
+
+a:hover, input[type=submit]:hover, a:focus, input[type=submit]:focus{
+    background-color: var(--f-color);
+    color: var(--bg-color);
 }
 
 .subBtn{
     font-family: var(--ff);
     text-decoration: none;
     font-size: var(--fs-p);
-    color: var(--main-color);
+    font-weight: normal;
+    color: var(--f-color);
     background-color: transparent;
     margin: 0em;
-    padding: 0em;
+    padding: 0em 0em .3em 0em;
     border: none;
     cursor:pointer;
+    position: relative;
+}
+
+.subBtn:hover, .subBtn:focus{
+    background-color: transparent;
+    color: var(--f-color);
+}
+
+.subBtn::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--f-color);
+    bottom: 0;
+    left: 0;
+    transform: scale(0);
+    transform-origin: left;
+    transition: .3s all ease-out;
+}
+
+
+.subBtn:hover:after, .subBtn:focus:after {
+    transform: scale(1);
 }
 
 
@@ -117,3 +151,56 @@ body{
     font-size: var(--fs);
     color: var(--f-color);
 }
+
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+form {
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacer-md);
+}
+
+
+form input:not(:last-child){
+    margin: 3px 0em var(--spacer) 0em;
+    height: var(--spacer-md);
+    border: none;
+    border-bottom: 1px solid var(--bg-color-light);
+    outline: none;
+    background-color: var(--bg-color);
+    background-size: 0 1px;
+    position: relative;
+    transition: .3s ease-in-out;
+}
+
+form input:not(:last-child):focus{
+    border-bottom: 1px solid var(--f-color);
+}
+
+form input:last-child{
+    margin-top: var(--spacer);
+}
+
+
+label {
+    transform: translateY(1.2em);
+    transition: 0.3s ease-in-out;
+    color: var(--bg-color-light);
+    z-index: 10;
+    cursor: text;
+}
+
+label.focus {
+    transform: translateY(0em);
+    color: var(--f-color);
+}
+
+
+
+
