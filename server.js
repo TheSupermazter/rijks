@@ -1,9 +1,11 @@
 require('dotenv').config() 
 
 const express = require('express');
+const session = require('express-session');
 const app = express();
 const path = require('path');
 const { MongoClient, ServerApiVersion, ObjectId, CommandStartedEvent } = require('mongodb');
+const bcrypt = require('bcryptjs');
 
 // MongoDB connection URI
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/?retryWrites=true&w=majority`
@@ -28,13 +30,18 @@ app.set('view engine', 'ejs'); // EJS as view engine
 app.use(express.static(path.join(__dirname, 'public'))); // static content sits in public
 
 
+// Express sessions middleware
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 30000 }
+}));
+
 // Start the server
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`)
   })
-
-
-
 
 // FUNCTIONS ____________________________________________________________________________________________________________________
 
@@ -55,7 +62,12 @@ app.get('/', (req, res) => {
 // Login
 
 app.get('/login', (req, res) => {
-    res.render('login');
+    // Check if user is already logged in
+    if (req.session.user) {
+        res.redirect(`/dashboard/${req.session.user._id}`);
+    } else {
+        res.render('login');
+    }
 });
 
 app.post('/login', async (req, res) => {
@@ -63,26 +75,13 @@ app.post('/login', async (req, res) => {
     const user = await usersCollection.findOne({ username, password });
 
     if (user) {
+        // Store user data in session
+        req.session.user = user;
         res.redirect(`/dashboard/${user._id}`);
     } else {
         res.render('login', { error: 'ongeldige gebruikersnaam of wachtwoord' });
     }
 });
-
-
-
-app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
-    const user = await usersCollection.findOne({username, password});
-
-    if (user) {
-        res.redirect(`/dashboard/${user._id}`);
-    } else {
-        res.render('login', { error: 'ongeldige gebruikersnaam of wachtwoord' });
-    }    
-
-});
-
 
 
 // REGISTER
@@ -104,6 +103,7 @@ app.post('/register', async (req, res) => {
     }
     
 });
+
 
 
 // DASHBOARD
