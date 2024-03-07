@@ -118,13 +118,6 @@ body{
 
 
 /* VANAF HIER START MIJN EIGEN CODE */
-.bodyStartQuiz {
-    background-image: url('img/rembrandt_zelfportret.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-    background-position-x: 30%;
-}
 
 header img{
 	width: 60%;
@@ -133,7 +126,21 @@ header img{
     margin-left: 4%;
 }
 
-main button{
+.bodyStartQuiz {
+    background-image: url('img/rembrandt_zelfportret.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    background-position-x: 30%;
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+}
+
+main a{
+    /* dit is de start quiz knop */
     font-family: var(--ff);
     text-decoration: none;
     font-size: x-large;
@@ -170,21 +177,34 @@ main button{
     padding-top: 1em;
 }
 
-section button{
+section.footer_socials{
+    margin-top: 6%;
+}
+
+.footerButton{
     font-family: var(--ff);
     text-decoration: none;
     font-size: var(--fs-p);
     color: var(--f-color);
-    background-color: #2C3035;
+    background-color: #363636;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     padding: var(--btn-padding);
     margin: 0em;
     border: none;    
     margin-left: 4%;
 }
 
+section.buttons{
+    margin-top: 6%;
+}
+
 .footer_last a{
     background-color: transparent;
     font-size: x-small;
+}
+
+section.footer_last{
+    margin-left: 2%;
 }
 
 footer h3{
