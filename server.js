@@ -125,7 +125,7 @@ app.get('/dashboard/:id', async (req, res) => {
     const user = await usersCollection.findOne({ _id: new ObjectId(userId) });
     
     if (user) {
-        res.render('dashboard', { username: user.username });
+        res.render('dashboard', { name: user.name });
     } else {
         res.render('dashboard', { error: 'User not found' });
     }
