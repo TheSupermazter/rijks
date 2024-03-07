@@ -3,90 +3,96 @@
 /*********************/
 
 @font-face {
-	/* For the headers - Bold */
-	font-family: "Rijksmuseum";
-	src: url('../fonts/Rijksmuseum-Bold.woff2') format('woff2'), url('../fonts/Rijksmuseum-Bold.ttf') format('ttf');
-	font-weight: bold;
-	font-style: normal;
+    /* For the headers - Bold */
+    font-family: "Rijksmuseum";
+    src: url('../fonts/Rijksmuseum-Bold.woff2') format('woff2'), url('../fonts/Rijksmuseum-Bold.ttf') format('ttf');
+    font-weight: bold;
+    font-style: normal;
 }
 
 @font-face {
-	/* For the headers - Normal */
-	font-family: "Rijksmuseum";
-	src: url('../fonts/Rijksmuseum-Normal.woff2') format('woff2'), url('../fonts/Rijksmuseum-Normal.ttf') format('ttf');
-	font-weight: normal;
-	font-style: normal;
+    /* For the headers - Normal */
+    font-family: "Rijksmuseum";
+    src: url('../fonts/Rijksmuseum-Normal.woff2') format('woff2'), url('../fonts/Rijksmuseum-Normal.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
 }
 
 /*********************/
 /* CUSTOM PROPERTIES */
 /*********************/
 
-:root{
+:root {
     /* Colors */
     --bg-color: #2C3035;
     --f-color: #E0DEDE;
-    --btn-color:#363636;
+    --btn-color: #363636;
     --main-color: #D55140;
 
-	/* Font families */
-	--ff: 'Rijksmuseum', sans-serif;
+    /* Font families */
+    --ff: 'Rijksmuseum', sans-serif;
 
-	/* Font weights */
-	--fw-n: normal;
-	--fw-b: bold;
+    /* Font weights */
+    --fw-n: normal;
+    --fw-b: bold;
 
-	/* Font sizes */
-	--fs-p: 1em;
-	--fs-1: calc(var(--fs-p) * 8);
-	--fs-2: calc(var(--fs-p) * 5);
-	--fs-3: calc(var(--fs-p) * 4);
-	--fs-4: calc(var(--fs-p) * 3);
-	--fs-5: calc(var(--fs-p) * 2);
-	--fs-6: calc(var(--fs-p) * 1.5);
+    /* Font sizes */
+    --fs-p: 1em;
+    --fs-1: calc(var(--fs-p) * 8);
+    --fs-2: calc(var(--fs-p) * 5);
+    --fs-3: calc(var(--fs-p) * 4);
+    --fs-4: calc(var(--fs-p) * 3);
+    --fs-5: calc(var(--fs-p) * 2);
+    --fs-6: calc(var(--fs-p) * 1.5);
 
     /* Button */
     --btn-padding: .8em 1em;
 
-	/* Spacers for margins, gaps or paddings */
-	--spacer: 1em;
-	--spacer-md: calc(var(--spacer) * 2);
-	--spacer-lg: calc(var(--spacer) * 3);
+    /* Spacers for margins, gaps or paddings */
+    --spacer: 1em;
+    --spacer-md: calc(var(--spacer) * 2);
+    --spacer-lg: calc(var(--spacer) * 3);
 
 
 }
 
-h1, h2, h3, h4, h5, h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--ff);
     color: var(--f-color);
     margin: 0em;
 }
 
-h1{
+h1 {
     font-size: var(--fs-1);
 }
 
-h2{
+h2 {
     font-size: var(--fs-2);
 }
 
-h3{
+h3 {
     font-size: var(--fs-3);
 }
 
-h4{
+h4 {
     font-size: var(--fs-4);
 }
 
-h5{
+h5 {
     font-size: var(--fs-5);
 }
 
-h6{
+h6 {
     font-size: var(--fs-6);
 }
 
-a, input[type=submit]{
+a,
+input[type=submit] {
     font-family: var(--ff);
     text-decoration: none;
     font-size: var(--fs-p);
@@ -97,7 +103,7 @@ a, input[type=submit]{
     border: none;
 }
 
-.subBtn{
+.subBtn {
     font-family: var(--ff);
     text-decoration: none;
     font-size: var(--fs-p);
@@ -109,7 +115,7 @@ a, input[type=submit]{
 }
 
 
-body{
+body {
     background-color: var(--bg-color);
     font-family: var(--ff);
     font-size: var(--fs);
@@ -118,10 +124,10 @@ body{
 
 
 /* VANAF HIER START MIJN EIGEN CODE */
-
-header img{
-	width: 60%;
-	height: auto;
+/* Start quiz pagina */
+header img {
+    width: 60%;
+    height: auto;
     margin-top: 6%;
     margin-left: 4%;
 }
@@ -139,7 +145,7 @@ body {
     margin: 0;
 }
 
-main a{
+main.startQuizButton {
     /* dit is de start quiz knop */
     font-family: var(--ff);
     text-decoration: none;
@@ -148,7 +154,37 @@ main a{
     background-color: var(--main-color);
     padding: var(--btn-padding);
     margin: 0em;
-    border: none; 
+    border: none;
+}
+
+/* Vragen pagina's */
+h1 {
+    font-size: xx-large;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+main p {
+    margin-top: 8%;
+}
+
+.invulFormulier{
+    margin-top: 5%;
+    width: 28em;
+    height: 3em;
+}
+
+.navigatieQuiz{
+    margin-top: 20%;
+}
+
+main{
+    margin-left: 4%;
+}
+
+main img{
+    width: 45%;
+    height: auto;
 }
 
 
@@ -163,7 +199,7 @@ main a{
     margin-bottom: 10px;
 }
 
-.footer_socials img{
+.footer_socials img {
     width: 7%;
     height: auto;
 }
@@ -177,11 +213,11 @@ main a{
     padding-top: 1em;
 }
 
-section.footer_socials{
+section.footer_socials {
     margin-top: 6%;
 }
 
-.footerButton{
+.footerButton {
     font-family: var(--ff);
     text-decoration: none;
     font-size: var(--fs-p);
@@ -190,24 +226,24 @@ section.footer_socials{
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     padding: var(--btn-padding);
     margin: 0em;
-    border: none;    
+    border: none;
     margin-left: 4%;
 }
 
-section.buttons{
+section.buttons {
     margin-top: 6%;
 }
 
-.footer_last a{
+.footer_last a {
     background-color: transparent;
     font-size: x-small;
 }
 
-section.footer_last{
+section.footer_last {
     margin-left: 2%;
 }
 
-footer h3{
+footer h3 {
     font-size: large;
     margin: 0;
     padding: 0;
@@ -215,7 +251,7 @@ footer h3{
     padding-left: 4%;
 }
 
-footer p{
+footer p {
     margin: 0;
     padding-left: 4%;
 }
