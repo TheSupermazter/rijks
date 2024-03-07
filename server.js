@@ -97,9 +97,8 @@ app.get('/register', (req, res) => {
     res.render('register');
 });
 
-
 app.post('/register', async (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, password, name, email, tel, imageUrl } = req.body;
     const existingUser = await usersCollection.findOne({ username });
 
     if (existingUser) {
@@ -109,12 +108,13 @@ app.post('/register', async (req, res) => {
             if (err) {
                 console.log(err);
             } else {
-                const insertedUser = await usersCollection.insertOne({ username, email, password: hash });
+                const insertedUser = await usersCollection.insertOne({ username, name, email, tel, password: hash, imageUrl });
                 res.redirect(`/dashboard/${insertedUser.insertedId}`);
             }
         });
     }
 });
+
 
 
 
