@@ -5,7 +5,8 @@ const session = require('express-session');
 const app = express();
 const path = require('path');
 const { MongoClient, ServerApiVersion, ObjectId, CommandStartedEvent } = require('mongodb');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
+const { error } = require('console');
 
 // MongoDB connection URI
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/?retryWrites=true&w=majority`
@@ -33,9 +34,9 @@ app.use(express.static(path.join(__dirname, 'public'))); // static content sits 
 // Express sessions middleware
 app.use(session({
     secret: process.env.SESSION_SECRET,
-    resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 30000 }
+    resave: false,
+    cookie: { maxAge: 60000 * 60 * 8}
 }));
 
 // Start the server
@@ -48,7 +49,6 @@ app.listen(process.env.PORT, () => {
 // global constants
 const db = client.db(process.env.DB_NAME);  //process.env.DB_NAME
 const usersCollection = db.collection(process.env.DB_USER_COLLECTION);
-
 
 
 // INDEX
@@ -72,12 +72,19 @@ app.get('/login', (req, res) => {
 
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
-    const user = await usersCollection.findOne({ username, password });
+    const user = await usersCollection.findOne({ username });
 
     if (user) {
-        // Store user data in session
-        req.session.user = user;
-        res.redirect(`/dashboard/${user._id}`);
+        bcrypt.compare(password, user.password, (err, isMatch) => {
+            if (err) {
+                console.log(err);
+            } else if (isMatch) {
+                req.session.user = user;
+                res.redirect(`/dashboard/${user._id}`);
+            } else {
+                res.render('login', { error: 'ongeldige gebruikersnaam of wachtwoord' });
+            }
+        });
     } else {
         res.render('login', { error: 'ongeldige gebruikersnaam of wachtwoord' });
     }
@@ -98,10 +105,15 @@ app.post('/register', async (req, res) => {
     if (existingUser) {
         res.render('register', { error: 'Gebruikersnaam bestaat al' });
     } else {
-        const insertedUser = await usersCollection.insertOne({ username, email, password });
-        res.redirect(`/dashboard/${insertedUser.insertedId}`);
+        bcrypt.hash(password, 10, async (err, hash) => {
+            if (err) {
+                console.log(err);
+            } else {
+                const insertedUser = await usersCollection.insertOne({ username, email, password: hash });
+                res.redirect(`/dashboard/${insertedUser.insertedId}`);
+            }
+        });
     }
-    
 });
 
 
