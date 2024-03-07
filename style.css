@@ -145,7 +145,7 @@ body {
     margin: 0;
 }
 
-main.startQuizButton {
+a.startQuizButton {
     /* dit is de start quiz knop */
     font-family: var(--ff);
     text-decoration: none;
@@ -175,7 +175,14 @@ main p {
 }
 
 .navigatieQuiz{
-    margin-top: 20%;
+    margin-top: 15%;
+}
+
+.startQuizCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
 }
 
 main{
