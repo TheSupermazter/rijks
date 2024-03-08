@@ -50,9 +50,9 @@ inputs.forEach(input => {
   function draw(e) {
     if (!drawing) return;
 
-    ctx.lineWidth = 2; // Width of the line
+    ctx.lineWidth = 5; // Width of the line
     ctx.lineCap = 'round'; // Rounded end cap
-    ctx.strokeStyle = '#000000'; // Black color
+    ctx.strokeStyle = '#D55140'
 
     // Get the correct mouse position
     const rect = canvas.getBoundingClientRect();
@@ -155,7 +155,7 @@ deleteButton.addEventListener('click', clearCanvas);
 
 
 
-// Fetch data and put mathrandom on the fetched data
+// FETCH IMAGE FROM RIJKS API_____________________________________________________________________________________________________________
 
 const baseURL = "https://www.rijksmuseum.nl/api/nl/collection?key=mFMeRfGA";
 const endPoint = "";
