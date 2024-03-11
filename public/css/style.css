@@ -105,7 +105,7 @@ p{
 }
 
 
-a, input[type=submit]{
+a, input[type=submit], button{
     font-family: var(--ff);
     text-decoration: none;
     font-size: var(--fs-p);
@@ -120,7 +120,7 @@ a, input[type=submit]{
     transition: .3s ease-in-out;
 }
 
-a:hover, input[type=submit]:hover, a:focus, input[type=submit]:focus{
+a:hover, input[type=submit]:hover, button:hover, a:focus, input[type=submit]:focus, button:focus {
     background-color: var(--f-color);
     color: var(--bg-color);
 }
@@ -182,6 +182,7 @@ form {
     display: flex;
     flex-direction: column;
     padding: var(--spacer-md);
+    width: 80vw;
 }
 
 
@@ -222,5 +223,48 @@ label.focus {
 }
 
 
+/* ---------------------------------------------LOGIN & REGISTER----------------------------------------------------------------- */
 
+/* For drawing in register form */
+#drawing{
+    background-color: var(--f-color);
+    border-radius: 2px;
+}
 
+label[for=drawing]{
+    transform: translateY(0em);
+    margin: var(--spacer) 0em;
+}
+
+form div{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+form div>canvas{
+    position: relative;
+}
+
+form div>button{
+    position: absolute;
+    bottom: var(--spacer);
+    right: var(--spacer);
+    font-size: calc(var(--fs-p) /1.3);
+}
+
+form div>button:last-child{
+    bottom: auto;
+    top: var(--spacer);
+    background-color: var(--f-color);
+    color: var(--btn-color);
+}
+
+.fetchArt.hidden{
+    display: none;
+}
+
+form div>img{
+    width: 100%;
+    border-radius: 2px;
+}
