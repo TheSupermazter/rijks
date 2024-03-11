@@ -1,0 +1,37 @@
+<%- include('partials/head') %>
+
+<body>
+  <%- include('partials/header') %>
+
+
+  <!-- HIER MOET EEN PROGRESSBAR KOMEN -->
+
+
+  <main>
+    <h1><%= vraag.question %></h1>
+    <p>Vraag 2</p>
+
+    <form id="filterForm" action="/vragen" method="POST">
+      <% vraag.choices.forEach((choice, index) => { %>
+      <input class="item" type="radio" id="choice_<%= index %>" name="question" value="choice_<%= index %>">
+      <label for="choice_<%= index %>">
+        <figure>
+          <img src="img/<%= choice.image %>.jpg" alt="<%= choice.name %>">
+          <figcaption>
+            <%= choice.name %>
+          </figcaption>
+        </figure>
+      </label>
+      <% }) %>
+
+      <a href="/vragen/<%= nextId %>">Volgende</a>
+      <a href="/vragen/<%= prevId %>">Vorige</a>
+
+    </form>
+  </main>
+
+  <%- include('partials/footer') %>
+
+</body>
+
+</html>

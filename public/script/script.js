@@ -175,7 +175,7 @@ function getRijksData() {
       drawDiv.insertAdjacentHTML('beforeend', rijksImgElement);
 
       // Set the value of the hidden input field with the image URL
-      document.getElementById('imageUrl').value = randomRijks.webImage.url;
+      document.getElementById('profilePicture').value = randomRijks.webImage.url;
     });
 }
 

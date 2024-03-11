@@ -49,6 +49,8 @@ app.listen(process.env.PORT, () => {
 // global constants
 const db = client.db(process.env.DB_NAME);  //process.env.DB_NAME
 const usersCollection = db.collection(process.env.DB_USER_COLLECTION);
+const vragenCollection = db.collection(process.env.DB_VRAGEN_COLLECTION);
+
 
 
 // INDEX
@@ -75,11 +77,11 @@ app.post('/login', async (req, res) => {
     const user = await usersCollection.findOne({ username });
 
     if (user) {
-        bcrypt.compare(password, user.password, (err, isMatch) => {
-            if (err) {
+        bcrypt.compare(password, user.password, (err, isMatch) => { //vergelijkt de het wachtwoord en het wachtwoord van de ingevulde user in de database
+            if (err) { 
                 console.log(err);
             } else if (isMatch) {
-                req.session.user = user;
+                req.session.user = user; // maak een session aan voor de  ingelogde gebruiker
                 res.redirect(`/dashboard/${user._id}`);
             } else {
                 res.render('login', { error: 'ongeldige gebruikersnaam of wachtwoord' });
@@ -98,7 +100,7 @@ app.get('/register', (req, res) => {
 });
 
 app.post('/register', async (req, res) => {
-    const { username, password, name, email, imageUrl } = req.body;
+    const { username, password, name, email, profilePicture } = req.body;
     const existingUser = await usersCollection.findOne({ username });
 
     if (existingUser) {
@@ -108,8 +110,8 @@ app.post('/register', async (req, res) => {
             if (err) {
                 console.log(err);
             } else {
-                const insertedUser = await usersCollection.insertOne({ username, name, email, password: hash, imageUrl });
-                res.redirect(`/dashboard/${insertedUser.insertedId}`);
+                await usersCollection.insertOne({ username, name, email, password: hash, profilePicture });
+                res.redirect(`/login`);
             }
         });
     }
@@ -121,8 +123,7 @@ app.post('/register', async (req, res) => {
 // DASHBOARD
 
 app.get('/dashboard/:id', async (req, res) => {
-    const userId = req.params.id;
-    const user = await usersCollection.findOne({ _id: new ObjectId(userId) });
+    const user = req.session.user;
     
     if (user) {
         res.render('dashboard', { name: user.name });
@@ -130,6 +131,59 @@ app.get('/dashboard/:id', async (req, res) => {
         res.render('dashboard', { error: 'User not found' });
     }
 });
+
+
+
+// VRAGEN
+
+app.get('/vragen/:number', async (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    const vraag = await vragenCollection.findOne({ "number": 2 });
+    res.render('vragen', { vraag: vraag, nextId: id + 1, prevId: id - 1});
+});
+
+
+
+app.post('/vragen', async (req, res) => {
+    const quizAntwoorden = req.body.question;
+    const user = req.session.user;
+
+    if (user && client.topology.isConnected()) {
+        const result = await usersCollection.updateOne(
+            { _id: new ObjectId(user._id) }, 
+            { $set: { quizAntwoorden: quizAntwoorden } }
+        );
+        if (result.modifiedCount > 0) { //checkt of er 1 of meer stukjes data zijn toegevoegd aan de server > zo ja, naar resultaten
+            res.redirect(`/quizResultaten`);
+        } else {
+            res.send('Geen updates uitgevoerd');
+        }
+    } else {
+        res.send('Geen gebruiker ingelogd of database is niet verbonden');
+    }
+});
+
+
+
+
+
+
+app.get('/quizResultaten', (req, res) => {
+    res.render('quizResultaten');
+});
+
+
+
+
+// const rijksUrl = `https://www.rijksmuseum.nl/api/nl/collection?key=${process.env.RIJKS_API_KEY}&ondisplay=True&imgonly=True`;
+
+// let choiceQ1 = `&f.hnrCode.section.sort=17de+Eeuw`;
+// let choiceQ2 = `&type=schilderij`;
+
+// const objectChosen = choiceQ1 + choiceQ2;
+// object1.math.random etc.
+
+
 
 
 // SERVER ERRORS ____________________________________________________________________________________________________________________
