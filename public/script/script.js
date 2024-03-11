@@ -199,6 +199,15 @@ async function getData(URL) {
 button.onclick = getRijksData;
 
 
+// prevent .fetchArt and .deleteSketch button from uploading data when clicked
+
+const preventDefaultAction = (event) => {
+  event.preventDefault();
+};
+
+document.querySelector('.fetchArt').addEventListener('click', preventDefaultAction);
+document.querySelector('.deleteSketch').addEventListener('click', preventDefaultAction);
+
 
 
   

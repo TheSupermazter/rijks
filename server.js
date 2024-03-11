@@ -98,7 +98,7 @@ app.get('/register', (req, res) => {
 });
 
 app.post('/register', async (req, res) => {
-    const { username, password, name, email, tel, imageUrl } = req.body;
+    const { username, password, name, email, imageUrl } = req.body;
     const existingUser = await usersCollection.findOne({ username });
 
     if (existingUser) {
@@ -108,7 +108,7 @@ app.post('/register', async (req, res) => {
             if (err) {
                 console.log(err);
             } else {
-                const insertedUser = await usersCollection.insertOne({ username, name, email, tel, password: hash, imageUrl });
+                const insertedUser = await usersCollection.insertOne({ username, name, email, password: hash, imageUrl });
                 res.redirect(`/dashboard/${insertedUser.insertedId}`);
             }
         });
@@ -130,8 +130,6 @@ app.get('/dashboard/:id', async (req, res) => {
         res.render('dashboard', { error: 'User not found' });
     }
 });
-
-
 
 
 // SERVER ERRORS ____________________________________________________________________________________________________________________
