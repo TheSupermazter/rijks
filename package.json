@@ -1,0 +1,32 @@
+{
+  "name": "rijks-1",
+  "version": "1.0.0",
+  "description": "Welcome page ",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheSupermazter/rijks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheSupermazter/rijks/issues"
+  },
+  "homepage": "https://github.com/TheSupermazter/rijks#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "env": "^0.0.2",
+    "express": "^4.18.2",
+    "express-session": "^1.18.0",
+    "mongodb": "^6.3.0",
+    "nodeman": "^1.1.2",
+    "nodemon": "^3.1.0"
+  }
+}
