@@ -158,9 +158,15 @@ a.startQuizButton {
 }
 
 /* Vragen pagina's */
+.progressBar{
+width: 90vw;
+height: auto;
+margin-top: 5%;
+}
+
 h1 {
     font-size: xx-large;
-    margin-top: 10%;
+    margin-top: 5%;
     margin-bottom: 5%;
 }
 
