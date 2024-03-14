@@ -16,7 +16,7 @@
       <input class="item" type="radio" id="choice_<%= index %>" name="question" value="choice_<%= index %>">
       <label for="choice_<%= index %>">
         <figure>
-          <img src="img/<%= choice.image %>.jpg" alt="<%= choice.name %>">
+          <img src="../img/<%= choice.image %>.jpg" alt="<%= choice.name %>">
           <figcaption>
             <%= choice.name %>
           </figcaption>
@@ -24,8 +24,13 @@
       </label>
       <% }) %>
 
-      <a href="/vragen/<%= nextId %>">Volgende</a>
-      <a href="/vragen/<%= prevId %>">Vorige</a>
+      <% if (nextId !== 11) { %>
+        <a class="nextBtn" href="/vragen/<%= nextId %>">Volgende</a>
+      <% } %>
+      <% if (prevId !== 0) { %>
+        <a class="prevBtn" href="/vragen/<%= prevId %>">Vorige</a>
+      <% } %>
+      
 
     </form>
   </main>

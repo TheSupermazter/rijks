@@ -137,11 +137,10 @@ app.get('/dashboard/:id', async (req, res) => {
 // VRAGEN
 
 app.get('/vragen/:number', async (req, res) => {
-    const id = parseInt(req.params.id, 10);
-    const vraag = await vragenCollection.findOne({ "number": 2 });
-    res.render('vragen', { vraag: vraag, nextId: id + 1, prevId: id - 1});
+    const number = parseInt(req.params.number, 10);
+    const vraag = await vragenCollection.findOne({ "number": number });
+    res.render('vragen', { vraag: vraag, nextId: number + 1, prevId: number - 1});
 });
-
 
 
 app.post('/vragen', async (req, res) => {
@@ -162,9 +161,6 @@ app.post('/vragen', async (req, res) => {
         res.send('Geen gebruiker ingelogd of database is niet verbonden');
     }
 });
-
-
-
 
 
 
