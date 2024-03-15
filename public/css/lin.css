@@ -200,6 +200,9 @@ main img{
     height: auto;
 }
 
+.clicked {
+    border: 3px solid #D55140;
+}
 
 /* FOOTER */
 .footer_links {
@@ -268,3 +271,4 @@ footer p {
     margin: 0;
     padding-left: 4%;
 }
+
