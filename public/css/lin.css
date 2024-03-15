@@ -205,6 +205,34 @@ main img{
     outline-offset: -4px;
 }
 
+/* LIJSTJE */
+
+ul {
+    margin:0;
+    padding:var(--whiteSpace);
+    display:grid;
+    grid-gap:calc(var(--whiteSpace) / 2);
+    list-style:none;
+  }
+  
+  /****************/
+  /* een karakter */
+  li {
+    display:grid;
+    grid-template-columns:min-content 1fr;
+  }
+  
+  li h2 {
+    margin:0;
+    font-size:1.2em;
+  }
+  
+  li img {
+    width:auto;
+    height:2em;
+    grid-row:1/3;
+    grid-column:1/2;
+  }
 
 /* FOOTER */
 .footer_links {
@@ -273,4 +301,3 @@ footer p {
     margin: 0;
     padding-left: 4%;
 }
-
