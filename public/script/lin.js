@@ -13,6 +13,6 @@ images.forEach(image => {
     });
 });
 
-    new Sortable(list, {
+new Sortable(list, {
     animation: 300, // ca 300ms is meestal een mooie tijd
 });
