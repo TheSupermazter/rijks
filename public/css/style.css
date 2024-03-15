@@ -54,8 +54,6 @@
 	--spacer: 1em;
 	--spacer-md: calc(var(--spacer) * 2);
 	--spacer-lg: calc(var(--spacer) * 3);
-
-
 }
 
 h1, h2, h3, h4, h5, h6, p{
