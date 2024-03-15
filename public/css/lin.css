@@ -201,8 +201,10 @@ main img{
 }
 
 .clicked {
-    border: 3px solid #D55140;
+    outline: 4px solid #D55140;
+    outline-offset: -4px;
 }
+
 
 /* FOOTER */
 .footer_links {
