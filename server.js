@@ -144,23 +144,31 @@ app.get('/vragen/:number', async (req, res) => {
 
 
 app.post('/vragen', async (req, res) => {
-    const quizAntwoorden = req.body.question;
+    const questionNumber = req.body.questionNumber;
+    const antwoord = req.body.question;
+    const navigate = req.body.navigate;
+
     const user = req.session.user;
 
     if (user && client.topology.isConnected()) {
         const result = await usersCollection.updateOne(
             { _id: new ObjectId(user._id) }, 
-            { $set: { quizAntwoorden: quizAntwoorden } }
+            { $set: { [`quizAntwoorden.${questionNumber}`]: antwoord } }
         );
-        if (result.modifiedCount > 0) { //checkt of er 1 of meer stukjes data zijn toegevoegd aan de server > zo ja, naar resultaten
-            res.redirect(`/quizResultaten`);
-        } else {
-            res.send('Geen updates uitgevoerd');
+        if (result.modifiedCount > 0) {
+            if (navigate) {
+                res.redirect(`/vragen/${navigate}`);
+            } else {
+                res.redirect(`/quizResultaten`);
+            }
         }
     } else {
         res.send('Geen gebruiker ingelogd of database is niet verbonden');
     }
 });
+
+
+
 
 
 

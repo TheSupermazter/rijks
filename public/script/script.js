@@ -25,7 +25,6 @@ inputs.forEach(input => {
 });
 
 
-
 // DRAWING IN REGISTER____CANVAS_________________________________________________________________________________________________________
 
   // Get a reference to the canvas element and its context
@@ -207,8 +206,4 @@ const preventDefaultAction = (event) => {
 
 document.querySelector('.fetchArt').addEventListener('click', preventDefaultAction);
 document.querySelector('.deleteSketch').addEventListener('click', preventDefaultAction);
-
-
-
-  
 

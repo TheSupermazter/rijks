@@ -9,33 +9,58 @@
 
   <main>
     <h1><%= vraag.question %></h1>
-    <p>Vraag 2</p>
+    <p>Vraag <%= vraag.number %></p>
 
-    <form id="filterForm" action="/vragen" method="POST">
-      <% vraag.choices.forEach((choice, index) => { %>
-      <input class="item" type="radio" id="choice_<%= index %>" name="question" value="choice_<%= index %>">
-      <label for="choice_<%= index %>">
-        <figure>
-          <img src="../img/<%= choice.image %>.jpg" alt="<%= choice.name %>">
-          <figcaption>
-            <%= choice.name %>
-          </figcaption>
-        </figure>
-      </label>
-      <% }) %>
+    <form id="filterForm" action="/vragen" method="POST">    
+      <% if (nextId !== 2 && nextId !== 5) { %>
+        <% vraag.choices.forEach((choice, index) => { %>
+          <input class="item" type="radio" id="choice_<%= index %>" name="question" value="choice_<%= index %>" required>
+          <label for="choice_<%= index %>">
+            <figure>
+              <img src="../img/<%= choice.image %>.jpg" alt="<%= choice.name %>">
+              <figcaption>
+                <%= choice.name %>
+              </figcaption>
+            </figure>
+          </label>
+          <% }) %>
+      <% } else if (nextId === 2) { %>
+        <label for="choice_2">Vul in met hoeveel mensen je bent (max 15)</label>
+        <input class="item" type="number" id="choice_2" name="question" min="1" max="15" value="choice_2" required>
+      <% } else if (nextId === 5) { %>
+        <% vraag.choices.forEach((choice, index) => { %>
+          <input class="item" type="radio" id="choice_<%= index %>" name="question" value="choice_<%= index %>" required>
+          <label for="choice_<%= index %>">
+            <figure>
+              <img src="../img/<%= choice.image %>.jpg" alt="<%= choice.name %>">
+              <figcaption>
+                <%= choice.name %>
+              </figcaption>
+            </figure>
+          </label>
+          <% }) %>
+      <% } %>
 
+    
       <% if (nextId !== 11) { %>
-        <a class="nextBtn" href="/vragen/<%= nextId %>">Volgende</a>
+        <button type="submit" class="nextBtn" name="navigate" value="<%= nextId %>">Volgende</button>
       <% } %>
       <% if (prevId !== 0) { %>
-        <a class="prevBtn" href="/vragen/<%= prevId %>">Vorige</a>
+        <button type="submit" class="prevBtn" name="navigate" value="<%= prevId %>">Vorige</button>
+        <input type="submit" value="Submit">
       <% } %>
-      
+
+      <input type="hidden" name="questionNumber" value="<%= vraag.number %>">
+
 
     </form>
+    
   </main>
 
   <%- include('partials/footer') %>
+
+  <script src="/script/script.js"></script>
+
 
 </body>
 
