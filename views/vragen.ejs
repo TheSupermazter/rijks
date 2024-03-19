@@ -13,8 +13,10 @@
 
     <form id="filterForm" action="/vragen" method="POST">    
       <% if (nextId !== 2 && nextId !== 5) { %>
+
         <% vraag.choices.forEach((choice, index) => { %>
-          <input class="item" type="radio" id="choice_<%= index %>" name="question" value="choice_<%= index %>" required>
+
+          <input class="item" type="radio" id="choice_<%= index %>" name="answer" value="choice_<%= index %>" required>
           <label for="choice_<%= index %>">
             <figure>
               <img src="../img/<%= choice.image %>.jpg" alt="<%= choice.name %>">
@@ -23,13 +25,19 @@
               </figcaption>
             </figure>
           </label>
+
           <% }) %>
+
       <% } else if (nextId === 2) { %>
+
         <label for="choice_2">Vul in met hoeveel mensen je bent (max 15)</label>
-        <input class="item" type="number" id="choice_2" name="question" min="1" max="15" value="choice_2" required>
+        <input class="item" type="number" id="choice_2" name="answer" min="1" max="15" value="choice_2" required>
+
       <% } else if (nextId === 5) { %>
+
         <% vraag.choices.forEach((choice, index) => { %>
-          <input class="item" type="radio" id="choice_<%= index %>" name="question" value="choice_<%= index %>" required>
+
+          <input class="item" type="radio" id="choice_<%= index %>" name="answer" value="choice_<%= index %>" required>
           <label for="choice_<%= index %>">
             <figure>
               <img src="../img/<%= choice.image %>.jpg" alt="<%= choice.name %>">
@@ -38,13 +46,16 @@
               </figcaption>
             </figure>
           </label>
+
           <% }) %>
+
       <% } %>
 
     
       <% if (nextId !== 11) { %>
         <button type="submit" class="nextBtn" name="navigate" value="<%= nextId %>">Volgende</button>
       <% } %>
+
       <% if (prevId !== 0) { %>
         <button type="submit" class="prevBtn" name="navigate" value="<%= prevId %>">Vorige</button>
         <input type="submit" value="Submit">

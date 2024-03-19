@@ -47,10 +47,9 @@ app.listen(process.env.PORT, () => {
 // FUNCTIONS ____________________________________________________________________________________________________________________
 
 // global constants
-const db = client.db(process.env.DB_NAME);  //process.env.DB_NAME
+const db = client.db(process.env.DB_NAME);
 const usersCollection = db.collection(process.env.DB_USER_COLLECTION);
 const vragenCollection = db.collection(process.env.DB_VRAGEN_COLLECTION);
-
 
 
 // INDEX
@@ -60,132 +59,18 @@ app.get('/', (req, res) => {
 });
 
 
+// ROUTES
 
-// Login
-
-app.get('/login', (req, res) => {
-    // Check if user is already logged in
-    if (req.session.user) {
-        res.redirect(`/dashboard/${req.session.user._id}`);
-    } else {
-        res.render('login');
-    }
-});
-
-app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
-    const user = await usersCollection.findOne({ username });
-
-    if (user) {
-        bcrypt.compare(password, user.password, (err, isMatch) => { //vergelijkt de het wachtwoord en het wachtwoord van de ingevulde user in de database
-            if (err) { 
-                console.log(err);
-            } else if (isMatch) {
-                req.session.user = user; // maak een session aan voor de  ingelogde gebruiker
-                res.redirect(`/dashboard/${user._id}`);
-            } else {
-                res.render('login', { error: 'ongeldige gebruikersnaam of wachtwoord' });
-            }
-        });
-    } else {
-        res.render('login', { error: 'ongeldige gebruikersnaam of wachtwoord' });
-    }
-});
+const dashboardRoutes = require('./routes/dashboard');
+const loginRegisterRoutes = require('./routes/loginRegister');
+const quizResultatenRoutes = require('./routes/quizResultaten');
+const vragenRoutes = require('./routes/vragen');
 
 
-// REGISTER
-
-app.get('/register', (req, res) => {
-    res.render('register');
-});
-
-app.post('/register', async (req, res) => {
-    const { username, password, name, email, profilePicture } = req.body;
-    const existingUser = await usersCollection.findOne({ username });
-
-    if (existingUser) {
-        res.render('register', { error: 'Gebruikersnaam bestaat al' });
-    } else {
-        bcrypt.hash(password, 10, async (err, hash) => {
-            if (err) {
-                console.log(err);
-            } else {
-                await usersCollection.insertOne({ username, name, email, password: hash, profilePicture });
-                res.redirect(`/login`);
-            }
-        });
-    }
-});
-
-
-
-
-// DASHBOARD
-
-app.get('/dashboard/:id', async (req, res) => {
-    const user = req.session.user;
-    
-    if (user) {
-        res.render('dashboard', { name: user.name });
-    } else {
-        res.render('dashboard', { error: 'User not found' });
-    }
-});
-
-
-
-// VRAGEN
-
-app.get('/vragen/:number', async (req, res) => {
-    const number = parseInt(req.params.number, 10);
-    const vraag = await vragenCollection.findOne({ "number": number });
-    res.render('vragen', { vraag: vraag, nextId: number + 1, prevId: number - 1});
-});
-
-
-app.post('/vragen', async (req, res) => {
-    const questionNumber = req.body.questionNumber;
-    const antwoord = req.body.question;
-    const navigate = req.body.navigate;
-
-    const user = req.session.user;
-
-    if (user && client.topology.isConnected()) {
-        const result = await usersCollection.updateOne(
-            { _id: new ObjectId(user._id) }, 
-            { $set: { [`quizAntwoorden.${questionNumber}`]: antwoord } }
-        );
-        if (result.modifiedCount > 0) {
-            if (navigate) {
-                res.redirect(`/vragen/${navigate}`);
-            } else {
-                res.redirect(`/quizResultaten`);
-            }
-        }
-    } else {
-        res.send('Geen gebruiker ingelogd of database is niet verbonden');
-    }
-});
-
-
-
-
-
-
-app.get('/quizResultaten', (req, res) => {
-    res.render('quizResultaten');
-});
-
-
-
-
-// const rijksUrl = `https://www.rijksmuseum.nl/api/nl/collection?key=${process.env.RIJKS_API_KEY}&ondisplay=True&imgonly=True`;
-
-// let choiceQ1 = `&f.hnrCode.section.sort=17de+Eeuw`;
-// let choiceQ2 = `&type=schilderij`;
-
-// const objectChosen = choiceQ1 + choiceQ2;
-// object1.math.random etc.
+app.use(dashboardRoutes);
+app.use(loginRegisterRoutes);
+app.use(quizResultatenRoutes);
+app.use(vragenRoutes);
 
 
 
