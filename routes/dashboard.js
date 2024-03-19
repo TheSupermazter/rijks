@@ -1,3 +1,5 @@
+module.exports = function(global) {
+
 const express = require('express');
 const router = express.Router();
 
@@ -13,4 +15,6 @@ router.get('/dashboard/:id', async (req, res) => {
     }
 });
 
-module.exports = router;
+return router;
+
+}

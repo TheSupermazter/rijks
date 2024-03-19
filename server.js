@@ -5,8 +5,7 @@ const session = require('express-session');
 const app = express();
 const path = require('path');
 const { MongoClient, ServerApiVersion, ObjectId, CommandStartedEvent } = require('mongodb');
-const bcrypt = require('bcrypt');
-const { error } = require('console');
+
 
 // MongoDB connection URI
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/?retryWrites=true&w=majority`
@@ -51,26 +50,29 @@ const db = client.db(process.env.DB_NAME);
 const usersCollection = db.collection(process.env.DB_USER_COLLECTION);
 const vragenCollection = db.collection(process.env.DB_VRAGEN_COLLECTION);
 
+const global = {
+  db,
+  usersCollection,
+  vragenCollection,
+};
 
-// INDEX
-
-app.get('/', (req, res) => {
-    res.render('index');
-});
-
-
-// ROUTES
-
-const dashboardRoutes = require('./routes/dashboard');
-const loginRegisterRoutes = require('./routes/loginRegister');
-const quizResultatenRoutes = require('./routes/quizResultaten');
-const vragenRoutes = require('./routes/vragen');
+const dashboardRoutes = require('./routes/dashboard')(global);
+const loginRegisterRoutes = require('./routes/loginRegister')(global);
+const quizResultatenRoutes = require('./routes/quizResultaten')(global);
+const vragenRoutes = require('./routes/vragen')(global);
 
 
 app.use(dashboardRoutes);
 app.use(loginRegisterRoutes);
 app.use(quizResultatenRoutes);
 app.use(vragenRoutes);
+
+
+// INDEX
+
+app.get('/', (req, res) => {
+    res.render('index');
+});
 
 
 

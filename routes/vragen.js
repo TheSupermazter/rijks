@@ -1,9 +1,8 @@
+module.exports = function(global) {
+
 const express = require('express');
 const router = express.Router();
-
-//global
-const usersCollection = db.collection(process.env.DB_USER_COLLECTION);
-const vragenCollection = db.collection(process.env.DB_VRAGEN_COLLECTION);
+const { usersCollection, vragenCollection} = global; 
 
 // VRAGEN
 
@@ -38,4 +37,7 @@ router.post('/vragen', async (req, res) => {
     }
 });
 
-module.exports = router;
+return router;
+
+}
+

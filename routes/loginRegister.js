@@ -1,8 +1,10 @@
+module.exports = function(global) {
+
 const express = require('express');
 const router = express.Router();
+const { usersCollection } = global;
 
-// global
-const usersCollection = db.collection(process.env.DB_USER_COLLECTION);
+const bcrypt = require('bcrypt');
 
 // Login
 
@@ -60,4 +62,6 @@ router.post('/register', async (req, res) => {
     }
 });
 
-module.exports = router;
+return router;
+
+}
