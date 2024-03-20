@@ -50,7 +50,7 @@ const db = client.db(process.env.DB_NAME);
 const usersCollection = db.collection(process.env.DB_USER_COLLECTION);
 const vragenCollection = db.collection(process.env.DB_VRAGEN_COLLECTION);
 
-const global = {
+const global = { // vul lijst aan als er in de routes een object not defined is > zet daarna ook in route waar de bug zich bevind > const { ... } = global;
   client,
   ObjectId,
   db,
