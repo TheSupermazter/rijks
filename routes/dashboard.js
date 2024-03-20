@@ -5,7 +5,7 @@ const router = express.Router();
 
 // DASHBOARD
 
-router.get('/dashboard/:id', async (req, res) => {
+router.get('/', async (req, res) => {
     const user = req.session.user;
     
     if (user) {

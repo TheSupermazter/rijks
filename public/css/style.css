@@ -40,12 +40,12 @@
 
 	/* Font sizes */
 	--fs-p: 1em;
-	--fs-1: calc(var(--fs-p) * 8);
-	--fs-2: calc(var(--fs-p) * 5);
-	--fs-3: calc(var(--fs-p) * 4);
-	--fs-4: calc(var(--fs-p) * 3);
-	--fs-5: calc(var(--fs-p) * 2);
-	--fs-6: calc(var(--fs-p) * 1.5);
+	--fs-1: calc(var(--fs-p) * 3.5);
+	--fs-2: calc(var(--fs-p) * 3);
+	--fs-3: calc(var(--fs-p) * 2.5);
+	--fs-4: calc(var(--fs-p) * 2);
+	--fs-5: calc(var(--fs-p) * 1.5);
+	--fs-6: var(--fs-p);
 
     /* Button */
     --btn-padding: .8em 1em;
@@ -168,6 +168,10 @@ body{
     color: var(--f-color);
     height: 100vh;
     margin: 0;
+}
+
+main{
+    padding: var(--spacer);
 }
 
 section{
@@ -363,13 +367,14 @@ header img {
 
 
 /* questions */
-h1 {
-    margin-top: 10%;
-    margin-bottom: 5%;
+
+.vragen h1{
+    font-size: var(--fs-4);
 }
 
-main p {
-    margin-top: 8%;
+.vragen form{
+    padding: 0em;
+    width: auto;
 }
 
 .invulFormulier{
@@ -388,6 +393,7 @@ main p {
     align-items: center;
     height: 90vh;
 }
+
 
 main img{
     width: 45%;

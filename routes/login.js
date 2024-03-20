@@ -3,12 +3,11 @@ module.exports = function(global) {
 const express = require('express');
 const router = express.Router();
 const { usersCollection } = global;
-
 const bcrypt = require('bcrypt');
 
 // Login
 
-router.get('/login', (req, res) => {
+router.get('/', (req, res) => {
     // Check if user is already logged in
     if (req.session.user) {
         res.redirect(`/dashboard/${req.session.user._id}`);
@@ -17,7 +16,7 @@ router.get('/login', (req, res) => {
     }
 });
 
-router.post('/login', async (req, res) => {
+router.post('/', async (req, res) => {
     const { username, password } = req.body;
     const user = await usersCollection.findOne({ username });
 
@@ -34,31 +33,6 @@ router.post('/login', async (req, res) => {
         });
     } else {
         res.render('login', { error: 'ongeldige gebruikersnaam of wachtwoord' });
-    }
-});
-
-
-// REGISTER
-
-router.get('/register', (req, res) => {
-    res.render('register');
-});
-
-router.post('/register', async (req, res) => {
-    const { username, password, name, email, profilePicture } = req.body;
-    const existingUser = await usersCollection.findOne({ username });
-
-    if (existingUser) {
-        res.render('register', { error: 'Gebruikersnaam bestaat al' });
-    } else {
-        bcrypt.hash(password, 10, async (err, hash) => {
-            if (err) {
-                console.log(err);
-            } else {
-                await usersCollection.insertOne({ username, name, email, password: hash, profilePicture });
-                res.redirect(`/login`);
-            }
-        });
     }
 });
 

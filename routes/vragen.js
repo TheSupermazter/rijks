@@ -2,18 +2,18 @@ module.exports = function(global) {
 
 const express = require('express');
 const router = express.Router();
-const { usersCollection, vragenCollection} = global; 
+const { usersCollection, vragenCollection, client, ObjectId} = global; 
 
 // VRAGEN
 
-router.get('/vragen/:number', async (req, res) => {
+router.get('/:number', async (req, res) => {
     const number = parseInt(req.params.number, 10);
     const vraag = await vragenCollection.findOne({ "number": number });
     res.render('vragen', { vraag: vraag, nextId: number + 1, prevId: number - 1}); //zorgt ervoor dat de http > vragen/ +1 worden of -1 bij navigeren van de knoppen
 });
 
 
-router.post('/vragen', async (req, res) => {
+router.post('/', async (req, res) => {
     const questionNumber = req.body.questionNumber; //nummer van de vraag > nodig om de geantwoordde  vraag aan het juiste vraagnummer te koppelen
     const antwoord = req.body.answer; //een antwoord in de form
     const navigate = req.body.navigate; // navigate is de buttonnaam van de next en prev buttons > zodat ik elke waarde kan opslaan in de DB

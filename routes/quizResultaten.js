@@ -5,7 +5,7 @@ const router = express.Router();
 
 // QUIZRESULTATEN
 
-router.get('/quizResultaten', (req, res) => {
+router.get('/', (req, res) => {
     res.render('quizResultaten');
 });
 

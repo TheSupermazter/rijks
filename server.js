@@ -51,21 +51,23 @@ const usersCollection = db.collection(process.env.DB_USER_COLLECTION);
 const vragenCollection = db.collection(process.env.DB_VRAGEN_COLLECTION);
 
 const global = {
+  client,
+  ObjectId,
   db,
   usersCollection,
   vragenCollection,
 };
 
 const dashboardRoutes = require('./routes/dashboard')(global);
-const loginRegisterRoutes = require('./routes/loginRegister')(global);
+const loginRoutes = require('./routes/login')(global);
 const quizResultatenRoutes = require('./routes/quizResultaten')(global);
 const vragenRoutes = require('./routes/vragen')(global);
 
 
-app.use(dashboardRoutes);
-app.use(loginRegisterRoutes);
-app.use(quizResultatenRoutes);
-app.use(vragenRoutes);
+app.use('/dashboard/:id', dashboardRoutes);
+app.use('/login', loginRoutes);
+app.use('/quizResultaten', quizResultatenRoutes);
+app.use('/vragen', vragenRoutes);
 
 
 // INDEX
