@@ -295,3 +295,21 @@ footer p {
     margin: 0;
     padding-left: 4%;
 }
+
+/* + EN - DING */
+  .PlusMinContainer button{
+    width: 3em;
+    color: #D55140;
+    font-family: "Rijksmuseum";
+    font-weight: bold;
+    font-size: larger;
+  }
+
+  .PlusMinContainer input{
+    width: 10em;
+    color: #D55140;
+    text-align: center;
+    font-family: "Rijksmuseum";
+    font-weight: bold;
+    font-size: larger;
+  }
