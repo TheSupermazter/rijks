@@ -11,7 +11,8 @@
     <h1><%= vraag.question %></h1>
     <p>Vraag <%= vraag.number %></p>
 
-    <form id="filterForm" action="/vragen" method="POST">    
+    <form id="filterForm" action="/vragen" method="POST">   
+      <div> 
       <% if (nextId !== 2 && nextId !== 5) { %>
 
         <% vraag.choices.forEach((choice, index) => { %>
@@ -50,16 +51,21 @@
           <% }) %>
 
       <% } %>
+      </div>
 
-    
-      <% if (nextId !== 11) { %>
-        <button type="submit" class="nextBtn" name="navigate" value="<%= nextId %>">Volgende</button>
-      <% } %>
+      <div>
+        <% if (prevId !== 0) { %>
+          <button type="submit" class="prevBtn" name="navigate" value="<%= prevId %>">Vorige</button>
+        <% } %>
 
-      <% if (prevId !== 0) { %>
-        <button type="submit" class="prevBtn" name="navigate" value="<%= prevId %>">Vorige</button>
-        <input type="submit" value="Submit">
-      <% } %>
+        <% if (nextId !== 11) { %>
+          <button type="submit" class="nextBtn" name="navigate" value="<%= nextId %>">Volgende</button>
+        <% } %>
+
+        <% if (nextId === 11) { %>
+          <input type="submit" value="Quiz afronden">
+        <% } %>
+      </div>
 
       <input type="hidden" name="questionNumber" value="<%= vraag.number %>">
 
@@ -67,8 +73,6 @@
     </form>
     
   </main>
-
-  <%- include('partials/footer') %>
 
   <script src="/script/script.js"></script>
 

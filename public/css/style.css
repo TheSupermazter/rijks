@@ -201,7 +201,7 @@ form input:not([type=submit]){
     color: var(--f-color);
     position: relative;
     transition: .3s ease-in-out;
-
+    width: 100%;
 }
 
 form input:not([type=submit]):focus{
@@ -372,27 +372,92 @@ header img {
     font-size: var(--fs-4);
 }
 
+.vragen > p:first-of-type{
+    margin: .5em 0em;
+}
+
 .vragen form{
     padding: 0em;
     width: auto;
 }
 
-.invulFormulier{
-    margin-top: 5%;
-    width: 28em;
-    height: 3em;
-}
-
-.navigatieQuiz{
-    margin-top: 15%;
-}
-
-.startQuizCenter{
+.vragen form > div:nth-of-type(1){
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: var(--spacer);
+    width: 100%;
 }
+
+.vragen form > div:nth-of-type(2){
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacer);
+    margin-top: var(--spacer-lg);
+}
+
+.vragen form > div:nth-of-type(1) label{
+    width: max-content;
+}
+
+.vragen form > div:nth-of-type(2) .nextBtn, .prevBtn{
+    width: 100%;
+    position: relative;
+    inset: 0em;
+    color: var(--f-color);
+    background-color: var(--main-color);
+}
+
+.vragen form > div:nth-of-type(2) .prevBtn{
+    width: max-content;
+    color: var(--bg-color);
+    background-color: var(--f-color);
+}
+
+.vragen form input[type="submit"]{
+    margin: 0em;
+    width: 100%;
+}
+
+.vragen form label{
+    cursor: pointer;
+}
+
+.vragen form label figure{
+    margin: 0em;
+}
+
+.vragen form label figure img{
+    width: 38vw;
+}
+
+.vragen form label figure figcaption{
+    color: var(--f-color);
+    margin-top: .5em;
+}
+
+.vragen form input[type="radio"]{
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+    margin: 0em;
+    padding: 0em;
+}
+
+.vragen input[type="radio"]:checked + label figure img {
+    border: 2px solid var(--main-color);
+    padding: 5px;
+    margin: -7px;
+}
+
+.vragen input[type="radio"]:checked + label figure figcaption{
+    margin-top: .5em;
+}
+
 
 
 main img{
