@@ -1,5 +1,3 @@
-import "https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"
-
 // Zoek alle afbeeldingen met de klasse "clickable"
 const images = document.querySelectorAll('.clickable');
 
@@ -11,8 +9,4 @@ images.forEach(image => {
         // Voeg vervolgens de klasse "clicked" toe aan de geklikte afbeelding
         image.classList.add('clicked');
     });
-});
-
-new Sortable(list, {
-    animation: 300, // ca 300ms is meestal een mooie tijd
 });
