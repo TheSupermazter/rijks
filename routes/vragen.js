@@ -1,8 +1,7 @@
-module.exports = function(global) {
+module.exports = function({ usersCollection, vragenCollection }) {
 
 const express = require('express');
 const router = express.Router();
-const { usersCollection, vragenCollection, client, ObjectId} = global; 
 
 // VRAGEN
 

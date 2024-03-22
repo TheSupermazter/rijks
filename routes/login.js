@@ -1,9 +1,10 @@
-module.exports = function(global) {
+module.exports = function({ usersCollection }) {
 
 const express = require('express');
 const router = express.Router();
-const { usersCollection } = global;
+
 const bcrypt = require('bcrypt');
+const xss = require('xss');
 
 // Login
 
@@ -18,10 +19,13 @@ router.get('/', (req, res) => {
 
 router.post('/', async (req, res) => {
     const { username, password } = req.body;
-    const user = await usersCollection.findOne({ username });
+    let sanatisedUsername = xss(username);
+    let sanatisedPassword = xss(password);
+    
+    const user = await usersCollection.findOne({ username: sanatisedUsername });
 
     if (user) {
-        bcrypt.compare(password, user.password, (err, isMatch) => { //vergelijkt de het wachtwoord en het wachtwoord van de ingevulde user in de database
+        bcrypt.compare(sanatisedPassword, user.password, (err, isMatch) => { //vergelijkt de het wachtwoord en het wachtwoord van de ingevulde user in de database
             if (err) { 
                 console.log(err);
             } else if (isMatch) {

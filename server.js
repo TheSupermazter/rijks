@@ -4,26 +4,10 @@ const express = require('express');
 const session = require('express-session');
 const app = express();
 const path = require('path');
-const { MongoClient, ServerApiVersion, ObjectId, CommandStartedEvent } = require('mongodb');
+const { connectDB, client, ObjectId, db, usersCollection, vragenCollection } = require('./database');
 
+connectDB();
 
-// MongoDB connection URI
-const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/?retryWrites=true&w=majority`
-const client = new MongoClient(uri, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    }
-})
-
-
-// Connect to MongoDB
-client.connect().then(() => {
-    console.log('Connected to MongoDB');
-}).catch(err => {
-    console.error('Error connecting to MongoDB:', err);
-});
 
 app.use(express.urlencoded({ extended: true })); // Middleware to parse POST request body
 app.set('view engine', 'ejs'); // EJS as view engine
@@ -43,31 +27,21 @@ app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`)
   })
 
+
+  
 // FUNCTIONS ____________________________________________________________________________________________________________________
 
-// global constants
-const db = client.db(process.env.DB_NAME);
-const usersCollection = db.collection(process.env.DB_USER_COLLECTION);
-const vragenCollection = db.collection(process.env.DB_VRAGEN_COLLECTION);
-
-const global = { // vul lijst aan als er in de routes een object not defined is > zet daarna ook in route waar de bug zich bevind > const { ... } = global;
-  client,
-  ObjectId,
-  db,
-  usersCollection,
-  vragenCollection,
-};
-
-const dashboardRoutes = require('./routes/dashboard')(global);
-const loginRoutes = require('./routes/login')(global);
-const quizResultatenRoutes = require('./routes/quizResultaten')(global);
-const vragenRoutes = require('./routes/vragen')(global);
-
+const dashboardRoutes = require('./routes/dashboard')({ usersCollection, vragenCollection });
+const loginRoutes = require('./routes/login')({ usersCollection, vragenCollection });
+const quizResultatenRoutes = require('./routes/quizResultaten')({ usersCollection, vragenCollection });
+const vragenRoutes = require('./routes/vragen')({ usersCollection, vragenCollection });
+const registerRoutes = require('./routes/register')({ usersCollection, vragenCollection });
 
 app.use('/dashboard/:id', dashboardRoutes);
 app.use('/login', loginRoutes);
 app.use('/quizResultaten', quizResultatenRoutes);
 app.use('/vragen', vragenRoutes);
+app.use('/register', registerRoutes);
 
 
 // INDEX
@@ -75,8 +49,6 @@ app.use('/vragen', vragenRoutes);
 app.get('/', (req, res) => {
     res.render('index');
 });
-
-
 
 
 // SERVER ERRORS ____________________________________________________________________________________________________________________
