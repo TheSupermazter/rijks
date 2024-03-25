@@ -1,4 +1,4 @@
-const { MongoClient, ServerApiVersion, ObjectId, CommandStartedEvent } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
 // MongoDB connection URI
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/?retryWrites=true&w=majority`

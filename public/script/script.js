@@ -154,11 +154,11 @@ deleteButton.addEventListener('click', clearCanvas);
 
 
 
-// FETCH IMAGE FROM RIJKS API_____________________________________________________________________________________________________________
+// FETCH FROM RIJKS API_____________________________________________________________________________________________________________
 
 const baseURL = "https://www.rijksmuseum.nl/api/nl/collection?key=mFMeRfGA";
-const endPoint = "";
-const URL = baseURL + endPoint;
+const endPointRegister = "";
+const URL = baseURL + endPointRegister;
 
 const drawDiv = document.querySelector('.drawDiv');
 const button = document.querySelector('.fetchArt');
@@ -206,4 +206,13 @@ const preventDefaultAction = (event) => {
 
 document.querySelector('.fetchArt').addEventListener('click', preventDefaultAction);
 document.querySelector('.deleteSketch').addEventListener('click', preventDefaultAction);
+
+
+
+
+
+//----------------Fetch for quizResultaten--------------------
+
+const endPointQuiz = "";
+const quizURL = baseURL + endPointQuiz;
 

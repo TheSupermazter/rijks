@@ -1,4 +1,4 @@
-module.exports = function({ usersCollection }) {
+module.exports = ( {usersCollection} ) => {
 
     const express = require('express');
     const router = express.Router();

@@ -4,10 +4,9 @@ const express = require('express');
 const session = require('express-session');
 const app = express();
 const path = require('path');
-const { connectDB, client, ObjectId, db, usersCollection, vragenCollection } = require('./database');
+const { connectDB, usersCollection, vragenCollection } = require('./database');
 
-connectDB();
-
+connectDB()
 
 app.use(express.urlencoded({ extended: true })); // Middleware to parse POST request body
 app.set('view engine', 'ejs'); // EJS as view engine
@@ -36,12 +35,15 @@ const loginRoutes = require('./routes/login')({ usersCollection, vragenCollectio
 const quizResultatenRoutes = require('./routes/quizResultaten')({ usersCollection, vragenCollection });
 const vragenRoutes = require('./routes/vragen')({ usersCollection, vragenCollection });
 const registerRoutes = require('./routes/register')({ usersCollection, vragenCollection });
+const logOutRoutes = require('./routes/logOut')({ usersCollection, vragenCollection });
+
 
 app.use('/dashboard/:id', dashboardRoutes);
 app.use('/login', loginRoutes);
 app.use('/quizResultaten', quizResultatenRoutes);
 app.use('/vragen', vragenRoutes);
 app.use('/register', registerRoutes);
+app.use('/logout', logOutRoutes);
 
 
 // INDEX
