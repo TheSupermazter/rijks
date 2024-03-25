@@ -1,0 +1,456 @@
+/* GENERAL STYLES */
+
+
+@font-face {
+    /* For the headers - Bold */
+    font-family: "Rijksmuseum";
+    src: url('./fonts/Rijksmuseum-Bold.woff2') format('woff2'), url('./fonts/Rijksmuseum-Bold.ttf') format('ttf');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    /* For the headers - Normal */
+    font-family: "Rijksmuseum";
+    src: url('./fonts/Rijksmuseum-Normal.woff2') format('woff2'), url('./fonts/Rijksmuseum-Normal.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    /*** COLORS ****/
+    --bg-color: #2C3035;
+    --f-color: #E0DEDE;
+    --btn-color: #363636;
+    --main-color: #D55140;
+
+    /***** FONT FAMILY ****/
+    --ff: 'Rijksmuseum', sans-serif;
+
+    /**** FONT WEIGHT ****/
+    --fw-n: normal;
+    --fw-b: bold;
+
+    /**** FONT SIZES *****/
+    --fs-p: 1em;
+    --fs-1: calc(var(--fs-p) * 8);
+    --fs-2: calc(var(--fs-p) * 5);
+    --fs-3: calc(var(--fs-p) * 4);
+    --fs-4: calc(var(--fs-p) * 3);
+    --fs-5: calc(var(--fs-p) * 2);
+    --fs-6: calc(var(--fs-p) * 1.5);
+
+    /* Button */
+    --btn-padding: .8em 1em;
+
+    /* Spacers for margins, gaps or paddings */
+    --spacer: 1em;
+    --spacer-md: calc(var(--spacer) * 2);
+    --spacer-lg: calc(var(--spacer) * 3);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--ff);
+    color: var(--f-color);
+    margin: 0em;
+}
+
+h1 {
+    font-size: var(--fs-1);
+}
+
+h2 {
+    font-size: var(--fs-2);
+}
+
+h3 {
+    font-size: var(--fs-3);
+}
+
+h4 {
+    font-size: var(--fs-4);
+}
+
+h5 {
+    font-size: var(--fs-5);
+}
+
+h6 {
+    font-size: var(--fs-6);
+}
+
+p{
+    font-family: var(--ff);
+}
+
+ul{
+    list-style: none;
+}
+
+hr{
+    margin: 0;
+    width: 95vw;
+}
+
+
+
+/*  **** FOOTER STYLES **** */
+
+.footer_links {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer_links a {
+    background-color: transparent;
+    margin-bottom: 10px;
+}
+
+.footer_socials img {
+    width: 7%;
+    height: auto;
+}
+
+.footer_socials a {
+    background-color: transparent;
+}
+
+.footer_socials {
+    padding-bottom: 1em;
+    padding-top: 1em;
+}
+
+section.footer_socials {
+    margin-top: 6%;
+}
+
+.footerButton {
+    font-family: var(--ff);
+    text-decoration: none;
+    font-size: var(--fs-p);
+    color: var(--f-color);
+    background-color: #363636;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    padding: var(--btn-padding);
+    margin: 0em;
+    border: none;
+    margin-left: 4%;
+}
+
+section.buttons {
+    margin-top: 6%;
+}
+
+.footer_last a {
+    background-color: transparent;
+    font-size: x-small;
+}
+
+section.footer_last {
+    margin-left: 2%;
+}
+
+footer h3 {
+    font-size: large;
+    margin: 0;
+    padding: 0;
+    margin-top: 8%;
+    padding-left: 4%;
+}
+
+footer p {
+    margin: 0;
+    padding-left: 4%;
+}
+
+
+
+
+
+
+
+
+
+/******* START QUIZ ******/
+
+
+
+
+
+
+
+
+
+
+
+/* ***** INFORMATION PAGE ***** */
+
+.InformatiePagina h2,
+.InformatiePagina h1{
+    font-size: 1.5em;
+    
+}
+
+.InformatiePagina h1{
+    margin: 0 0 1.5rem;
+}
+
+.InformatiePagina h2{
+    margin: 1.5rem 0 0;
+}
+
+.InformatiePagina h3{
+    font-size: 1em;
+    margin: 1.5rem 0 0.2rem;
+
+}
+
+.InformatiePagina p{
+    color: #D2D2D2;
+    margin: 0;
+}
+
+
+.InformatiePagina hr:nth-of-type(1){
+    width: 100vw;
+}
+
+.InformatiePagina,
+.resulaatPagina,
+.zoekPagina{
+    background-color: var(--bg-color);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.InformatiePagina header img,
+.resulaatPagina header img,
+.zoekPagina header img{
+    width: 35vw;
+    height: auto;
+    margin: 1.5rem 1rem;
+}
+
+
+.InformatiePagina section:nth-of-type(1){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.InformatiePagina section:nth-of-type(1) img{
+    width: 100vw;
+    height: auto;
+    max-height: 45vh;
+    object-fit: cover;
+
+    touch-action: pan-y; /* Allow vertical panning */
+    transition: transform 0.3s ease; /* Transition for smooth zoom effect */
+}
+
+.InformatiePagina .zoomContainer{
+    overflow: hidden;
+}
+
+
+
+.InformatiePagina section:nth-of-type(1) h1 {
+    width: 90vw;
+    
+}
+
+.InformatiePagina section:nth-of-type(1) p{
+    width: 80vw;
+    color: var(--f-color);
+    width: 90vw;
+    margin: 0 0 1.5rem;
+}
+
+
+
+.InformatiePagina section:nth-of-type(1) button img{
+    width: 8rem;
+}
+
+
+
+
+
+
+.InformatiePagina section .SoundButton{
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+
+    align-self: flex-end;
+    margin-right: 2rem;
+}
+
+
+.InformatiePagina button{
+    margin: 1.5rem 1.5rem;
+    background-color: var(--main-color);
+    border: 0;
+
+
+    color: var(--f-color);
+    font-weight: bold;
+    font-size: 0.9em;
+    padding: 1rem 2rem;
+}
+
+
+
+
+
+
+
+
+
+
+.InformatiePagina section:nth-of-type(2){
+   
+    display: none;
+   
+}
+
+.InformatiePagina section:nth-of-type(2) article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.InformatiePagina section:nth-of-type(2) h2{
+    width: 90vw;
+}
+
+.InformatiePagina section:nth-of-type(2) ul{
+    margin: 0;
+    padding: 0;
+    width: 90vw;
+}
+
+
+
+
+.sliders{
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+.sliders ul{
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.sliders h2{
+    margin-bottom: 2.4rem;  
+}
+
+.sliders div ul li{
+    width: 90vw;
+    height: 20vh;
+    margin-right: 2rem
+}
+
+
+
+
+
+
+
+
+/* RESULTAAT ZOEK PAGINA  */
+
+.resulaatPagina form,
+.zoekPagina form{
+    align-self: center;
+}
+
+.resulaatPagina input,
+.zoekPagina input{
+    background-color: #191b1d;
+    color: var(--f-colo);
+    font-weight: bold;
+    font-size: 0.9rem;
+
+    border: 0;
+    border-radius: 30px;
+
+    padding-left: 2rem;
+    margin: 1rem 0 1rem;
+    width: 90vw;
+    height: 5vh;
+}
+
+.resulaatPagina header,
+.zoekPagina header{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.resulaatPagina header h2{
+    font-size: 1rem;
+    margin: 1rem 2rem;
+    align-self: flex-end;
+}
+
+.resulaatPagina h1{
+    font-size: 1.5rem;
+    margin: 0 1rem 1.5rem;
+}
+
+
+.resulaatPagina hr{
+    width: 100vw;
+}
+
+.resulaatPagina section:nth-of-type(1) a,
+.resulaatPagina section:nth-of-type(2) a{
+    position: relative;
+    bottom: 4rem;
+    left: 21rem;
+}
+
+.resulaatPagina section:nth-of-type(1) a img,
+.resulaatPagina section:nth-of-type(2) a img{
+    width: 4rem;
+}
+
+
+
+.resulaatPagina section:nth-of-type(1) h2,
+.resulaatPagina section:nth-of-type(1) p,
+.resulaatPagina section:nth-of-type(2) h2,
+.resulaatPagina section:nth-of-type(2) p
+{
+    font-size: 1.3rem;
+    align-self: center;
+    color: var(--f-color);
+    margin: 0 1rem;
+}
+
+
+.resulaatPagina section:nth-of-type(1) p,
+.resulaatPagina section:nth-of-type(2) p{
+    font-size:1rem;
+}
+
+
+.resulaatPagina section article div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-bottom: 3rem;
+}
