@@ -300,32 +300,31 @@ footer p {
 }
 
 /* + EN - DING */
-  .PlusMinContainer button{
+.PlusMinContainer button {
     width: 3em;
     color: #D55140;
     font-family: "Rijksmuseum";
     font-weight: bold;
     font-size: larger;
-  }
+}
 
-  .PlusMinContainer input{
+.PlusMinContainer input {
     width: 10em;
     color: #D55140;
     text-align: center;
     font-family: "Rijksmuseum";
     font-weight: bold;
     font-size: larger;
-  }
+}
 
 
 /* hidden class, zorgt ervoor dat t niet zichtbaar en klikbaar is */
-.hidden
-  {
-      clip: rect(0 0 0 0);
-      clip-path: inset(50%);
-      height: 1px;
-      overflow: hidden;
-      position: absolute;
-      white-space: nowrap;
-      width: 1px;
-  }
+.hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}

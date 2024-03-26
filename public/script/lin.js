@@ -14,7 +14,7 @@ images.forEach(image => {
         // Wanneer er een foto aangeklikt wordt wordt de class .hidden weggehaald, waardoor de volgendeKnop zichtbaar wordt (zodat je alleen maar door kan als je iets geselecteerd hebt.)
         volgendeKnop.classList.remove("hidden");
 
-        
+
 
 
         // Loop opnieuw door alle afbeeldingen om de transparantie aan te passen
