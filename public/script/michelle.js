@@ -166,3 +166,10 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementsByClassName("popup-container")[0].getElementsByTagName("li")[0].getElementsByTagName("h3")[0].innerHTML = (artList.count);
     console.log(artList);
   }
+
+
+
+
+
+
+  

@@ -27,9 +27,12 @@
     /***** FONT FAMILY ****/
     --ff: 'Rijksmuseum', sans-serif;
 
+
     /**** FONT WEIGHT ****/
     --fw-n: normal;
     --fw-b: bold;
+
+
 
     /**** FONT SIZES *****/
     --fs-p: 1em;
@@ -176,7 +179,22 @@ footer p {
 
 
 
+
+
+
+
 /******* START QUIZ ******/
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -340,27 +358,44 @@ footer p {
 }
 
 
+.InformatiePagina section:nth-of-type(3){
+   margin:0  2rem;
+}
 
-
-.sliders{
+.slider-container{
     width: 100%;
     overflow-y: hidden;
     overflow-x: auto;
 }
-.sliders ul{
+.slider-container ul{
     display: flex;
     transition: transform 0.5s ease;
+    margin: 0 0 5rem;
+    padding-left: 0;
 }
+
+
 
 .sliders h2{
     margin-bottom: 2.4rem;  
 }
 
-.sliders div ul li{
+.slider-container  ul li{
     width: 90vw;
     height: 20vh;
     margin-right: 2rem
 }
+
+.slider-container  ul li a{
+    display: block;
+    width: 2rem;
+    position: relative;
+    bottom: 3rem;
+    left: 9rem;
+}
+
+
+
 
 
 
@@ -371,24 +406,51 @@ footer p {
 
 /* RESULTAAT ZOEK PAGINA  */
 
+
+
+
 .resulaatPagina form,
 .zoekPagina form{
-    align-self: center;
+    display: flex;
+    flex-direction: row;
+    
+    margin-bottom: 2rem;
+
 }
+
+
+.resulaatPagina form hr,
+.zoekPagina form hr{
+    width: 60vw;
+    margin-left: 2rem;
+}
+
+
+.resulaatPagina form button,
+.zoekPagina form button{
+    background-color: var(--main-color);
+    border: 0;
+    width: 6rem;
+    height: 3rem;
+    align-self: center;
+    color: var(--f-color);
+    font-weight: bold;
+}
+
 
 .resulaatPagina input,
 .zoekPagina input{
-    background-color: #191b1d;
+    background-color: transparent;
     color: var(--f-colo);
-    font-weight: bold;
+    font-weight: normal;
     font-size: 0.9rem;
 
     border: 0;
     border-radius: 30px;
 
-    padding-left: 2rem;
-    margin: 1rem 0 1rem;
-    width: 90vw;
+  
+    margin: 1rem 1rem 0 2rem;
+    width: 60vw;
     height: 5vh;
 }
 
@@ -453,4 +515,101 @@ footer p {
     align-items: center;
 
     margin-bottom: 3rem;
+}
+
+
+
+
+
+
+
+/* Zoek Pagina */
+.zoekPagina h1{
+    font-size: 2rem;
+    margin: 2rem;
+}
+
+
+.zoekPagina section:nth-of-type(1){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+.zoekPagina section:nth-of-type(1) div{
+    width: 90vw;
+}
+
+
+.zoekPagina section:nth-of-type(1) ul{
+    display: flex;
+    flex-direction: row;
+    height: 8rem;
+    padding: 0;
+    margin: 0;
+   
+}
+
+.zoekPagina section:nth-of-type(1) ul li {
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.zoekPagina section:nth-of-type(1) ul li img{
+    width: 2rem;
+    height: 2rem;
+    background-color: #9C9C9C;
+    padding: 1rem;
+    
+    border-radius: 3rem;
+}
+
+.zoekPagina section:nth-of-type(1) ul li h2{
+    font-size: 1rem;
+    font-weight: normal;
+    margin-top: .5rem;
+}
+
+.zoekPagina section:nth-of-type(2) h2,
+.zoekPagina section:nth-of-type(2) h3{
+    font-size: 1rem;
+    margin-left:2rem;
+} 
+
+
+
+
+.zoekPagina section:nth-of-type(2) ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    flex-direction: row;
+    
+}
+.zoekPagina section:nth-of-type(2) ul li:nth-of-type(1) img{
+    width: 60vw;
+    height: 32.5vh;
+}
+
+.zoekPagina section:nth-of-type(2) ul li:nth-of-type(2) img{
+    width: 40vw;
+}
+
+.zoekPagina section:nth-of-type(2) ul li:nth-of-type(3) img{
+    width: 100vw;
+    margin: -5rem 0 5rem;
+}
+
+.zoekPagina section:nth-of-type(2) ul li:nth-of-type(3) div{
+    position: relative;
+    bottom: 10rem;
+}
+
+.zoekPagina section:nth-of-type(2) div{
+    position: relative;
+    bottom: 5rem;
 }
