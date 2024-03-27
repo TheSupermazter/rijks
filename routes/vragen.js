@@ -1,4 +1,6 @@
-module.exports = function({ client, usersCollection, vragenCollection }) {
+module.exports = function({ usersCollection, vragenCollection }) {
+
+    const { ObjectId } = require('mongodb');
 
     const express = require('express');
     const router = express.Router();
@@ -19,12 +21,12 @@ module.exports = function({ client, usersCollection, vragenCollection }) {
     
         const user = req.session.user;
     
-        if (user && client.topology.isConnected()) { //als de user is verbonden en ingelogd
+        if (user) { //als de user is verbonden en ingelogd
             const result = await usersCollection.updateOne( //update het volgende in de DB
                 { _id: new ObjectId(user._id) }, //op het user id uit de session cookie
                 { $set: { [`quizAntwoorden.${questionNumber}`]: antwoord } } // set > pas aan, of voeg toe > vraagnummer: [gegeven antwoord]
             );
-            if (result.modifiedCount > 0) { // als er 1 o0f meer onderdelen zijn veranderd of aangepast...
+            if (result) { // als er iets wordt geupdate in de DB
                 if (navigate) { //redirect naar het volgende vraagnummer
                     res.redirect(`/vragen/${navigate}`); //vragen + het vraagnummer die ik uit de form haal
                 } else {
