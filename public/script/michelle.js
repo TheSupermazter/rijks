@@ -120,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var popup = popups[index]; // Select the corresponding popup element
             if (popup.style.display === "none" || popup.style.display === "") {
                 popup.style.display = "block";
+        
             } else {
                 popup.style.display = "none";
             }

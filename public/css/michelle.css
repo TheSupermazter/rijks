@@ -215,7 +215,7 @@ footer p {
 }
 
 .InformatiePagina h1{
-    margin: 0 0 1.5rem;
+    margin: 1.5rem 0 1.5rem;
 }
 
 .InformatiePagina h2{
@@ -329,7 +329,16 @@ footer p {
 
 
 
+.text{
+    color: var(--f-color);
+    animation: textColor linear;
+    animation-timeline: view(30vw);
+}
 
+@keyframes textColor{
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
 
 
 
@@ -338,6 +347,7 @@ footer p {
 .InformatiePagina section:nth-of-type(2){
    
     display: none;
+  
    
 }
 
