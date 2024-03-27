@@ -537,19 +537,77 @@ footer p {
    
 }
 
-.zoekPagina section:nth-of-type(1) div{
-    width: 90vw;
+.scrollerContainer{
+    max-width: 90vw;
+    overflow: hidden;
+    mask: linear-gradient(
+      90deg,
+      transparent,
+      white 20%,
+      white 80%,
+      transparent
+    );
+    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+   
 }
 
+  
+  .scroller {
 
-.zoekPagina section:nth-of-type(1) ul{
+    flex-wrap: wrap;
     display: flex;
     flex-direction: row;
     height: 8rem;
     padding: 0;
     margin: 0;
+
    
-}
+  }
+  
+  .scrollerContainer[data-animated="true"] {
+    overflow: hidden;
+    -webkit-mask: linear-gradient(
+      90deg,
+      transparent,
+      white 20%,
+      white 80%,
+      transparent
+    );
+    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+  }
+  
+  .scrollerContainer[data-animated="true"] .scroller{
+    width: max-content;
+    flex-wrap: nowrap;
+    animation: scroll var(--_animation-duration, 40s)
+      var(--_animation-direction, forwards) linear infinite;
+  }
+  
+  .scrollerContainer[data-direction="right"] {
+    --_animation-direction: reverse;
+  }
+  
+  .scrollerContainer[data-direction="left"] {
+    --_animation-direction: forwards;
+  }
+  
+  .scrollerContainer[data-speed="fast"] {
+    --_animation-duration: 20s;
+  }
+  
+  .scrollerContainer[data-speed="slow"] {
+    --_animation-duration: 60s;
+  }
+  
+  @keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.5rem));
+    }
+  }
+
+
+
+
 
 .zoekPagina section:nth-of-type(1) ul li {
     margin-right: 2rem;
@@ -559,12 +617,14 @@ footer p {
 }
 
 
+
+
 .zoekPagina section:nth-of-type(1) ul li img{
     width: 2rem;
     height: 2rem;
     background-color: #9C9C9C;
     padding: 1rem;
-    
+    box-shadow: 0 0.5rem 1rem -0.25rem #161616 ;
     border-radius: 3rem;
 }
 
@@ -590,20 +650,51 @@ footer p {
     flex-direction: row;
     
 }
+
+
+.zoekPagina section:nth-of-type(2) ul li:nth-of-type(1){
+    max-width: 60vw;
+    max-height: 32vh;
+    overflow: hidden;
+}
 .zoekPagina section:nth-of-type(2) ul li:nth-of-type(1) img{
-    width: 60vw;
+    max-width: 60vw;
+   
     height: 32.5vh;
+   animation: fade-in-out 12s infinite alternate;
+   animation-duration: 20s;
+}
+
+@keyframes fade-in-out {
+    0%, 100% { opacity: .2; scale: 1; }
+    50% { opacity: 1; scale: 2; }
 }
 
 .zoekPagina section:nth-of-type(2) ul li:nth-of-type(2) img{
     width: 40vw;
+    animation: fade-in-out 12s infinite alternate;
+    animation-duration: 20s;
+    animation-delay: -4s;
+}
+
+.zoekPagina section:nth-of-type(2) ul li:nth-of-type(2){
+    max-width: 40vw;
+    max-height: 32vh;
+    overflow: hidden;
 }
 
 .zoekPagina section:nth-of-type(2) ul li:nth-of-type(3) img{
     width: 100vw;
-    margin: -5rem 0 5rem;
-}
+    animation: fade-in-out 12s infinite alternate;
+    animation-duration: 20s;
+    animation-delay: -9s;
 
+}
+.zoekPagina section:nth-of-type(2) ul li:nth-of-type(3){
+    max-width: 100vw;
+  
+    overflow: hidden;
+}
 .zoekPagina section:nth-of-type(2) ul li:nth-of-type(3) div{
     position: relative;
     bottom: 10rem;
@@ -613,3 +704,7 @@ footer p {
     position: relative;
     bottom: 5rem;
 }
+
+
+  
+ 
