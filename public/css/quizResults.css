@@ -66,13 +66,13 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 h1, h2, h3, h4, h5, h6, p, button, section{
-    margin-top: 1em;
-    margin-bottom: 1em; 
+    margin-top: 0.2em;
+    margin-bottom: 0.2em; 
 }
 
 input {
-    margin-top: 3em;
-    margin-bottom: 6em; 
+    margin-top: .5em;
+    margin-bottom: 1.5em; 
 }
 
 h1{
@@ -242,7 +242,7 @@ main {
 }
 
 main h2 {
-    font-size: 3em;
+    font-size: 1em;
    text-align: center;
 }
 
@@ -258,15 +258,14 @@ main p {
 
 
 main img {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 65%;
+    max-width: 90%;
     
     
 }
 
 #kunstwerkFoto {
     filter: blur(3px);
+    
 }
 
 #kunstwerkButtons {
@@ -285,4 +284,45 @@ main img {
     width: 1px;
 }
  
+#kunstwerkPlek {
+    display: flex;
+    flex-direction: column;
+    max-width: 40%;
+}
 
+#kunstResultaat{
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+}
+
+#plekEnResultaat {
+    display: flex;
+    flex-direction: row;
+}
+
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 20px;
+    scale: 115%;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
+}
+
+input[type="text"]{
+    width: 70%;
+    height: 2em;
+    background-color: rgb(190, 190, 190);
+    color: #D55140;
+    font-size: 1em;
+    border-radius: 3em;
+}
+
+#confirmButton {
+    margin-bottom: 1em;
+}
