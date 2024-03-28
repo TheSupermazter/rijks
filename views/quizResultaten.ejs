@@ -3,10 +3,14 @@
 <body>
     <%- include('partials/header') %>
 
-
     <h1>Quiz resultaten</h1>
 
-  <%- include('partials/footer') %>
+    <% for (const questionNumber in endpoints) { %>
+      <p>Vraag <%= questionNumber %>: <%= endpoints[questionNumber] %></p>
+  <% } %>
+  
+
+    <%- include('partials/footer') %>
 
 </body>
 
