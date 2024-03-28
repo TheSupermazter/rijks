@@ -11,7 +11,7 @@ body {
 @font-face {
     /* For the headers - Bold */
     font-family: "Rijksmuseum";
-    src: url('../rijks/fonts/Rijksmuseum-Bold.woff2') format('woff2'), url('../rijks/fonts/Rijksmuseum-Bold.ttf') format('ttf');
+    src: url('../fonts/Rijksmuseum-Bold.woff2') format('woff2'), url('../fonts/Rijksmuseum-Bold.ttf') format('ttf');
     font-weight: bold;
     font-style: normal;
 }
@@ -19,7 +19,466 @@ body {
 @font-face {
     /* For the headers - Normal */
     font-family: "Rijksmuseum";
-    src: url('../rijks/fonts/Rijksmuseum-Normal.woff2') format('woff2'), url('../rijks/fonts/Rijksmuseum-Normal.ttf') format('ttf');
+    src: url('../fonts/Rijksmuseum-Normal.woff2') format('woff2'), url('../fonts/Rijksmuseum-Normal.ttf') format('ttf');
     font-weight: normal;
     font-style: normal;
+}
+
+/*********************/
+/* CUSTOM PROPERTIES */
+/*********************/
+
+:root {
+    /* Colors */
+    --bg-color: #2C3035;
+    --f-color: #E0DEDE;
+    --btn-color: #363636;
+    --main-color: #D55140;
+
+    /* Font families */
+    --ff: 'Rijksmuseum', sans-serif;
+
+    /* Font weights */
+    --fw-n: normal;
+    --fw-b: bold;
+
+    /* Font sizes */
+    --fs-p: 1em;
+    --fs-1: calc(var(--fs-p) * 8);
+    --fs-2: calc(var(--fs-p) * 5);
+    --fs-3: calc(var(--fs-p) * 4);
+    --fs-4: calc(var(--fs-p) * 3);
+    --fs-5: calc(var(--fs-p) * 2);
+    --fs-6: calc(var(--fs-p) * 1.5);
+
+    /* Button */
+    --btn-padding: .8em 1em;
+
+    /* Spacers for margins, gaps or paddings */
+    --spacer: 1em;
+    --spacer-md: calc(var(--spacer) * 2);
+    --spacer-lg: calc(var(--spacer) * 3);
+
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--ff);
+    color: var(--f-color);
+    margin: 0em;
+}
+
+h1 {
+    font-size: var(--fs-1);
+}
+
+h2 {
+    font-size: var(--fs-2);
+}
+
+h3 {
+    font-size: var(--fs-3);
+}
+
+h4 {
+    font-size: var(--fs-4);
+}
+
+h5 {
+    font-size: var(--fs-5);
+}
+
+h6 {
+    font-size: var(--fs-6);
+}
+
+a,
+input[type=submit] {
+    font-family: var(--ff);
+    text-decoration: none;
+    font-size: var(--fs-p);
+    color: var(--f-color);
+    background-color: var(--main-color);
+    padding: var(--btn-padding);
+    margin: 0em;
+    border: none;
+}
+
+.subBtn {
+    font-family: var(--ff);
+    text-decoration: none;
+    font-size: var(--fs-p);
+    color: var(--main-color);
+    background-color: transparent;
+    margin: 0em;
+    padding: 0em;
+    border: none;
+}
+
+
+body {
+    background-color: var(--bg-color);
+    font-family: var(--ff);
+    font-size: var(--fs);
+    color: var(--f-color);
+}
+
+
+/* VANAF HIER START MIJN EIGEN CODE */
+/* Start quiz pagina */
+header img {
+    width: 60%;
+    height: auto;
+    margin-top: 6%;
+    margin-left: 4%;
+}
+
+.bodyStartQuiz {
+    background-image: url('../img/rembrandt_zelfportret.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    background-position-x: 30%;
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+}
+
+a.startQuizButton {
+    /* dit is de start quiz knop */
+    font-family: var(--ff);
+    text-decoration: none;
+    font-size: x-large;
+    color: var(--f-color);
+    background-color: var(--main-color);
+    padding: var(--btn-padding);
+    margin: 0em;
+    border: none;
+}
+
+/* Vragen pagina's */
+h1 {
+    font-size: xx-large;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+main p {
+    margin-top: 8%;
+}
+
+.invulFormulier{
+    margin-top: 5%;
+    width: 28em;
+    height: 3em;
+}
+
+.navigatieQuiz{
+    margin-top: 15%;
+}
+
+.startQuizCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+main{
+    margin-left: 4%;
+}
+
+main img{
+    width: 45%;
+    height: auto;
+}
+
+
+/* FOOTER */
+.footer_links {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer_links a {
+    background-color: transparent;
+    margin-bottom: 10px;
+}
+
+.footer_socials img {
+    width: 7%;
+    height: auto;
+}
+
+.footer_socials a {
+    background-color: transparent;
+}
+
+.footer_socials {
+    padding-bottom: 1em;
+    padding-top: 1em;
+}
+
+section.footer_socials {
+    margin-top: 6%;
+}
+
+.footerButton {
+    font-family: var(--ff);
+    text-decoration: none;
+    font-size: var(--fs-p);
+    color: var(--f-color);
+    background-color: #363636;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    padding: var(--btn-padding);
+    margin: 0em;
+    border: none;
+    margin-left: 4%;
+}
+
+section.buttons {
+    margin-top: 6%;
+}
+
+.footer_last a {
+    background-color: transparent;
+    font-size: x-small;
+}
+
+section.footer_last {
+    margin-left: 2%;
+}
+
+footer h3 {
+    font-size: large;
+    margin: 0;
+    padding: 0;
+    margin-top: 8%;
+    padding-left: 4%;
+}
+
+footer p {
+    margin: 0;
+    padding-left: 4%;
+}
+
+
+
+
+
+
+
+ul {
+    list-style: none;
+}
+
+ul li p:nth-of-type(2) {
+    background-color: white;
+
+    padding: 2vh;
+    width: 60vw;
+
+    margin-top: -1.5vh;
+    color: black;
+}
+
+.account li:last-of-type {
+    margin-top: 15vh;
+}
+
+section article {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+section img {
+    height: 35vh;
+    width: auto;
+
+    margin-top: 5vh;
+
+    
+}
+
+
+/* *************** */
+/* Favoriete lijst */
+/* *************** */
+
+
+.favo ul {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.favo ul li img {
+    height: 30vh;
+    width: auto;
+    
+}
+
+
+
+/**********/
+/* Slider */
+/**********/
+
+article p {
+	position: relative;
+	font-size: medium;
+
+	padding: 2em;
+	bottom: -1em;
+	left: 0;
+	width: 90vw;
+	margin-top: -7em;
+	padding-bottom: 5em;
+
+
+}
+
+article p:first-of-type {
+	margin-top: -6em;
+
+	text-transform: uppercase;
+	font-size: large;
+	background-color: transparent;
+}
+
+
+
+article img {
+	width: 90vw;
+	height: 80vh;
+
+}
+
+section:first-of-type {
+	overflow: hidden;
+
+}
+
+section:first-of-type section {
+	position: relative;
+	width: 300%;
+	margin: 0;
+	left: 0;
+	
+	animation: 15s Slider;
+	animation-iteration-count: infinite;
+}
+
+section section article {
+	float: left;
+	width: 33%;
+}
+
+@keyframes Slider {
+	0% {
+		left:0;
+	}
+	15% {
+		left: 0;
+	}
+	20%{
+		left: -100%;
+	}
+	35% {
+		left: -100%;
+	}
+	40% {
+		left: -200%;
+	}
+	55% {
+		left: -200%;
+	}
+	60% {
+		left: -100%;
+	}
+	75% {
+		left: -100%;
+	}
+	90% {
+		left: 0;
+	}
+	100% {
+		left: 0;
+	}
+}
+
+
+
+
+section:nth-of-type(2) img {
+	width: 100vw;
+}
+section:nth-of-type(2) img:first-of-type {
+	width: 100vw;
+}
+
+
+h2:first-of-type {
+	background-color: var(--color-background-text);
+	color: var(--color-headings);
+
+	font-family: futura;
+	font-size: larger;
+	font-style: italic;
+	text-transform: uppercase;
+
+	padding: 1.25em;
+	padding-bottom: 0.5em;
+	margin-top: 1em;
+	border-radius: 0 0  9em 0;
+	width: 100%;
+}
+
+section:nth-of-type(2) p {
+	position: relative;
+	display: flex;
+
+	background-color: var(--color-background-text);
+	color: var(--color-text2);
+	
+	padding: 1em;
+	border-radius: 5em 0 0 0;
+
+	text-align: right;
+	font-style: oblique;
+	
+}
+
+section article p {
+    margin-left: 20vw;
+}
+
+
+
+/* ********* */
+/*   Lijst   */
+/* ********* */
+
+
+section:nth-of-type(2) img {
+    height: auto;
+    width: 85vw;
+}
+
+h2 {
+    margin-bottom: -2vh;
+}
+
+
+
+#search-input {
+    width: 70vw;
 }
