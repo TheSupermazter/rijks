@@ -327,6 +327,7 @@ input[type="text"]{
     margin-bottom: 1em;
 }
 
+/* BACKGROUND GRADIENT https://codepen.io/P1N2O/pen/pyBNzX  */
 body {
 	background: linear-gradient(-45deg, #222222, #5a5a5a, #191919, #3f3f3f);
 	background-size: 400% 400%;
