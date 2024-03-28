@@ -189,6 +189,9 @@ main {
     margin-left: 4%;
 }
 
+
+
+/* de afbeeldingen - antwoorden */
 main img {
     width: 45%;
     height: auto;
@@ -199,8 +202,6 @@ main img {
     outline-offset: -4px;
 }
 
-/* LIJSTJE */
-
 ul {
     margin: 0;
     padding: var(--whiteSpace);
@@ -209,8 +210,6 @@ ul {
     list-style: none;
 }
 
-/****************/
-/* een karakter */
 li {
     display: grid;
     grid-template-columns: min-content 1fr;
