@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/michelle.css">
+  
     <title>Document</title>
 </head>
 
@@ -16,11 +17,12 @@
 
     <main>
         <section>
-            <div class="clip">
-                <div class="zoomContainer">
-                    <img id="zoomable-image" src="../img/BlauwMeisje.jpeg" alt="schilderij van ..">
+            
+                <div id="zoomContainer">
+                    <img src="../img/BlauwMeisje.jpeg" id="Image" class="zoom">
+                    
                 </div>
-            </div>
+            
             <!-- <button class="SoundButton"><img src="../img/SoundButton.png" alt="button met geluids icoon om geluid af te spelen"></button> -->
             <h1>Portret van een meisje in het blauw, Johannes Cornelisz. Verspronck, 1641</h1>
             <p>
@@ -191,7 +193,20 @@
         </section>
 
     </footer>
-    <script src="../script/michelle.js"></script>
+    <script src="../script/michelle.js">
+        const containerZoom = document.getElementById("zoomContainer");
+const img = document.getElementsByClassName("zoom");
+
+containerZoom.addEventListener("touchmove", (e) =>{
+    const x = e.clientX - e.target.offsetLeft;
+    const y = e.clientY - e.target.offsetTop;
+console.log("x")
+    img.style.transformOrigin = '${x}px ${y}px';
+    img.style.transorm = "scale(2)"; 
+    
+})
+    </script>
+ 
 </body>
 
 </html>

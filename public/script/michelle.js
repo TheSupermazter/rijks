@@ -1,112 +1,25 @@
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    const image = document.getElementById('zoomable-image');
-    let isDragging = false;
-    let initialX = 0;
-    let initialY = 0;
-    let currentX = 0;
-    let currentY = 0;
-    let translateX = 0;
-    let translateY = 0;
-    let currentScale = 1;
-    const maxZoom = 3; // Set your maximum zoom level here
-    const zoomIncrement = 0.5; // Set the amount of zoom increment per tap
 
 
-    // Function: tap event
-    function handleTap(event) {
-        currentScale = Math.min(maxZoom, currentScale + zoomIncrement);
-        image.style.transform = `scale(${currentScale}) translate(${translateX}px, ${translateY}px)`;
-    }
+const containerZoom = document.getElementById("zoomContainer");
+const img = document.getElementById("Image");
 
-    // Function: touch start event
-    function handleTouchStart(event) {
-        if (event.touches.length === 1 && currentScale > 1) {
-            isDragging = true;
-            initialX = event.touches[0].clientX - translateX;
-            initialY = event.touches[0].clientY - translateY;
-        }
-    }
+containerZoom.addEventListener("touchmove", (e) => {
+    e.preventDefault(); // Prevent default scrolling behavior
 
+    const touch = e.touches[0]; // Get the first touch
+    const rect = containerZoom.getBoundingClientRect(); // Get the container's position relative to the viewport
+    const x = touch.clientX - rect.left; // Calculate the x-coordinate relative to the container
+    const y = touch.clientY - rect.top; // Calculate the y-coordinate relative to the container
 
-
-
-    // Function: touch move event
-    function handleTouchMove(event) {
-        if (isDragging) {
-            currentX = event.touches[0].clientX;
-            currentY = event.touches[0].clientY;
-            
-            if (currentScale <=2.5) {
-                translateX = Math.max(Math.min(currentX - initialX, image.offsetWidth * (currentScale - 1) / 4), image.offsetWidth * (1 - currentScale) / 4);
-                translateY = Math.max(Math.min(currentY - initialY, image.offsetHeight * (currentScale - 1) / 4), image.offsetHeight * (1 - currentScale) / 4);
-            } else {
-                // If the scale is not greater than 1, reset the translation
-                translateX = Math.max(Math.min(currentX - initialX, image.offsetWidth * (currentScale - 1) / 2), image.offsetWidth * (1 - currentScale) / 2);
-                translateY = Math.max(Math.min(currentY - initialY, image.offsetHeight * (currentScale - 1) / 2), image.offsetHeight * (1 - currentScale) / 2);
-            }
-    
-            image.style.transform = `scale(${currentScale}) translate(${translateX}px, ${translateY}px)`;
-
-        }
-    }
-    
-
-
-    // Function: touch end event
-    function handleTouchEnd(event) {
-        isDragging = false;
-    }
-
-
-    // Add event listeners
-    image.addEventListener('click', handleTap);
-    image.addEventListener('touchstart', handleTouchStart);
-    image.addEventListener('touchmove', handleTouchMove);
-    image.addEventListener('touchend', handleTouchEnd);
+    img.style.transformOrigin = `${x}px ${y}px`; // Set the transform origin to the touch position
+    img.style.transform = "scale(2)"; // Apply a scale transformation
 });
 
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    const changingImage = document.getElementById('zoomable-image');
-    const dynamicButton = document.querySelector('.SoundButton'); // Select the first element with class 'SoundButton'
-    const buttonOffset = 20; // Offset from the bottom of the image
-
-    // Function to update the position of the button
-    function updateButtonPosition() {
-        const imageRect = changingImage.getBoundingClientRect();
-        const imageHeight = changingImage.offsetHeight;
-        const buttonHeight = dynamicButton.offsetHeight;
-
-        // Calculate the new top position for the button
-        const newTop = imageRect.top + imageHeight - buttonHeight - buttonOffset;
-
-        // Set the new position of the button
-        dynamicButton.style.left = imageRect.left + 'px';
-        dynamicButton.style.top = newTop + 'px';
-    }
-
-    // Initial position update
-    updateButtonPosition();
-
-    // Update position when the window is resized
-    window.addEventListener('resize', updateButtonPosition);
-
-    // Example: Replace the image and update button position
-    function replaceImage(newImageUrl) {
-        changingImage.src = newImageUrl;
-        changingImage.onload = function() {
-            updateButtonPosition();
-        };
-    }
-
-    // Example: Replace the image with a new one
-    // replaceImage('second-image.jpg');
-});
-
-
+  
+  
+  
 
 
 
