@@ -16,7 +16,7 @@ containerZoom.addEventListener("touchmove", (e) => {
     img.style.transformOrigin = `${x}px ${y}px`; // Set the transform origin to the touch position
     img.style.transform = "scale(2)"; // Apply a scale transformation
 });
-
+// https://www.youtube.com/watch?v=flOx9Jis938
   
   
   
