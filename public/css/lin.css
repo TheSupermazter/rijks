@@ -124,25 +124,25 @@ body {
 
 
 /* VANAF HIER START MIJN EIGEN CODE */
-/* Start quiz pagina */
+/* index */
 header img {
     width: 60%;
     height: auto;
     margin-top: 6%;
-    margin-left: 4%;
+    position: absolute;
 }
 
-.bodyStartQuiz {
-    background-image: url('../img/rembrandt_zelfportret.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+
+.startQuizButton img {
+    width: 100vw;
     height: 100vh;
-    background-position-x: 30%;
+    object-fit: cover;
+    z-index: -2;
 }
 
 body {
     height: 100vh;
-    margin: 0;
+    margin: 4%;
 }
 
 a.startQuizButton {
@@ -155,13 +155,14 @@ a.startQuizButton {
     padding: var(--btn-padding);
     margin: 0em;
     border: none;
+    position: absolute;
 }
 
 /* Vragen pagina's */
 .progressBar {
     width: 90vw;
     height: auto;
-    margin-top: 5%;
+    margin-top: 20%;
 }
 
 h1 {
@@ -185,9 +186,6 @@ main p {
     height: 90vh;
 }
 
-main {
-    margin-left: 4%;
-}
 
 
 
