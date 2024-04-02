@@ -25,7 +25,6 @@ inputs.forEach(input => {
 });
 
 
-
 // DRAWING IN REGISTER____CANVAS_________________________________________________________________________________________________________
 
   // Get a reference to the canvas element and its context
@@ -155,11 +154,11 @@ deleteButton.addEventListener('click', clearCanvas);
 
 
 
-// FETCH IMAGE FROM RIJKS API_____________________________________________________________________________________________________________
+// FETCH FROM RIJKS API_____________________________________________________________________________________________________________
 
-const baseURL = "https://www.rijksmuseum.nl/api/nl/collection?key=mFMeRfGA";
-const endPoint = "";
-const URL = baseURL + endPoint;
+const baseURL = "https://www.rijksmuseum.nl/api/nl/collection?key=se7NGInw";
+const endPointRegister = "";
+const URL = baseURL + endPointRegister;
 
 const drawDiv = document.querySelector('.drawDiv');
 const button = document.querySelector('.fetchArt');
@@ -175,7 +174,7 @@ function getRijksData() {
       drawDiv.insertAdjacentHTML('beforeend', rijksImgElement);
 
       // Set the value of the hidden input field with the image URL
-      document.getElementById('imageUrl').value = randomRijks.webImage.url;
+      document.getElementById('profilePicture').value = randomRijks.webImage.url;
     });
 }
 
@@ -210,5 +209,10 @@ document.querySelector('.deleteSketch').addEventListener('click', preventDefault
 
 
 
-  
+
+
+//----------------Fetch for quizResultaten--------------------
+
+const endPointQuiz = "";
+const quizURL = baseURL + endPointQuiz;
 

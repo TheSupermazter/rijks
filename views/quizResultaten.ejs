@@ -1,0 +1,18 @@
+<%- include('partials/head') %>
+
+<body>
+    <%- include('partials/header') %>
+
+    <h1>Quiz resultaten</h1>
+
+    <div>
+        <!-- Weergave van de gefetchte data -->
+        <pre><%= JSON.stringify(fetchedData, null, 2) %></pre>
+    </div>
+
+
+    <%- include('partials/footer') %>
+
+</body>
+
+</html>

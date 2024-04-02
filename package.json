@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "test",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -18,15 +19,15 @@
   },
   "homepage": "https://github.com/TheSupermazter/rijks#readme",
   "dependencies": {
+    "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
-    "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
-    "env": "^0.0.2",
     "express": "^4.18.2",
     "express-session": "^1.18.0",
     "mongodb": "^6.3.0",
-    "nodeman": "^1.1.2",
-    "nodemon": "^3.1.0"
+    "node": "^21.7.1",
+    "nodemon": "^3.1.0",
+    "xss": "^1.0.15"
   }
 }
