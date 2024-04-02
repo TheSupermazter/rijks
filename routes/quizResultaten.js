@@ -1,41 +1,49 @@
-module.exports = () => {
+module.exports = ({  }) => {
 
 const express = require('express');
 const router = express.Router();
 
+const axios = require('axios')
+
 // QUIZRESULTATEN
 
-router.get('/', (req, res) => {
-    res.render('quizResultaten');
-});
+router.get('/', async (req, res) => {
+    try {
+        const fetchedData = {};
+        const user = req.session.user;
+        const quizAntwoorden = user.quizAntwoorden;
 
+        if (quizAntwoorden) {
+            const keys = Object.keys(quizAntwoorden); // haal de object keys uit quizAntwoorden
 
+            for (let i = 1; i < keys.length; i += 2) { // begin bij de eerste key en voeg de volgende twee keys samen
+                const key1 = keys[i];
+                const key2 = keys[i + 1];
+                const apiKey = 'se7NGInw';
+                let parameter = `${quizAntwoorden[key1]}`;
 
+                // Voeg het volgende object toe als het bestaat (want 6 is in zn eentje)
+                if (key2 && quizAntwoorden[key2]) {
+                    parameter += `${quizAntwoorden[key2]}`;
+                }
 
-router.post('/quizResultaten', async (req, res) => {
-    const { answer, questionNumber } = req.body;
-    const questionIndex = parseInt(questionNumber) - 1; // Omdat de array zero-based is
-    
-    // Controleer of de vraagnummer en het antwoord geldig zijn
-    if (questionIndex >= 0 && questionIndex < questionMappings.length && questionMappings[questionIndex].hasOwnProperty(answer)) {
-        // Krijg het bijbehorende URL-endpoint voor de keuze
-        const endPoint = questionMappings[questionIndex][answer];
-        
-        // Construeer de volledige URL
-        const baseURL = "https://www.rijksmuseum.nl/api/nl/collection?key=mFMeRfGA";
-        const URL = baseURL + endPoint;
-        
-        // Voer hier je fetch-actie uit met de geconstrueerde URL
-        // await fetch(URL);
-        
-        // Hier kun je verdere verwerking doen met de verkregen gegevens
-        // en een reactie terugsturen naar de gebruiker
-        res.send(`Je hebt gekozen voor ${answer}. URL: ${URL}`);
-    } else {
-        // Ongeldige vraagnummer of antwoord, stuur een foutmelding terug naar de gebruiker
-        res.status(400).send('Ongeldige vraagnummer of antwoord');
+                const endpoint = '&imgonly=True&ondisplay=True&st=Objects';
+                const response = await axios.get(`https://www.rijksmuseum.nl/api/nl/collection?key=${apiKey}${parameter}${endpoint}`);
+
+                // Bewaar de opgehaalde data
+                fetchedData[key1] = response.data; // voeg toe aan fetchedData object
+            }
+
+            res.render('quizResultaten', { fetchedData });
+        } else {
+            console.log('quizAntwoorden is undefined of null');
+        }
+    } catch (error) {
+        console.log(error);
     }
 });
+
+
 
 return router;
 

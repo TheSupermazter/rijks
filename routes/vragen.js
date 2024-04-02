@@ -12,15 +12,15 @@ module.exports = ( {usersCollection, vragenCollection} ) => {
         const vraag = await vragenCollection.findOne({ "number": number });
 
     // loop over vraag objecten
-    for (let key in vraag) {
-        if (Array.isArray(vraag[key]) && key === 'choices') {
-            // Log alleen de "endpoint" waarden van de objecten in de "choices" array
-            console.log(`Endpoints:`);
-            vraag[key].forEach(choice => {
-                console.log(choice.endpoint);
-            });
-        }
-    }
+    // for (let key in vraag) {
+    //     if (Array.isArray(vraag[key]) && key === 'choices') {
+    //         // Log alleen de "endpoint" waarden van de objecten in de "choices" array
+    //         console.log(`Endpoints:`);
+    //         vraag[key].forEach(choice => {
+    //             console.log(choice.endpoint);
+    //         });
+    //     }
+    // }
     
         // req.session.vraag = vraag; // Sla de vraag op in de session
     

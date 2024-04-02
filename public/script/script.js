@@ -156,7 +156,7 @@ deleteButton.addEventListener('click', clearCanvas);
 
 // FETCH FROM RIJKS API_____________________________________________________________________________________________________________
 
-const baseURL = "https://www.rijksmuseum.nl/api/nl/collection?key=mFMeRfGA";
+const baseURL = "https://www.rijksmuseum.nl/api/nl/collection?key=se7NGInw";
 const endPointRegister = "";
 const URL = baseURL + endPointRegister;
 

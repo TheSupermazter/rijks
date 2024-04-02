@@ -38,7 +38,7 @@
 
         <% vraag.choices.forEach((choice, index) => { %>
 
-          <input class="item" type="radio" id="choice_<%= index %>" name="answer" value="choice_<%= index %>" required>
+          <input class="item" type="radio" id="choice_<%= index %>" name="answer" value="<%= choice.endpoint %>" required>
           <label for="choice_<%= index %>">
             <figure>
               <img src="../img/<%= choice.image %>.jpg" alt="<%= choice.name %>">
