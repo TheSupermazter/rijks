@@ -134,7 +134,7 @@ header img {
 }
 
 
-.startQuizButton img {
+.startQuizCenter img {
     width: 100vw;
     height: 100vh;
     object-fit: cover;
@@ -174,19 +174,17 @@ a.startQuizButton {
 
 .textExpressYourself{
     z-index: 100;
-    padding-top: 120%;
+    padding-top: 110%;
     margin-left: 25%;
-    margin-right: 0;
-    padding-right: 0;
 }
 
-.startQuizButton h3{
+.startQuizCenter h3{    
     font-size: large;
     margin-left: 0;
     padding: 0;
 }
 
-.startQuizButton p{
+.startQuizCenter p{
     font-size: small;
     margin-left: 0;
     padding: 0;
@@ -196,13 +194,15 @@ a.startQuizButton {
 .homeArtikelen ul li {
     display: flex;
     flex-direction: column;
+    margin: 0;
+    padding: 0;
 }
 
 section .imgFransHals {
     height: auto;
     width: 68vw;  
     margin: 0;
-    margin-left: -20%;
+    margin-left: -15%;
     margin-top: -15%;
 }
 
@@ -210,7 +210,7 @@ section .imgExpressYourself {
     height: auto;
     width: 39.5vw;
     margin: 0;
-    padding-left: 5%;
+    margin-left: 5%;
     margin-top: -15%;
 }
 
