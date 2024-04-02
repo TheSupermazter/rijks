@@ -130,6 +130,7 @@ header img {
     height: auto;
     margin-top: 6%;
     position: absolute;
+    z-index: 100;
 }
 
 
@@ -137,7 +138,7 @@ header img {
     width: 100vw;
     height: 100vh;
     object-fit: cover;
-    z-index: -2;
+    position: absolute;
 }
 
 body {
@@ -156,6 +157,61 @@ a.startQuizButton {
     margin: 0em;
     border: none;
     position: absolute;
+    z-index: 100;
+}
+
+.homeArtikelen ul{
+    margin-top: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.textFransHals {
+    z-index: 100;
+    padding-top: 100%;
+    margin-left: -30%;
+}
+
+.textExpressYourself{
+    z-index: 100;
+    padding-top: 120%;
+    margin-left: 25%;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.startQuizButton h3{
+    font-size: large;
+    margin-left: 0;
+    padding: 0;
+}
+
+.startQuizButton p{
+    font-size: small;
+    margin-left: 0;
+    padding: 0;
+    margin-top: 0;
+}
+
+.homeArtikelen ul li {
+    display: flex;
+    flex-direction: column;
+}
+
+section .imgFransHals {
+    height: auto;
+    width: 68vw;  
+    margin: 0;
+    margin-left: -20%;
+    margin-top: -15%;
+}
+
+section .imgExpressYourself {
+    height: auto;
+    width: 39.5vw;
+    margin: 0;
+    padding-left: 5%;
+    margin-top: -15%;
 }
 
 /* Vragen pagina's */
