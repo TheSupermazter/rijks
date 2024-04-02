@@ -1,12 +1,7 @@
-
-
-
 let shuffleValue = 2;
 
 document.getElementById('shuffleButton').addEventListener('click', updateButton);
-
 document.getElementById('confirmButton').addEventListener('click', showKunstwerk);
-
 document.getElementById('addKnop').addEventListener('click', mijnKunstwerk);
 
 function updateButton() {
@@ -16,8 +11,6 @@ function updateButton() {
     }
     button.innerHTML = "Ander kunstwerk (" + shuffleValue + ")";
 } 
-
-
 
 let fave = 0;
 
@@ -34,6 +27,7 @@ function mijnKunstwerk() {
 }
 
 var img = document.getElementById('kunstwerkFoto');
+
 img.addEventListener('click', function() {
     if (this.className !== 'fullscreen') {
         this.className = 'fullscreen';
@@ -45,7 +39,6 @@ img.addEventListener('click', function() {
         this.style.width = '';
     }
 });
-
 
 // CONFETTI TEMPLATE https://codepen.io/Saiprava/pen/eYGRLqg
 

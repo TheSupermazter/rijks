@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="../css/quizResults.css" />
+  </head>
+  <body>
+    <main>
+      <section id="plekEnResultaat">
+        <section id="kunstResultaat">
+          <h2>Jouw kunstwerk is:</h2>
+          <img
+            id="kunstwerkFoto"
+            src="<%= kunstwerkFoto %>"
+            alt="<%= kunstwerkNaam %>"
+          />
+        </section>
+        <section id="kunstwerkPlek">
+          <h2>Jouw kunstwerk is te vinden op:</h2>
+          <p><%= kunstwerkPlek %></p>
+        </section>
+      </section>
+
+      <section id="kunstwerkInfo" class="visuallyHidden">
+        <h3><%= kunstwerkNaam %></h3>
+        <p><%= kunstenaar %></p>
+        <p><%= jaar %></p>
+        <button>Meer info</button>
+      </section>
+
+      <section id="kunstPassword">
+        <h3>Wat is de naam van dit kunstwerk?</h3>
+        <input type="text" name="" id="" />
+        <input id="confirmButton" type="submit" value="Naam proberen" />
+      </section>
+
+      <section id="kunstwerkButtons">
+        <button id="shuffleButton">Ander kunstwerk (<%= aantalKunstwerken %>)</button>
+        <button id="addKnop">Toevoegen aan Mijn Kunstwerken</button>
+      </section>
+    </main>
+    <script src="../script/quizResults.js"></script>
+  </body>
+</html>
