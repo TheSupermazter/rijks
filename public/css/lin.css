@@ -133,6 +133,18 @@ header img {
     z-index: 100;
 }
 
+header section img{
+    width: 5%;
+    height: auto;
+}
+
+header section{
+    margin: 0;
+    padding: 0;
+    margin-top: -5%;
+    padding-bottom: 5%;
+}
+
 
 .startQuizCenter img {
     width: 100vw;
