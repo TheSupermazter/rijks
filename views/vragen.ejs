@@ -4,10 +4,12 @@
   <%- include('partials/header') %>
 
 
-  <!-- HIER MOET EEN PROGRESSBAR KOMEN -->
 
 
   <main class="vragen">
+
+    <img class="progressBar" src="../img/<%= vraag.progress %>.png" alt="Progress bar vraag <%= vraag.number %>">
+
     <h1><%= vraag.question %></h1>
     <p>Vraag <%= vraag.number %></p>
 
@@ -20,7 +22,7 @@
           <input class="item" type="radio" id="choice_<%= index %>" name="answer" value="<%= choice.endpoint %>" required>
           <label for="choice_<%= index %>">
             <figure>
-              <img src="../img/<%= choice.image %>.jpg" alt="<%= choice.name %>">
+              <img src="../img/<%= choice.image %>.jpg" alt="<%= choice.name %>" class="clickable">
               <figcaption>
                 <%= choice.name %>
               </figcaption>
@@ -30,27 +32,33 @@
           <% }) %>
 
       <% } else if (nextId === 2) { %>
+        
+        <div aria-label="Ingevoerde hoeveelheid waarde" class="PlusMinContainer">
+          <button class="minus">-</button>
+          <input class="item" type="number" id="choice_number" name="answer" min="1" max="15" value="1" required>
+          <button class="plus">+</button>
+        </div>
 
-        <label for="choice_number">Vul in met hoeveel mensen je bent (max 15)</label>
-        <input class="item" type="number" id="choice_number" name="answer" min="1" max="15" value="choice_number" required>
+        <script src="/script/linVraag1.js"></script>
 
       <% } else if (nextId === 5) { %>
-
-        <% vraag.choices.forEach((choice, index) => { %>
-
-          <input class="item" type="radio" id="choice_<%= index %>" name="answer" value="<%= choice.endpoint %>" required>
-          <label for="choice_<%= index %>">
-            <figure>
-              <img src="../img/<%= choice.image %>.jpg" alt="<%= choice.name %>">
-              <figcaption>
-                <%= choice.name %>
-              </figcaption>
-            </figure>
-          </label>
-
-          <% }) %>
-
+          <ul id="list">
+            <% vraag.choices.forEach((choice, index) => { %>
+            <input class="item" type="radio" id="choice_<%= index %>" name="answer" value="<%= choice.endpoint %>" required>
+            <li>
+              <label for="choice_<%= index %>">
+                <figure>
+                  <img src="../img/<%= choice.image %>.png" alt="<%= choice.name %>" class="clickableSkittles">
+                  <figcaption>
+                    <%= choice.name %>
+                  </figcaption>
+                </figure>
+              </label>
+            </li>
+            <% }) %>
+          </ul>
       <% } %>
+
       </div>
 
       <div>
@@ -58,13 +66,22 @@
           <button type="submit" class="prevBtn" name="navigate" value="<%= prevId %>">Vorige</button>
         <% } %>
 
-        <% if (nextId !== 11) { %>
+        <% if (nextId === 2) { %>
+          <button type="submit" class="nextBtn" name="navigate" value="<%= nextId %>">Volgende</button>
+        <% } %>
+
+        <% if (nextId === 5) { %>
           <button type="submit" class="nextBtn" name="navigate" value="<%= nextId %>">Volgende</button>
         <% } %>
 
         <% if (nextId === 11) { %>
           <input type="submit" value="Quiz afronden">
         <% } %>
+
+        <% if (nextId !==2 && nextId !==5 && nextId !== 11) { %>
+          <button id="volgendeKnop" type="submit" class="nextBtn hidden" name="navigate" value="<%= nextId %>">Volgende</button>
+        <% } %>
+
       </div>
 
       <input type="hidden" name="questionNumber" value="<%= vraag.number %>">
@@ -74,7 +91,8 @@
     
   </main>
 
-  <script src="/script/script.js"></script>
+  <script src="/script/lin.js"></script>
+  <script src="/script/linSkittles.js" type="module"></script>
 
 
 </body>

@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
                 const apiKey = process.env.RIJKS_API_KEY;
                 let parameter = `${quizAntwoorden[key1]}`;
 
-                // Voeg het volgende object toe als het bestaat (want 6 is in zn eentje)
+                // Voeg het volgende object toe als het bestaat (want 10 is in zn eentje)
                 if (key2 && quizAntwoorden[key2]) {
                     parameter += `${quizAntwoorden[key2]}`;
                 }

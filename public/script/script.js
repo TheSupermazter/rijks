@@ -210,9 +210,3 @@ document.querySelector('.deleteSketch').addEventListener('click', preventDefault
 
 
 
-
-//----------------Fetch for quizResultaten--------------------
-
-const endPointQuiz = "";
-const quizURL = baseURL + endPointQuiz;
-

@@ -295,8 +295,15 @@ footer p {
     padding-left: 4%;
 }
 
-.hidden{
-    display: none;
+/* hidden class, zorgt ervoor dat t niet zichtbaar en klikbaar is */
+.hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
 }
 
 
@@ -369,7 +376,7 @@ header img {
 /* questions */
 
 .vragen h1{
-    font-size: var(--fs-4);
+    font-size: var(--fs-5);
 }
 
 .vragen > p:first-of-type{
@@ -459,5 +466,86 @@ header img {
 }
 
 
+
+/* progressbar */
+
+.progressBar {
+    width: 100%;
+    height: auto;
+    margin: var(--spacer) 0em;
+}
+
+/* + EN - DING */
+
+.PlusMinContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: var(--spacer-lg);
+}
+
+
+.PlusMinContainer button {
+    width: 3em;
+    color: var(--main-color)!important;
+    font-family: "Rijksmuseum";
+    font-weight: bold;
+    font-size: larger;
+    position: relative;
+    background-color: var(--f-color);
+    inset: 0em!important;
+    padding: 0em;
+    height: fit-content;
+}
+
+.PlusMinContainer input {
+    width: 10em;
+    color: #D55140;
+    text-align: center;
+    font-family: "Rijksmuseum";
+    font-weight: bold;
+    font-size: larger;
+    margin: 0em!important;
+    padding: 0em;
+}
+
+/* type number zonder default  waarde en min/max */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
+/* Skittles */
+
+#list {
+    margin: 0;
+    padding: var(--spacer) 0em;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacer);
+    list-style: none;
+}
+
+#list li label figure{
+    display: flex;
+    flex-direction: row;
+    margin: 0em;
+}
+
+
+#list li label figure img {
+    width: 10%;
+    height: auto;
+    margin-right: var(--spacer);
+}
 
 
