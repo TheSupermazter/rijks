@@ -1,46 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= title %></title>
-    <link rel="stylesheet" href="../css/quizResults.css" />
-  </head>
+<%- include('partials/head') %>
+<link rel="stylesheet" href="/css/quizResults.css">
+
   <body>
     <main>
       <section id="plekEnResultaat">
         <section id="kunstResultaat">
+          
           <h2>Jouw kunstwerk is:</h2>
-          <img
-            id="kunstwerkFoto"
-            src="<%= kunstwerkFoto %>"
-            alt="<%= kunstwerkNaam %>"
-          />
-        </section>
-        <section id="kunstwerkPlek">
-          <h2>Jouw kunstwerk is te vinden op:</h2>
-          <p><%= kunstwerkPlek %></p>
-        </section>
-      </section>
+          <% let keys = Object.keys(fetchedData); %>
+          <% let randomKey = keys[Math.floor(Math.random() * keys.length)]; %>
+          <% if(fetchedData[randomKey].artObjects && fetchedData[randomKey].artObjects.length > 0) { %>
+            <% let randomIndex = Math.floor(Math.random() * fetchedData[randomKey].artObjects.length); %>
+            <% let artObjects = fetchedData[randomKey].artObjects[randomIndex]; %>
+            <% let artObjectId = artObjects.id; %>
+            <% if(artObjects.webImage && artObjects.webImage.url) { %>
+              <img id="kunstwerkFoto" src="<%= artObjects.webImage.url %>" alt="<%= artObjects.title %>">                 
+            <% } %>
+            
+          
+            <section id="kunstwerkInfo" class="visuallyHidden">
+              <% if(artObjects && artObjects.id === artObjectId) { %>
+                <h3><%= artObjects.title %></h3>
+                <p><%= artObjects.principalOrFirstMaker %></p>
+                <p><%= artObjects.permitDownload %></p>
+                <!-- KIM DEZE PERMITDOWNLOAD MOET HET JAARTAL ZIJN WAARIN T GEMAAKT IS -->
+              <% } %>
+              <button>Meer info</button>
+              <!-- KIM DEZE MOET LINKEN NAAR MICHELLE HAAR INFOPAGINA MET DUS DIT SCHILDERIJ ERIN -->
+              <input type="hidden" id="artTitle" value="<%= artObjects.title %>">
+            </section>
 
-      <section id="kunstwerkInfo" class="visuallyHidden">
-        <h3><%= kunstwerkNaam %></h3>
-        <p><%= kunstenaar %></p>
-        <p><%= jaar %></p>
-        <button>Meer info</button>
+            <section id="kunstwerkPlek">
+              <% if(artObjects && artObjects.id === artObjectId) { %>
+              <h2>Jouw kunstwerk is te vinden op:</h2>
+              <p><%= artObjects.permitDownload %></p>
+              <!-- KIM DEZE PERMITDOWNLOAD MOET DE LOCATIE ZIJN -->
+              <% } %>
+            </section>
+          <% } %>
+          
+        </section>
+        
       </section>
-
-      <section id="kunstPassword">
+        
+    <section id="kunstPassword">
         <h3>Wat is de naam van dit kunstwerk?</h3>
-        <input type="text" name="" id="" />
-        <input id="confirmButton" type="submit" value="Naam proberen" />
-      </section>
+        <input id="invulveld" type="text" name="" id="">
+        <input id="confirmButton" type="submit" value="Naam proberen">
+    </section>
+    
+    
 
-      <section id="kunstwerkButtons">
-        <button id="shuffleButton">Ander kunstwerk (<%= aantalKunstwerken %>)</button>
+    <section id="kunstwerkButtons">
+        <button id="shuffleButton">Ander kunstwerk</button>
         <button id="addKnop">Toevoegen aan Mijn Kunstwerken</button>
-      </section>
+        <!-- KIM DEZE MOET LINKEN NAAR RYAN ZIJN PAGINA EN DUS OPSLAAN IN DATABASE -->
+    </section>
+
+
+
+
+
+
+      
     </main>
     <script src="../script/quizResults.js"></script>
+    <%- include('partials/footer') %>
   </body>
 </html>

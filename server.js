@@ -36,6 +36,7 @@ const quizResultatenRoutes = require('./routes/quizResultaten')({ usersCollectio
 const vragenRoutes = require('./routes/vragen')({ usersCollection, vragenCollection });
 const registerRoutes = require('./routes/register')({ usersCollection, vragenCollection });
 const logOutRoutes = require('./routes/logOut')({ usersCollection, vragenCollection });
+const skipRoutes =  require('./routes/quizSkip')({ usersCollection, vragenCollection });
 
 
 app.use('/dashboard/:id', dashboardRoutes);
@@ -44,6 +45,7 @@ app.use('/quizResultaten', quizResultatenRoutes);
 app.use('/vragen', vragenRoutes);
 app.use('/register', registerRoutes);
 app.use('/logout', logOutRoutes);
+app.use('/skip', skipRoutes)
 
 
 // INDEX

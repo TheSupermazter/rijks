@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
                 fetchedData[key1] = response.data; // voeg toe aan fetchedData object
             }
 
-            res.render('quizResultaten', { fetchedData });
+            res.render('quizResults', { fetchedData });
         } else {
             console.log('quizAntwoorden is undefined of null');
         }

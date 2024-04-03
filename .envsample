@@ -12,3 +12,30 @@ DB_VRAGEN_COLLECTION=
 SESSION_SECRET=
 
 RIJKS_API_KEY=
+
+
+  <section id="kunstwerkPlek">
+          <h2>Jouw kunstwerk is te vinden op:</h2>
+          <p><%= kunstwerkPlek %></p>
+        </section>
+      </section>
+
+      
+
+      <section id="kunstwerkInfo" class="visuallyHidden">
+        <h3><%= kunstwerkNaam %></h3>
+        <p><%= kunstenaar %></p>
+        <p><%= jaar %></p>
+        <button>Meer info</button>
+      </section>
+
+      <section id="kunstPassword">
+        <h3>Wat is de naam van dit kunstwerk?</h3>
+        <input type="text" name="" id="" />
+        <input id="confirmButton" type="submit" value="Naam proberen" />
+      </section>
+
+      <section id="kunstwerkButtons">
+        <button id="shuffleButton">Ander kunstwerk (<%= aantalKunstwerken %>)</button>
+        <button id="addKnop">Toevoegen aan Mijn Kunstwerken</button>
+      </section>
