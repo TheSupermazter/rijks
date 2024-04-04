@@ -1,18 +1,66 @@
 <%- include('partials/head') %>
+<link rel="stylesheet" href="/css/quizResults.css">
 
-<body>
-    <%- include('partials/header') %>
+  <body>
+    <main>
+      <section id="plekEnResultaat">
+        <section id="kunstResultaat">
+          
+          <h2>Jouw kunstwerk is:</h2>
+          <% let keys = Object.keys(fetchedData); %>
+          <% let randomKey = keys[Math.floor(Math.random() * keys.length)]; %>
+          <% if(fetchedData[randomKey].artObjects && fetchedData[randomKey].artObjects.length > 0) { %>
+            <% let randomIndex = Math.floor(Math.random() * fetchedData[randomKey].artObjects.length); %>
+            <% let artObjects = fetchedData[randomKey].artObjects[randomIndex]; %>
+            <% let artObjectId = artObjects.id; %>
+            <% if(artObjects.webImage && artObjects.webImage.url) { %>
+              <img id="kunstwerkFoto" src="<%= artObjects.webImage.url %>" alt="<%= artObjects.title %>">                 
+            <% } %>
+            
+          
+            <section id="kunstwerkInfo" class="visuallyHidden">
+              <% if(artObjects && artObjects.id === artObjectId) { %>
+                <h3><%= artObjects.title %></h3>
+                <p><%= artObjects.principalOrFirstMaker %></p>
+                <p><%= artObjects.permitDownload %></p>
+                <!-- KIM DEZE PERMITDOWNLOAD MOET HET JAARTAL ZIJN WAARIN T GEMAAKT IS -->
+              <% } %>
+              <button>Meer info</button>
+              <!-- KIM DEZE MOET LINKEN NAAR MICHELLE HAAR INFOPAGINA MET DUS DIT SCHILDERIJ ERIN -->
+              <input type="hidden" id="artTitle" value="<%= artObjects.title %>">
+            </section>
 
-    <h1>Quiz resultaten</h1>
+            <section id="kunstwerkPlek">
+              <% if(artObjects && artObjects.id === artObjectId) { %>
+              <h2>Jouw kunstwerk is te vinden op:</h2>
+              <p><%= artObjects.permitDownload %></p>
+              <!-- KIM DEZE PERMITDOWNLOAD MOET DE LOCATIE ZIJN -->
+              <% } %>
+            </section>
+          <% } %>
+          
+        </section>
+        
+      </section>
+        
+    <section id="kunstPassword">
+        <h3>Wat is de naam van dit kunstwerk?</h3>
+        <input id="invulveld" type="text" name="" id="">
+        <input id="confirmButton" type="submit" value="Naam proberen">
+    </section>
+    
+    
 
-    <div>
-        <!-- Weergave van de gefetchte data -->
-        <pre><%= JSON.stringify(fetchedData, null, 2) %></pre>
-    </div>
+    <section id="kunstwerkButtons">
+        <button id="shuffleButton">Ander kunstwerk</button>
+        <form action="/addArtwork" method="post">
+            <button type="submit" id="addKnop">Toevoegen aan mijn kunstwerken</button>
+        </form>    
+    </section>
+      
+    </main>
 
-
-    <%- include('partials/footer') %>
-
-</body>
-
+    <script src="../script/quizResults.js"></script>
+    
+  </body>
 </html>

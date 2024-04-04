@@ -34,6 +34,7 @@ router.get('/', async (req, res) => {
                 fetchedData[key1] = response.data; // voeg toe aan fetchedData object
             }
 
+            req.session.artObjectNumber = artObjects.objectNumber; //de waarde van gefetchte artobject in de session cookie opslaan
             res.render('quizResultaten', { fetchedData });
         } else {
             console.log('quizAntwoorden is undefined of null');
@@ -42,6 +43,20 @@ router.get('/', async (req, res) => {
         console.log(error);
     }
 });
+
+
+router.post('/addArtObject', (req, res) => {
+    const artObjectNumber = req.session.artObjectNumber; //vraag artObjectNumber op uit session
+    const userId = req.session.user._id;
+  
+    // Update the user's record in the database
+    User.updateOne(
+      { _id: userId },
+      { $push: { mijnArtObjecten: { objectNumber: artObjectNumber, objectFound: false } } }
+    )
+    // .then(() => res.redirect('/myArtworks')) // redirect naar pagina met alle mijn kunstwerken
+    .catch(err => console.error(err)); // handle errors
+  });
 
 
 
