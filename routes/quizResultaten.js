@@ -14,6 +14,7 @@ module.exports = ({ usersCollection }) => {
             const fetchedData = {};
             const user = req.session.user;
             const quizAntwoorden = user.quizAntwoorden;
+            const apiKey = process.env.RIJKS_API_KEY;
 
             if (quizAntwoorden) {
                 const keys = Object.keys(quizAntwoorden); // haal de object keys uit quizAntwoorden
@@ -21,7 +22,6 @@ module.exports = ({ usersCollection }) => {
                 for (let i = 1; i < keys.length; i += 2) { // begin bij de eerste key en voeg de volgende twee keys samen
                     const key1 = keys[i];
                     const key2 = keys[i + 1];
-                    const apiKey = process.env.RIJKS_API_KEY;
                     let parameter = `${quizAntwoorden[key1]}`;
 
                     // Voeg het volgende object toe als het bestaat (want 10 is in zn eentje)
@@ -47,8 +47,15 @@ module.exports = ({ usersCollection }) => {
                     req.session.artObjectNumber = artObjects.objectNumber;
                 }
 
+                const artObjectNumber = req.session.artObjectNumber; // Get artObjectNumber from session
+
+                const getCollectionDetails = await axios.get(`https://www.rijksmuseum.nl/api/nl/collection/${artObjectNumber}?key=${apiKey}`);
+                fetchedDetails = getCollectionDetails.data
+
+
                 res.render('quizResultaten', {
-                    fetchedData
+                    fetchedData,
+                    fetchedDetails
                 });
             } else {
                 console.log('quizAntwoorden is undefined of null');

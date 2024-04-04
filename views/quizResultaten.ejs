@@ -19,14 +19,19 @@
         <section id="kunstwerkInfo" class="visuallyHidden">
           <h3><%= artObjects.title %></h3>
           <p><%= artObjects.principalOrFirstMaker %></p>
-          <p><%= artObjects.permitDownload %></p>
+
+          <% if(fetchedDetails && fetchedDetails.artObject) { %>
+            <p><%= fetchedDetails.artObject.dating.presentingDate %></p>
+          <% } %>
           <button>Meer info</button>
           <input type="hidden" id="artTitle" value="<%= artObjects.title %>">
         </section>
 
         <section id="kunstwerkPlek">
           <h2>Jouw kunstwerk is te vinden op:</h2>
-          <p><%= artObjects.permitDownload %></p>
+          <% if(fetchedDetails && fetchedDetails.artObject) { %>
+            <p><%= fetchedDetails.artObject.location %></p>
+          <% } %>
         </section>
         <% } %>
 
