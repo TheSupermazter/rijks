@@ -65,6 +65,7 @@ module.exports = ({ usersCollection }) => {
         }
     });
 
+    //ALS DE URL ROUTE WORDT GEZET OP MIJNKUNSTWERKEN PAGINA, KAN DEZE WELLICHT WEG, BEHALVE DE RES.RENDER NAAR DE GOEIE PAGINA
     router.post('/', async (req, res) => {
         const artObjectNumber = req.session.artObjectNumber; // Get artObjectNumber from session
         const userId = req.session.user._id; // Get user's ID from session
@@ -95,6 +96,55 @@ module.exports = ({ usersCollection }) => {
     });
 
 
+    router.post('/update-object-found', async (req, res) => {
+        const artObjectNumber = req.session.artObjectNumber; // Haal het objectnummer uit het verzoek
+        const userId = req.session.user._id; // Haal de gebruikers-ID uit de sessie
+    
+        try {
+            const user = req.session.user;
+    
+            const artObject = user.mijnArtObjecten.find(obj => obj.objectNumber === artObjectNumber); // kijk of het object al bestaat in de DB
+    
+            if (artObject) { // Als het object al bestaat in de DB, update het
+                const result = await usersCollection.updateOne({
+                    _id: new ObjectId(userId),
+                    'mijnArtObjecten.objectNumber': artObjectNumber
+                }, {
+                    $set: {
+                        'mijnArtObjecten.$.objectFound': true
+                    }
+                });
+    
+                if (result.modifiedCount === 1) {
+                    console.log('Successfully updated the object');
+                } else {
+                    console.log('Object update failed');
+                }
+            } else { // Als het object niet bestaat in de DB, voeg het toe
+                const result = await usersCollection.updateOne({
+                    _id: new ObjectId(userId)
+                }, {
+                    $push: {
+                        mijnArtObjecten: {
+                            objectNumber: artObjectNumber,
+                            objectFound: true
+                        }
+                    }
+                });
+    
+                if (result.modifiedCount === 1) {
+                    console.log('Successfully added the object');
+                } else {
+                    console.log('Object addition failed');
+                }
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    });
+    
+    
+    
 
     return router;
 

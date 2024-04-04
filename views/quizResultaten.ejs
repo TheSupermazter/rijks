@@ -13,7 +13,7 @@
         <% let randomIndex = Math.floor(Math.random() * fetchedData[randomKey].artObjects.length); %>
         <% let artObjects = fetchedData[randomKey].artObjects[randomIndex]; %>
         <% if(artObjects.webImage && artObjects.webImage.url) { %>
-        <img id="kunstwerkFoto" src="<%= artObjects.webImage.url %>" alt="<%= artObjects.title %>">
+        <img id="kunstwerkFoto" src="<%= artObjects.webImage.url %>" alt="<%= artObjects.title %>" data-object-number="<%= artObjects.objectNumber %>">
         <% } %>
 
         <section id="kunstwerkInfo" class="visuallyHidden">
@@ -41,8 +41,10 @@
 
     <section id="kunstPassword">
       <h3>Wat is de naam van dit kunstwerk?</h3>
-      <input id="invulveld" type="text" name="" id="">
-      <input id="confirmButton" type="submit" value="Naam proberen">
+      <form action="/quizResultaten/update-object-found" method="post">
+        <input id="invulveld" type="text" name="" id="">
+        <input id="confirmButton" type="submit" value="Naam proberen">
+      </form>
     </section>
 
 
@@ -50,14 +52,14 @@
     <section id="kunstwerkButtons">
       <button id="shuffleButton">Ander kunstwerk</button>
 
-      <form action="/quizResultaten" method="post">
+      <form action="/quizResultaten/update-object-found" method="post">
         <button type="submit" id="addKnop">Toevoegen aan mijn kunstwerken</button>
       </form>
     </section>
 
   </main>
 
-  <script src="/public/script/quizResults.js"></script>
+  <script src="/script/quizResults.js"></script>
 
 </body>
 
