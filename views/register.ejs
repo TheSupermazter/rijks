@@ -25,7 +25,9 @@
                 <div class="drawDiv">
                     <canvas class="canvas" id="drawing"></canvas>
                     <button class="fetchArt hidden">creëer</button>
-                    <button class="deleteSketch"><></button>
+                    <button class="deleteSketch">
+                        <>
+                    </button>
                 </div>
                 <input type="hidden" id="profilePicture" name="profilePicture" required>
 
@@ -34,7 +36,7 @@
             </form>
 
             <% if (typeof error !== 'undefined' && error !== null) { %>
-                <p class="pError"><%= error %></p>
+            <p class="pError"><%= error %></p>
             <% } %>
 
             <p>Of</p>
@@ -51,4 +53,5 @@
     <script src="/script/script.js"></script>
 
 </body>
+
 </html>

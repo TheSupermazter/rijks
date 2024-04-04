@@ -1,20 +1,24 @@
 module.exports = () => {
 
-const express = require('express');
-const router = express.Router();
+    const express = require('express');
+    const router = express.Router();
 
-// DASHBOARD
+    // DASHBOARD
 
-router.get('/', async (req, res) => {
-    const user = req.session.user;
-    
-    if (user) {
-        res.render('dashboard', { name: user.name });
-    } else {
-        res.render('dashboard', { error: 'User not found' });
-    }
-});
+    router.get('/', async (req, res) => {
+        const user = req.session.user;
 
-return router;
+        if (user) {
+            res.render('dashboard', {
+                name: user.name
+            });
+        } else {
+            res.render('dashboard', {
+                error: 'User not found'
+            });
+        }
+    });
+
+    return router;
 
 }
