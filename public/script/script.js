@@ -207,6 +207,3 @@ const preventDefaultAction = (event) => {
 document.querySelector('.fetchArt').addEventListener('click', preventDefaultAction);
 document.querySelector('.deleteSketch').addEventListener('click', preventDefaultAction);
 
-
-
-
