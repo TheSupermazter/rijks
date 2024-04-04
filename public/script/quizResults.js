@@ -310,27 +310,14 @@ function showKunstwerk() {
     kunstwerkPlek.classList.add("visuallyHidden");
     confettiPoppen();
 
-    fetch('/update-object-found', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ objectNumber: objectNumber }),
-  })
-  .then(response => response.json())
-  .then(data => {
-      console.log('Success:', data);
-  })
-  .catch((error) => {
-      console.error('Error:', error);
-  });
+    document.getElementById('answerStatus').value = 'true';
     
   } else {
     // If they don't match, prevent the form from submitting and alert the user
     //   event.preventDefault();
     alert("Titles do not match. Please try again.");
-    
-    
+
+    document.getElementById('answerStatus').value = 'false';
   }
 }
 

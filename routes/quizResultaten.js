@@ -66,44 +66,47 @@ module.exports = ({ usersCollection }) => {
     });
 
     //ALS DE URL ROUTE WORDT GEZET OP MIJNKUNSTWERKEN PAGINA, KAN DEZE WELLICHT WEG, BEHALVE DE RES.RENDER NAAR DE GOEIE PAGINA
+    // router.post('/', async (req, res) => {
+    //     const artObjectNumber = req.session.artObjectNumber; // Get artObjectNumber from session
+    //     const userId = req.session.user._id; // Get user's ID from session
+
+    //     try { // Update user met artObject in database
+    //         const result = await usersCollection.updateOne({
+    //             _id: new ObjectId(userId)
+    //         }, {
+    //             $push: {
+    //                 mijnArtObjecten: {
+    //                     objectNumber: artObjectNumber,
+    //                     objectFound: false
+    //                 }
+    //             }
+    //         });
+
+    //         if (result.modifiedCount === 1) {
+    //             console.log('Successfully updated the user');
+    //         } else {
+    //             console.log('User update failed');
+    //         }
+
+    //         user = req.session.user;
+    //         res.redirect(`/dashboard/${user._id}`);
+    //     } catch (err) {
+    //         console.error(err); // Handle errors
+    //     }
+    // });
+
     router.post('/', async (req, res) => {
-        const artObjectNumber = req.session.artObjectNumber; // Get artObjectNumber from session
-        const userId = req.session.user._id; // Get user's ID from session
-
-        try { // Update user met artObject in database
-            const result = await usersCollection.updateOne({
-                _id: new ObjectId(userId)
-            }, {
-                $push: {
-                    mijnArtObjecten: {
-                        objectNumber: artObjectNumber,
-                        objectFound: false
-                    }
-                }
-            });
-
-            if (result.modifiedCount === 1) {
-                console.log('Successfully updated the user');
-            } else {
-                console.log('User update failed');
+        const user = req.session.user;
+        const userId = user._id; // Haal de gebruikers-ID uit de sessie
+        const answerStatus = req.body.answerStatus === 'true'; // Haal de status van het antwoord op
+    
+        try {    
+            if (!user.mijnArtObjecten) { // AlsmijnArtObjecten niet bestaat in de session
+                user.mijnArtObjecten = []; // voeg het toe
             }
-
-            user = req.session.user;
-            res.redirect(`/dashboard/${user._id}`);
-        } catch (err) {
-            console.error(err); // Handle errors
-        }
-    });
-
-
-    router.post('/update-object-found', async (req, res) => {
-        const artObjectNumber = req.session.artObjectNumber; // Haal het objectnummer uit het verzoek
-        const userId = req.session.user._id; // Haal de gebruikers-ID uit de sessie
     
-        try {
-            const user = req.session.user;
-    
-            const artObject = user.mijnArtObjecten.find(obj => obj.objectNumber === artObjectNumber); // kijk of het object al bestaat in de DB
+            let artObjectNumber = req.session.artObjectNumber; // Haal het objectnummer uit het verzoek
+            let artObject = user.mijnArtObjecten.find(obj => obj.objectNumber === artObjectNumber); // kijk of het object al bestaat in de DB
     
             if (artObject) { // Als het object al bestaat in de DB, update het
                 const result = await usersCollection.updateOne({
@@ -111,7 +114,7 @@ module.exports = ({ usersCollection }) => {
                     'mijnArtObjecten.objectNumber': artObjectNumber
                 }, {
                     $set: {
-                        'mijnArtObjecten.$.objectFound': true
+                        'mijnArtObjecten.$.objectFound': answerStatus
                     }
                 });
     
@@ -127,23 +130,27 @@ module.exports = ({ usersCollection }) => {
                     $push: {
                         mijnArtObjecten: {
                             objectNumber: artObjectNumber,
-                            objectFound: true
+                            objectFound: answerStatus
                         }
                     }
                 });
     
                 if (result.modifiedCount === 1) {
                     console.log('Successfully added the object');
+                    if (answerStatus ==  true) {
+                        res.redirect(`/info/${artObjectNumber}`);
+                    } else {
+                        res.redirect(`/notFoundFavorites/${artObjectNumber}`);
+                    }
                 } else {
-                    console.log('Object addition failed');
+                    console.error(err);
                 }
             }
+    
         } catch (err) {
             console.error(err);
         }
     });
-    
-    
     
 
     return router;

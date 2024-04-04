@@ -36,7 +36,9 @@ const quizResultatenRoutes = require('./routes/quizResultaten')({ usersCollectio
 const vragenRoutes = require('./routes/vragen')({ usersCollection, vragenCollection });
 const registerRoutes = require('./routes/register')({ usersCollection, vragenCollection });
 const logOutRoutes = require('./routes/logOut')({ usersCollection, vragenCollection });
-
+const infoRoutes = require('./routes/info')({ usersCollection, vragenCollection });
+const favoritesRoutes = require('./routes/favorites')({ usersCollection, vragenCollection });
+const notFoundFavoritesRoutes = require('./routes/notFoundFavorites')({ usersCollection, vragenCollection });
 
 app.use('/dashboard/:id', dashboardRoutes);
 app.use('/login', loginRoutes);
@@ -44,6 +46,10 @@ app.use('/quizResultaten', quizResultatenRoutes);
 app.use('/vragen', vragenRoutes);
 app.use('/register', registerRoutes);
 app.use('/logout', logOutRoutes);
+app.use('/info/:artObjectNumber', infoRoutes);
+app.use('/favorites/:artObjectNumber', favoritesRoutes);
+app.use('/notFoundFavorites/:artObjectNumber', notFoundFavoritesRoutes);
+
 
 
 // INDEX
