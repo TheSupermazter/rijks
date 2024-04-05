@@ -1,41 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%- include('partials/head') %>
+<link rel="stylesheet" href="/css/ryan.css">
 
-    <title>Mijn Lijst</title>
-    <link rel="stylesheet" href="../css/ryan.css">
-</head>
-<body class="favo">
-    <header>
-        <img src="../img/logo_rijksmuseum.png" alt="logo Rijksmuseum">
-    </header>
+<body class="InformatiePagina">
+    <%- include('partials/header') %>
 
     <main>
       <section>
-        <h2>Nog te zoeken</h2>  
+        <h2>Nog te zoeken</h2>
         <section>
-          <article>
-              <img src="../img/rembrandt_zelfportret.jpg" alt="">
-              <p>
-                Rembrandt Zelfportret
-              </p>
-          </article>
-          <article>
-            <img src="../img/rembrandt_zelfportret.jpg" alt="">
-              <p> 
-                Rembrandt Zelfportret
-              </p>
-          </article>
-          <article>
-            <img src="../img/rembrandt_zelfportret.jpg" alt="Poster">
-              <p>
-                Rembrandt Zelfportret
-              </p>
-          </article>
+            <% combinedDetails.forEach(function(object) { %>
+                <% if (!object.objectFound) { %>
+                    <% const artwork = object.details.artObject; %>
+                    <article>
+                      <a href="/info/<%= artwork.objectNumber %>">
+                        <img src="<%= artwork.webImage.url %>" alt="Image <%= artwork.title %>">
+                        <p><%= artwork.title %></p>
+                      </a>
+                    </article>
+                <% } %>
+            <% }); %>
         </section>
-      </section>
+    </section>
+    
+    
 
       <article id="search-container">
         <input type="text" id="search-input" placeholder="Zoek naar iets...">
@@ -45,74 +32,40 @@
         
     </article>
       
+    <section>
       <h2>Gevonden werken</h2>
-      <section> 
-        <article>
-            <img src="../img/rembrandt_zelfportret.jpg" alt="">
-            <p>
-              Rembrandt Zelfportret
-            </p>
-            <a href="">Meer info</a>
-        </article>
-        <article>
-          <img src="../img/rembrandt_zelfportret.jpg" alt="">
-          <p>
-            Rembrandt Zelfportret
-          </p>
-           <a href="">Meer info</a>
-        </article>
-        <article>
-          <img src="../img/rembrandt_zelfportret.jpg" alt="Poster">
-          <p>
-            Rembrandt Zelfportret
-          </p>
-            <a href="">Meer info</a>
-        </article>
+      <section>
+          <% combinedDetails.forEach(function(object) { %>
+              <% if (object.objectFound) { %>
+                  <% const artwork = object.details.artObject; %>
+                  <article>
+                    <a href="/info/<%= artwork.objectNumber %>">
+                      <img src="<%= artwork.webImage.url %>" alt="Image <%= artwork.title %>">
+                      <p><%= artwork.title %></p>
+                    </a>
+                  </article>
+              <% } %>
+          <% }); %>
       </section>
+  </section>
     </main>
 
-    <footer>
-        <section>
-          <h3>Bezoekersinformatie</h3>
-          <p>Elke dag van 9-17 uur</p>
-          <p>Museumstraat 1, Amsterdam</p>
-        </section>
-    
-        <section class="footer_links">
-          <h3>Ontdek meer</h3>
-          <a
-            href="https://www.rijksmuseum.nl/nl/over-ons/?_gl=1%2a2wp0lt%2a_up%2aMQ..&gclid=EAIaIQobChMIs9OltLHahAMVbaeDBx0iAg4oEAAYASAAEgI4D_D_BwE">Over
-            ons</a>
-          <a
-            href="https://www.rijksmuseum.nl/nl/werken-bij/?_gl=1%2a1qig5zm%2a_up%2aMQ..&gclid=EAIaIQobChMIs9OltLHahAMVbaeDBx0iAg4oEAAYASAAEgI4D_D_BwE">Werken
-            bij</a>
-          <a
-            href="https://www.rijksmuseum.nl/nl/footer/contact/?_gl=1%2a1qig5zm%2a_up%2aMQ..&gclid=EAIaIQobChMIs9OltLHahAMVbaeDBx0iAg4oEAAYASAAEgI4D_D_BwE">Contact</a>
-        </section>
-    
-        <section class="buttons">
-          <a class="footerButton" href="https://www.rijksmuseum.nl/nl/steun/doneer">Doneer ook</a>
-          <a class="footerButton" href="https://www.rijksmuseum.nl/nl/nieuwsbrief?slug=NIEUWSBRIEF_NL">Nieuwsbrief</a>
-        </section>
-    
-        <section class="footer_socials">
-          <a href="https://www.instagram.com/rijksmuseum/"><img src="../img/instagram-logo.svg" alt="Instagram"></a>
-          <a href="https://www.facebook.com/rijksmuseum/"><img src="../img/facebook-logo.svg" alt="Facebook"></a>
-          <a href="https://twitter.com/rijksmuseum"><img src="../img/x-logo.svg" alt="X"></a>
-          <a href="https://www.linkedin.com/company/rijksmuseum"><img src="../img/linkedin-logo.svg" alt="LinkedIn"></a>
-          <a href="https://www.tiktok.com/@rijksmuseum"><img src="../img/tiktok-logo.svg" alt="TikTok"></a>
-          <a href="https://www.youtube.com/channel/UCEXuPfYt1M3e8DT1LDeSfVg"><img src="../img/youtube-logo.svg"
-              alt="YouTube"></a>
-        </section>
-    
-        <section class="footer_last">
-          <a href="https://www.rijksmuseum.nl/nl/footer/voorwaarden">Algemene voorwaarden</a> |
-          <a href="https://www.rijksmuseum.nl/nl/footer/privacybeleid">Privacy</a> |
-          <a href="https://www.rijksmuseum.nl/nl/footer/cookiebeleid">Cookiebeleid</a> |
-          <a href="https://www.rijksmuseum.nl/nl/footer/voorwaarden">Herroepingsrecht</a>
-        </section>
-      </footer> 
+    <%- include('partials/footer') %>
 
-      <script src="../script/ryan.js"></script>
+    <script src="/public/script/ryan.js"></script>
+    <script>
+        const containerZoom = document.getElementById("zoomContainer");
+        const img = document.getElementsByClassName("zoom");
+
+        containerZoom.addEventListener("touchmove", (e) => {
+            const x = e.clientX - e.target.offsetLeft;
+            const y = e.clientY - e.target.offsetTop;
+            console.log("x")
+            img.style.transformOrigin = '${x}px ${y}px';
+            img.style.transorm = "scale(2)"; 
+        });
+    </script>
+ 
 </body>
+
 </html>

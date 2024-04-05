@@ -11,7 +11,7 @@ module.exports = ({ usersCollection }) => {
     router.get('/', (req, res) => {
         // Check if user is already logged in
         if (req.session.user) {
-            res.redirect(`/dashboard/${req.session.user._id}`);
+            res.redirect(`/`);
         } else {
             res.render('login');
         }

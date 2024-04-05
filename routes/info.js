@@ -15,8 +15,8 @@ module.exports = () => {
             const objectNumber = req.params.artObjectNumber;            
             const apiKey = process.env.RIJKS_API_KEY;
     
-            const fetchCollection = await axios.get(`https://www.rijksmuseum.nl/api/nl/collection?key=${apiKey}&objectNumber=${objectNumber}`);
-            const fetchDetails = await axios.get(`https://www.rijksmuseum.nl/api/nl/collection/${objectNumber}?key=${apiKey}`);
+            const fetchCollection = await axios.get(`https://www.rijksmuseum.nl/api/nl/collection?key=${apiKey}&objectNumber=${objectNumber}&imgonly=True&ondisplay=True&st=Objects`);
+            const fetchDetails = await axios.get(`https://www.rijksmuseum.nl/api/nl/collection/${objectNumber}?key=${apiKey}&imgonly=True&ondisplay=True&st=Objects`);
 
             console.log(fetchCollection, fetchDetails);
 
