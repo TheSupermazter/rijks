@@ -27,7 +27,6 @@
             <p><%= fetchedDetails.artObject.dating.presentingDate %></p>
           <% } %>
           <a href="info/<%= fetchedDetails.artObject.objectNumber %>">Meer info</a>
-          <input type="hidden" id="artTitle" value="<%= fetchedDetails.artObject.title %>">
         </section>
 
         <section id="kunstwerkPlek">
@@ -46,7 +45,7 @@
       <h3>Wat is de naam van dit kunstwerk?</h3>
         <input id="invulveld" type="text" name="" id="">
 
-        <form action="/notFoundFavorites/:artObjectNumber" method="post">
+        <form action="/info/<%= fetchedDetails.artObject.objectNumber %>" method="post">
           <input type="hidden" id="answerStatus" name="answerStatus">
           <input id="confirmButton" type="submit" value="Naam proberen">       
         </form>
