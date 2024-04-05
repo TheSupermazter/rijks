@@ -56,6 +56,7 @@ body{
 
     /**** FONT SIZES *****/
     --fs-p: 1em;
+    --fs-h1:1.5em;
     --fs-h2:1.2em;
     --fs-h:1em; 
     --fs-Btn:1rem;
@@ -67,11 +68,20 @@ body{
     --fs-Btn: 1rem;
     --Btn-margin:2;
     --SecondairyBt-margin:2;
+    --h-margin: 1rem 0 1rem 2rem;
+
 
     /* Spacers for margins, gaps or paddings */
     --spacer: 1em;
     --spacer-md: calc(var(--spacer) * 2);
     --spacer-lg: calc(var(--spacer) * 3);
+    --mar-standaard:2rem; 
+}
+
+h1{
+    font-size: var(--fs-h1);
+    margin-left: var(--mar-standaard);
+
 }
 
 
@@ -87,15 +97,12 @@ hr{
 }
 
 h1, h2, h3, p, a{
-    margin: 1rem 0 1rem 2rem;
+    margin: var(--h-margin);
     
 }
 
-.InformatiePagina header img,
-.resulaatPagina header img,
-.zoekPagina header img,
-.favo header img,
-.accountPagina header img{
+header img
+{
     width: 35vw;
     height: auto;
     margin: 1.5rem 1rem;
@@ -154,6 +161,47 @@ h1, h2, h3, p, a{
 }
 
 
+@keyframes fade-in-out {
+    0%, 100% { opacity: .2; scale: 1; }
+    50% { opacity: 1; scale: 2; }
+}
+
+
+@keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.5rem));
+    }
+  }
+
+
+  
+@keyframes textColor{
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+
+
+
+
+
+.openButton,
+.BackToTopBtn{
+    margin: 1.5rem 1.5rem;
+    background-color: var(--main-color);
+    border: 0;
+
+
+    color: var(--f-color);
+    font-weight: bold;
+    font-size: 0.9em;
+    padding: 1rem 2rem;
+}
+
+
+
+
+
 /* INPUT ZOEK */
 
 .resulaatPagina form,
@@ -165,6 +213,7 @@ h1, h2, h3, p, a{
     margin-bottom: 2rem;
 
 }
+
 
 .favo form{
     margin-top: 2rem;
@@ -189,7 +238,7 @@ h1, h2, h3, p, a{
 .zoekPagina form hr,
 .favo form hr{
     width: 60vw; 
-    margin-left: 2rem;
+    margin-left: var(--mar-standaard);
 }
 
 
@@ -197,12 +246,15 @@ h1, h2, h3, p, a{
 .zoekPagina form button,
 .favo form button{
     background-color: var(--main-color);
-    border: 0;
-    width: 6rem;
-    height: 3rem;
-    align-self: center;
+
     color: var(--f-color);
     font-weight: bold;
+    /* border: 0; */
+   
+    width: 6rem;
+    height: 3rem;
+
+    align-self: center;  
 }
 
 
@@ -254,19 +306,395 @@ h1, h2, h3, p, a{
 }
 
 
-
+/* ************ */
 /* VRAGEN */
+/* ************ */
 
 
 
 
 
 
-/* QUIZZ RESULTAATEN */
-.quizResults body{
+
+
+
+
+
+/* ACCOUNT */
+.accountPagina img{
+    width: 100vw;
+}
+
+
+
+/* FAVORIETEN */
+
+.favo section:nth-of-type(1){
+    overflow: hidden;
+}
+
+
+.favo section ul{
+    display: flex;
+    flex-direction: row;
+
+
+    position: relative;
+    animation: 15s Slider;
+	animation-iteration-count: infinite;
+   
+
+    height: 80vh;
+    margin-bottom:2rem ;
+    
+}
+
+
+.favo section ul li{
+    margin: 0;
+    padding: 0;
+    
+  
+}
+
+.favo section ul li img{
+    height: 80vh;
+    width: 100vw;
+    object-fit: cover;
+
+}
+
+
+.favo section:nth-of-type(2) img {
+	width: 100vw;
+}
+
+.favo ul li p {
+	position: relative;
+	left: 0;
+    bottom: -1em;
+
+	width: 90vw;
+
+	margin-top: -7em;
+	padding-bottom: 5em;
+}
+
+.favo ul li p:first-of-type {
+	margin-top: -6em;
+
+	text-transform: uppercase;
+	background-color: transparent;
+}
+
+
+
+
+
+/* ***** INFORMATION PAGE ***** */
+
+
+.InformatiePagina,
+.resulaatPagina,
+.zoekPagina{
     display: flex;
     flex-direction: column;
+
 }
+
+
+.InformatiePagina section:nth-of-type(1){
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+}
+
+#zoomContainer {
+   display: flex;
+   flex-direction: column;
+    width: 100vw;
+    max-height: 45vh;
+    overflow: hidden;
+    justify-content:center;
+  }
+
+
+.InformatiePagina section:nth-of-type(1) img{
+    width: 100%;
+    height: auto;
+  
+    object-fit: cover;
+    transform-origin:center ;
+    height: 100%;
+  
+}
+
+.InformatiePagina .zoomContainer{
+    overflow: hidden;
+}
+
+.InformatiePagina section:nth-of-type(1) h1 {
+    width: 90vw;
+    
+}
+
+.InformatiePagina section:nth-of-type(1) p{
+    width: 80vw;
+    color: var(--f-color);
+    margin: 0 0 2rem 0;
+}
+
+
+.InformatiePagina section:nth-of-type(1) button img{
+    width: 8rem;
+}
+
+
+.text{
+    color: var(--f-color);
+    animation: textColor linear;
+    animation-timeline: view();
+}
+
+.popup-container{  
+    display: none;  
+}
+
+.InformatiePagina section:nth-of-type(2) article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.InformatiePagina section:nth-of-type(2) h2{
+    width: 90vw;
+}
+
+.InformatiePagina section:nth-of-type(2) ul{
+    width: 90vw;
+}
+
+
+.InformatiePagina section:nth-of-type(3){
+   margin:0  2rem;
+}
+
+.sliders h2{
+    margin-left: 0;
+}
+.slider-container{
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+.slider-container ul{
+    display: flex;
+    transition: transform 0.5s ease;
+    margin: 0 0 5rem;
+}
+
+
+.slider-container  ul li{
+    width: 90vw;
+    height: 20vh;
+    margin-right: 2rem
+}
+
+
+
+
+
+/* resultaat pagina */
+
+.resulaatPagina header,
+.zoekPagina header{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.resulaatPagina header h2{
+    font-size: 1rem;
+    margin: 1rem 2rem;
+    align-self: flex-end;
+}
+
+.resulaatPagina h1{
+    font-size: 1.5rem;
+    margin: 0 1rem 1.5rem;
+}
+
+.resulaatPagina section:nth-of-type(1) p,
+.resulaatPagina section:nth-of-type(2) p{
+    font-size:1rem;
+}
+
+
+
+
+
+
+
+/* Zoek Pagina */
+
+
+
+.zoekPagina section:nth-of-type(1){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+.scrollerContainer{
+    max-width: 90vw;
+    overflow: hidden;
+    mask: linear-gradient(
+      90deg,
+      transparent,
+      white 20%,
+      white 80%,
+      transparent
+    );
+    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+   
+}
+
+  
+  .scroller {
+    display: flex;
+    flex-direction: row;
+    height: 8rem;
+    padding: 0;
+    margin: 0;
+
+   
+  }
+  
+  .scrollerContainer[data-animated="true"] {
+    overflow: hidden;
+    -webkit-mask: linear-gradient(
+      90deg,
+      transparent,
+      white 20%,
+      white 80%,
+      transparent
+    );
+    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+  }
+  
+  .scrollerContainer[data-animated="true"] .scroller{
+    width: max-content;
+    flex-wrap: nowrap;
+    animation: scroll var(--_animation-duration, 40s)
+      var(--_animation-direction, forwards) linear infinite;
+  }
+  
+  .scrollerContainer[data-direction="right"] {
+    --_animation-direction: reverse;
+  }
+  
+  .scrollerContainer[data-direction="left"] {
+    --_animation-direction: forwards;
+  }
+  
+  .scrollerContainer[data-speed="fast"] {
+    --_animation-duration: 20s;
+  }
+  
+  .scrollerContainer[data-speed="slow"] {
+    --_animation-duration: 60s;
+  }
+  
+  
+
+
+
+
+.zoekPagina section:nth-of-type(1) ul li {
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+.zoekPagina section:nth-of-type(1) ul li img{
+    width: 2rem;
+    height: 2rem;
+    background-color: #9C9C9C;
+    padding: 1rem;
+    box-shadow: 0 0.5rem 1rem -0.25rem #161616 ;
+    border-radius: 3rem;
+}
+
+.zoekPagina section:nth-of-type(1) ul li h2{
+    font-size: 1rem;
+    font-weight: normal;
+    margin: .5rem 0;
+}
+
+
+.zoekPagina section:nth-of-type(2) h3{
+    font-size: 1rem;
+    margin: 0 0 0 2rem;
+} 
+
+
+
+.zoekPagina section:nth-of-type(2) p{
+    color: var(--bg-color);
+    font-size: .5rem;
+    background-color: var(--f-color);
+    margin-left: 2rem;
+    padding: .5rem;
+}
+
+.zoekPagina section:nth-of-type(2) ul {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+
+.zoekPagina section:nth-of-type(2) ul li:nth-of-type(1){
+    max-width: 60vw;
+    max-height: 32vh;
+    overflow: hidden;
+}
+.zoekPagina section:nth-of-type(2) ul li:nth-of-type(1) img{
+    max-width: 60vw;
+   
+    height: 32.5vh;
+   animation: fade-in-out 12s infinite alternate;
+   animation-duration: 20s;
+}
+
+
+.zoekPagina section:nth-of-type(2) ul li:nth-of-type(2) img{
+    width: 40vw;
+    animation: fade-in-out 12s infinite alternate;
+    animation-duration: 20s;
+    animation-delay: -4s;
+}
+
+.zoekPagina section:nth-of-type(2) ul li:nth-of-type(2){
+    max-width: 40vw;
+    max-height: 32vh;
+    overflow: hidden;
+}
+
+.zoekPagina section:nth-of-type(2) div{
+    position: relative;
+    bottom: 5rem;
+}
+
+
+  
+ 
+/* quizresults */
 
 .quizResults .pError{
     font-weight: bold;
@@ -278,17 +706,12 @@ h1, h2, h3, p, a{
 
 
 .quizResults a, input[type=submit], button{
-    font-family: var(--ff);
-    text-decoration: none;
     font-size: var(--fs-p);
     font-weight: bold;
-    color: var(--f-color);
     background-color: var(--main-color);
     padding: var(--btn-padding);
-    margin: 0em;
     border: none;
     cursor:pointer;
-    border-radius: 2px;
     transition: .3s ease-in-out;
 }
 
@@ -298,13 +721,9 @@ h1, h2, h3, p, a{
 }
 
 .quizResults .subBtn{
-    font-family: var(--ff);
-    text-decoration: none;
     font-size: var(--fs-p);
     font-weight: normal;
-    color: var(--f-color);
     background-color: transparent;
-    margin: 0em;
     padding: 0em 0em .3em 0em;
     border: none;
     cursor:pointer;
@@ -313,7 +732,7 @@ h1, h2, h3, p, a{
 
 .quizResults .subBtn:hover, .subBtn:focus{
     background-color: transparent;
-    color: var(--f-color);
+  
 }
 
 .quizResults .subBtn::after {
@@ -361,7 +780,6 @@ h1, h2, h3, p, a{
     outline: none;
     background-color: var(--bg-color);
     background-size: 0 1px;
-    color: var(--f-color);
     position: relative;
     transition: .3s ease-in-out;
 
@@ -430,7 +848,7 @@ h1, h2, h3, p, a{
     gap: 1em;
 }
 
-.visuallyHidden {
+.quizResults .visuallyHidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
     height: 1px;
@@ -457,7 +875,7 @@ h1, h2, h3, p, a{
     flex-direction: row;
 }
 
-.fullscreen {
+.quizResults .fullscreen {
     position: fixed;
     top: 0;
     left: 20px;
@@ -475,108 +893,23 @@ h1, h2, h3, p, a{
     height: 2em;
     background-color: rgb(190, 190, 190);
     color: #D55140;
-    font-size: 1em;
-    border-radius: 3em;
+    
 }
 
 #confirmButton {
     margin-bottom: 1em;
 }
 
-/* BACKGROUND GRADIENT https://codepen.io/P1N2O/pen/pyBNzX  */
-.quizResults body {
-	background: linear-gradient(-45deg, #222222, #5a5a5a, #191919, #3f3f3f);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
-	height: 100vh;
+
+
+.quizResults input {
+    margin-top: .5em;
+    margin-bottom: 1.5em;
 }
 
-
-
-
-/* ACCOUNT */
-.accountPagina img{
-    width: 100vw;
+.quizResults {
+    margin: 8px;
 }
-
-
-
-/* FAVORIETEN */
-
-.favo section:nth-of-type(1){
-    overflow: hidden;
-}
-
-
-.favo section ul{
-    display: flex;
-    flex-direction: row;
-
-
-    position: relative;
-    animation: 15s Slider;
-	animation-iteration-count: infinite;
-   
-
-    height: 80vh;
-    margin-bottom:2rem ;
-    
-}
-
-
-.favo section ul li{
-    margin: 0;
-    padding: 0;
-    
-  
-}
-
-.favo section ul li img{
-    height: 80vh;
-    width: 100vw;
-    object-fit: cover;
-
-}
-
-
-.favo section:nth-of-type(2) img {
-	width: 100vw;
-}
-
-.favo ul li p {
-	position: relative;
-	font-size: var(--fs-p);
-
-
-	bottom: -1em;
-	left: 0;
-	width: 90vw;
-	margin-top: -7em;
-	padding-bottom: 5em;
-
-
-}
-
-.favo ul li p:first-of-type {
-	margin-top: -6em;
-
-	text-transform: uppercase;
-	background-color: transparent;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
