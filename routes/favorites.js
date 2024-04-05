@@ -26,9 +26,6 @@ module.exports = ({ usersCollection }) => {
             );
 
             const fetchCollectionResponses = await Promise.all(fetchPromises);
-
-            console.log(fetchCollectionResponses);
-
             fetchedDetails = fetchCollectionResponses.map(response => response.data);
 
             const combinedDetails = userData.mijnArtObjecten.map((object, index) => {
