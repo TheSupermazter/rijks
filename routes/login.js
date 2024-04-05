@@ -35,7 +35,7 @@ module.exports = ({ usersCollection }) => {
                     console.log(err);
                 } else if (isMatch) {
                     req.session.user = user; // maak een session aan voor de  ingelogde gebruiker
-                    res.redirect(`/dashboard/${user._id}`);
+                    res.redirect(`/`);
                 } else {
                     res.render('login', {
                         error: 'ongeldige gebruikersnaam of wachtwoord'

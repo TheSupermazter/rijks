@@ -36,7 +36,7 @@ app.listen(process.env.PORT, () => {
   
 // FUNCTIONS ____________________________________________________________________________________________________________________
 
-const dashboardRoutes = require('./routes/dashboard')({ usersCollection, vragenCollection });
+const indexdRoutes = require('./routes/index')({ usersCollection, vragenCollection });
 const loginRoutes = require('./routes/login')({ usersCollection, vragenCollection });
 const quizResultatenRoutes = require('./routes/quizResultaten')({ usersCollection, vragenCollection });
 const vragenRoutes = require('./routes/vragen')({ usersCollection, vragenCollection });
@@ -46,24 +46,19 @@ const logOutRoutes = require('./routes/logOut')({ usersCollection, vragenCollect
 const favoritesRoutes = require('./routes/favorites')({ usersCollection, vragenCollection });
 const notFoundFavoritesRoutes = require('./routes/notFoundFavorites')({ usersCollection, vragenCollection });
 
-app.use('/dashboard/:id', dashboardRoutes);
+app.use('/', indexdRoutes);
 app.use('/login', loginRoutes);
 app.use('/quizResultaten', quizResultatenRoutes);
 app.use('/vragen', vragenRoutes);
 app.use('/register', registerRoutes);
 app.use('/logout', logOutRoutes);
-// app.use('/info/:artObjectNumber', infoRoutes);
 app.use('/favorites/:artObjectNumber', favoritesRoutes);
 app.use('/notFoundFavorites/:artObjectNumber', notFoundFavoritesRoutes);
 
 
 
-// INDEX
-
-app.get('/', (req, res) => {
-    res.render('index');
-});
-
+// INFO
+// als ik een eigen route maakt, wilt hij de urlencoded middleware niet mee nemen, dus moest het hier...
 
 app.get('/info/:artObjectNumber', async (req, res) => {
     try {

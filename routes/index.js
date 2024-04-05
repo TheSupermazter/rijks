@@ -3,19 +3,17 @@ module.exports = () => {
     const express = require('express');
     const router = express.Router();
 
-    // DASHBOARD
+    // INDEX
 
     router.get('/', async (req, res) => {
         const user = req.session.user;
 
         if (user) {
-            res.render('dashboard', {
+            res.render('index', {
                 name: user.name
             });
         } else {
-            res.render('dashboard', {
-                error: 'User not found'
-            });
+            res.render('login');
         }
     });
 
