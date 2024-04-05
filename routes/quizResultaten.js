@@ -65,36 +65,6 @@ module.exports = ({ usersCollection }) => {
         }
     });
 
-    //ALS DE URL ROUTE WORDT GEZET OP MIJNKUNSTWERKEN PAGINA, KAN DEZE WELLICHT WEG, BEHALVE DE RES.RENDER NAAR DE GOEIE PAGINA
-    // router.post('/', async (req, res) => {
-    //     const artObjectNumber = req.session.artObjectNumber; // Get artObjectNumber from session
-    //     const userId = req.session.user._id; // Get user's ID from session
-
-    //     try { // Update user met artObject in database
-    //         const result = await usersCollection.updateOne({
-    //             _id: new ObjectId(userId)
-    //         }, {
-    //             $push: {
-    //                 mijnArtObjecten: {
-    //                     objectNumber: artObjectNumber,
-    //                     objectFound: false
-    //                 }
-    //             }
-    //         });
-
-    //         if (result.modifiedCount === 1) {
-    //             console.log('Successfully updated the user');
-    //         } else {
-    //             console.log('User update failed');
-    //         }
-
-    //         user = req.session.user;
-    //         res.redirect(`/dashboard/${user._id}`);
-    //     } catch (err) {
-    //         console.error(err); // Handle errors
-    //     }
-    // });
-
     router.post('/', async (req, res) => {
         const user = req.session.user;
         const userId = user._id; // Haal de gebruikers-ID uit de sessie

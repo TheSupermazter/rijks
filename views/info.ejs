@@ -1,23 +1,174 @@
 <%- include('partials/head') %>
+<link rel="stylesheet" href="/css/michelle.css">
 
-<body>
-
+<body class="InformatiePagina">
     <%- include('partials/header') %>
 
     <main>
         <section>
-            <h1>Allemaal info over je obect!</h1>
+            
+                <div id="zoomContainer">
+                    <img id="Image" class="zoom" src="<%=fetchedDetails.artObject.webImage.url %>" alt="hallo" class="hallo">
+                </div> 
 
-            <a href="/logout">Uitloggen</a>
-            <a href="/vragen/1">Naar de vragen</a>
-            <a href="/quizResultaten">Quizresultaten</a>
+            <!-- <button class="SoundButton"><img src="../img/SoundButton.png" alt="button met geluids icoon om geluid af te spelen"></button> -->
+            <h1><%=fetchedDetails.artObject.title %></h1>
+            <p>
+                <%=fetchedDetails.artObject.description %>
+            </p>
+            <hr>
+        </section>
+
+        <button class="openButton">Object gegevens</button>
+        <section class="popup-container">           
+            <article>
+                <h2 class="text" >Identificatie</h2>
+                <div>
+                    <ul >
+                        <li class="text">
+                            <h3>Titel(s)</h3>
+                            <p>
+                                
+                            </p>
+                            <% for (var i = 0; i < fetchedDetails.artObject.titles.length; i++) { %>
+                                <p><%= fetchedDetails.artObject.titles[i] %></p>
+                            <% } %>
+                            
+                        </li>
+                        <li class="text">
+                            <h3 >Objecttype</h3>
+                            <% for (var i = 0; i < fetchedDetails.artObject.objectTypes.length; i++) { %>
+                                <p><%= fetchedDetails.artObject.objectTypes[i] %> </p>
+                            <% } %>
+                        </li>
+                        <li class="text">
+                            <h3>Object nummer</h3>
+                            <p>
+                                <%=fetchedDetails.artObject.objectNumber %>
+                            </p>
+                        </li>
+                        <li class="text">
+                            <h3>Opschriften/ Merken</h3>
+                            <% for (var i = 0; i < fetchedDetails.artObject.inscriptions.length; i++) { %>
+                                <p><%= fetchedDetails.artObject.inscriptions[i] %></p>
+                            <% } %>
+                            
+                        </li>
+                        <li class="text">
+                            <h3>Omschrijven</h3>
+                            <p>
+                                <%=fetchedDetails.artObject.longTitle %>
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </article>
+            <article>
+                <h2 class="text">Vervaardiger</h2>
+                <div>
+                    <ul>
+                        <% if (Array.isArray(fetchedDetails.artObject.principalMakers) && fetchedDetails.artObject.principalMakers.length > 0) { %>
+                            <% for (var i = 0; i < fetchedDetails.artObject.principalMakers.length; i++) { %>
+                                <li class="text">
+                                    <p><%= fetchedDetails.artObject.principalMakers[i].occupation %></p>
+                                    <p>: <%= fetchedDetails.artObject.principalMakers[i].name %></p>
+                                </li>
+                            <% } %>
+                        <% } else { %>
+                            <li class="text">
+                                <p>No principal makers found.</p>
+                            </li>
+                        <% } %>
+                    </ul>
+                </div>
+            </article>
+            
+            <article>
+                <h2 class="text">Materiaal en techniek</h2>
+                <div>
+                    <ul>
+                        <li class="text">
+                            <h3>Fysieke kenmerken</h3> 
+                            <p>olieverf op doek</p>
+                            <% for (var i = 0; i < fetchedDetails.artObject.physicalProperties.length; i++) { %>
+                                <p>: <%=fetchedDetails.artObject.physicalProperties[i] %> </p>
+                            <% } %>
+                        </li>
+                        <li class="text">
+                            <h3>Materiaal</h3>
+                            <% for (var i = 0; i < fetchedDetails.artObject.materials.length; i++) { %>
+                                <p><%=fetchedDetails.artObject.materials[i] %></p>
+                            <% } %>
+                        </li>
+
+                        <% for (var i = 0; i < fetchedDetails.artObject.dimensions.length; i++) { %>
+                            <% var dimension = fetchedDetails.artObject.dimensions[i]; %>
+                            <% if (dimension.type === 'hoogte') { %>
+                                <li class="text">
+                                    <p>Hoogte</p>
+                                    <p>: <%= dimension.value %> <%= dimension.unit %></p>
+                                </li>
+                            <% } else if (dimension.type === 'breedte') { %>
+                                <li class="text">
+                                    <p>Breedte</p>
+                                    <p>: <%= dimension.value %> <%= dimension.unit %></p>
+                                </li>
+                            <% } else { %>
+                                <li class="text">
+                                    <h3><%= dimension.type %></h3>
+                                    <p>: <%= dimension.value %> <%= dimension.unit %></p>
+                                </li>
+                            <% } %>
+                        <% } %>
+
+                    </ul>
+                </div>
+            </article>
+            <button class="BackToTopBtn">Terug naar boven</button>
+            <hr>
+        </section>
+
+        <section class="sliders">
+            <h2>Andere werken</h2>
+            <div class="slider-container">
+                <ul>
+                    <% for (let i = 0; i < 5; i++) { %>
+                        <% const randomIndex = Math.floor(Math.random() * fetchedCollection.artObjects.length); %>
+                        <% const artwork = fetchedCollection.artObjects[randomIndex]; %>
+                        <li class="slide">
+                            <img src="<%= artwork.webImage.url %>" alt="Image <%= artwork.title %>">
+                            <a href="/info/<%= artwork.objectNumber %>"><img src="/img/knop.png" alt="button om verder te gaan"></a>
+                        </li>
+                    <% } %>
+                </ul>
+                
+                <div class="slider-nav"></div>
+            </div>
 
         </section>
+
+
+        
+        <hr>
     </main>
 
     <%- include('partials/footer') %>
 
+    <script src="/public/script/michelle.js"></script>
+    <script>
+        const containerZoom = document.getElementById("zoomContainer");
+        const img = document.getElementsByClassName("zoom");
 
+        containerZoom.addEventListener("touchmove", (e) => {
+            const x = e.clientX - e.target.offsetLeft;
+            const y = e.clientY - e.target.offsetTop;
+            console.log("x")
+            img.style.transformOrigin = '${x}px ${y}px';
+            img.style.transorm = "scale(2)"; 
+        });
+    </script>
+ 
 </body>
 
 </html>

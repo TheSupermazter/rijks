@@ -1,25 +1,33 @@
 <%- include('partials/head') %>
+<link rel="stylesheet" href="/css/lin.css">
 
-<body>
+<body class="InformatiePagina">
     <%- include('partials/header') %>
 
-    <main>
-        <section>
-            <h1>Welcome to Our Application!</h1>
-            <p>Please log in or sign up to access your dashboard.</p>
-            <!-- CONTENT -->
 
+    <main class="startQuizCenter">
+      <a class="startQuizButton" href="vraag1.html">Start quiz</a>
+      <img src="../img/rembrandt_zelfportret.jpg" alt="Rembrandt Zelfportret">
 
-            <h2>Login</h2>
-            <a href="/login">Inloggen</a>
-
-            <p>Or register now</p>
-            <a class="subBtn" href="/register">Registreren</a>
-        </section>
+      <section class="homeArtikelen">
+        <ul>
+          <li>
+            <img class="imgFransHals" src="../img/FransHals.png" alt="Frans Hals">
+            <div class="textFransHals">
+              <h3>Frans Hals</h3>
+              <p>Al bijna 200.000 tickets verkocht</p>
+            </div>
+          </li>
+          <li>
+            <img class="imgExpressYourself" src="../img/ExpressYourself.png" alt="Express Yourself">
+            <div class="textExpressYourself">
+              <h3>Express Yourself</h3>
+              <p>Foto Tentoonstelling</p>
+            </div>
+          </li>
+        </ul>
+      </section>
     </main>
-
-    <%- include('partials/footer') %>
-
 
 </body>
 

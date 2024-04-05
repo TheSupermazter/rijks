@@ -10,6 +10,7 @@ const client = new MongoClient(uri, {
     }
 })
 
+
 // Connect to MongoDB
 const connectDB = async () => {
     try {
@@ -19,7 +20,6 @@ const connectDB = async () => {
         console.error('Error connecting to MongoDB:', err);
     }
 };
-
 
 // global constants
 const db = client.db(process.env.DB_NAME);
