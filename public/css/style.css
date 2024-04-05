@@ -219,6 +219,7 @@ form {
     flex-direction: column;
     padding: var(--spacer-md);
     width: 80vw;
+    font-family: var(--ff);
 }
 
 
