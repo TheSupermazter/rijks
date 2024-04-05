@@ -1,0 +1,70 @@
+<%- include('partials/head') %>
+
+<body class="favo">
+    <%- include('partials/header') %>
+
+    <main>
+      <section>
+        <h2>Nog te zoeken</h2>
+        <section>
+            <% combinedDetails.forEach(function(object) { %>
+                <% if (!object.objectFound) { %>
+                    <% const artwork = object.details.artObject; %>
+                    <article>
+                      <a href="/info/<%= artwork.objectNumber %>">
+                        <img src="<%= artwork.webImage.url %>" alt="Image <%= artwork.title %>">
+                        <p><%= artwork.title %></p>
+                      </a>
+                    </article>
+                <% } %>
+            <% }); %>
+        </section>
+    </section>
+    
+    
+
+      <article id="search-container">
+        <input type="text" id="search-input" placeholder="Zoek naar iets...">
+        <button onclick="zoek()">Zoek</button>
+      </article>
+    <article id="resultaten-container">
+        
+    </article>
+      
+    <section>
+      <h2>Gevonden werken</h2>
+      <section>
+          <% combinedDetails.forEach(function(object) { %>
+              <% if (object.objectFound) { %>
+                  <% const artwork = object.details.artObject; %>
+                  <article>
+                    <a href="/info/<%= artwork.objectNumber %>">
+                      <img src="<%= artwork.webImage.url %>" alt="Image <%= artwork.title %>">
+                      <p><%= artwork.title %></p>
+                    </a>
+                  </article>
+              <% } %>
+          <% }); %>
+      </section>
+  </section>
+    </main>
+
+    <%- include('partials/footer') %>
+
+    <script src="/script/ryan.js"></script>
+    <script>
+        const containerZoom = document.getElementById("zoomContainer");
+        const img = document.getElementsByClassName("zoom");
+
+        containerZoom.addEventListener("touchmove", (e) => {
+            const x = e.clientX - e.target.offsetLeft;
+            const y = e.clientY - e.target.offsetTop;
+            console.log("x")
+            img.style.transformOrigin = '${x}px ${y}px';
+            img.style.transorm = "scale(2)"; 
+        });
+    </script>
+ 
+</body>
+
+</html>

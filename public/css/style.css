@@ -30,6 +30,9 @@
     --btn-color:#363636;
     --main-color: #D55140;
     --error-color: #d5514064;
+    --Secondairy-f-color:#2C3035;
+    --SecondairyBtn-color:#363636;
+
 
 	/* Font families */
 	--ff: 'Rijksmuseum', sans-serif;
@@ -38,22 +41,27 @@
 	--fw-n: normal;
 	--fw-b: bold;
 
-	/* Font sizes */
-	--fs-p: 1em;
-	--fs-1: calc(var(--fs-p) * 3.5);
-	--fs-2: calc(var(--fs-p) * 3);
-	--fs-3: calc(var(--fs-p) * 2.5);
-	--fs-4: calc(var(--fs-p) * 2);
-	--fs-5: calc(var(--fs-p) * 1.5);
-	--fs-6: var(--fs-p);
+    /**** FONT SIZES *****/
+    --fs-p: 1em;
+    --fs-h1:1.5em;
+    --fs-h2:1.2em;
+    --fs-h:1em; 
+    --fs-Btn:1rem;
+    --fs-Input:0.9rem;
 
     /* Button */
     --btn-padding: .8em 1em;
+    --fs-Btn: 1rem;
+    --Btn-margin:2;
+    --SecondairyBt-margin:2;
+    --h-margin: 1rem 0 1rem 2rem;
+
 
 	/* Spacers for margins, gaps or paddings */
 	--spacer: 1em;
 	--spacer-md: calc(var(--spacer) * 2);
 	--spacer-lg: calc(var(--spacer) * 3);
+    --mar-standaard:2rem; 
 }
 
 h1, h2, h3, h4, h5, h6, p{
@@ -63,36 +71,48 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 h1{
-    font-size: var(--fs-1);
+    font-size: var(--fs-h1);
+    margin-left: var(--mar-standaard);
+
 }
 
-h2{
-    font-size: var(--fs-2);
+ul {
+    list-style: none;
 }
 
-h3{
-    font-size: var(--fs-3);
+hr{
+    margin: 0;
+    width: 100vw;
+    height: .08em;
+    background-color: var(--f-color);
 }
 
-h4{
-    font-size: var(--fs-4);
+h1, h2, h3, p, a{
+    margin: var(--h-margin);
+    
 }
 
-h5{
-    font-size: var(--fs-5);
+header img {
+    width: 60%;
+    height: auto;
+    margin-top: 6%;
+    position: absolute;
+    z-index: 100;
 }
 
-h6{
-    font-size: var(--fs-6);
+header section img{
+    width: 5%;
+    height: auto;
 }
 
-h6{
-    font-size: var(--fs-6);
+header section{
+    margin: 0;
+    padding: 0;
+    margin-top: -5%;
+    padding-bottom: 5%;
 }
 
-p{
-    font-size: var(--fs-p);
-}
+
 
 .pError{
     font-weight: bold;
@@ -161,13 +181,25 @@ a:hover, input[type=submit]:hover, button:hover, a:focus, input[type=submit]:foc
 }
 
 
+.openButton,
+.BackToTopBtn{
+    margin: 1.5rem 1.5rem;
+    background-color: var(--main-color);
+    border: 0;
+
+
+    color: var(--f-color);
+    font-weight: bold;
+    font-size: 0.9em;
+    padding: 1rem 2rem;
+}
+
+
 body{
     background-color: var(--bg-color);
-    font-family: var(--ff);
-    font-size: var(--fs);
-    color: var(--f-color);
-    height: 100vh;
     margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 main{
@@ -187,6 +219,7 @@ form {
     flex-direction: column;
     padding: var(--spacer-md);
     width: 80vw;
+    font-family: var(--ff);
 }
 
 
@@ -226,8 +259,83 @@ label.focus {
     color: var(--f-color);
 }
 
+
+
+/* ANiMATIONS */
+
+@keyframes Slider {
+	0% {
+		left:0;
+	}
+	15% {
+		left: 0;
+	}
+	20%{
+		left: -100%;
+	}
+	35% {
+		left: -100%;
+	}
+	40% {
+		left: -200%;
+	}
+	55% {
+		left: -200%;
+	}
+	60% {
+		left: -100%;
+	}
+	75% {
+		left: -100%;
+	}
+	90% {
+		left: 0;
+	}
+	100% {
+		left: 0;
+	}
+}
+
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
+@keyframes fade-in-out {
+    0%, 100% { opacity: .2; scale: 1; }
+    50% { opacity: 1; scale: 2; }
+}
+
+
+@keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.5rem));
+    }
+  }
+
+
+  
+@keyframes textColor{
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+
+
+
+
 /* FOOTER */
 
+/* FOOTER */
 .footer_links {
     display: flex;
     flex-direction: column;
@@ -295,8 +403,15 @@ footer p {
     padding-left: 4%;
 }
 
-.hidden{
-    display: none;
+/* hidden class, zorgt ervoor dat t niet zichtbaar en klikbaar is */
+.hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
 }
 
 
@@ -369,7 +484,7 @@ header img {
 /* questions */
 
 .vragen h1{
-    font-size: var(--fs-4);
+    font-size: var(--fs-5);
 }
 
 .vragen > p:first-of-type{
@@ -460,4 +575,868 @@ header img {
 
 
 
+/* progressbar */
+
+.progressBar {
+    width: 100%;
+    height: auto;
+    margin: var(--spacer) 0em;
+}
+
+/* + EN - DING */
+
+.PlusMinContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: var(--spacer-lg);
+}
+
+
+.PlusMinContainer button {
+    width: 3em;
+    color: var(--main-color)!important;
+    font-family: "Rijksmuseum";
+    font-weight: bold;
+    font-size: larger;
+    position: relative;
+    background-color: var(--f-color);
+    inset: 0em!important;
+    padding: 0em;
+    height: fit-content;
+}
+
+.PlusMinContainer input {
+    width: 10em;
+    color: #D55140;
+    text-align: center;
+    font-family: "Rijksmuseum";
+    font-weight: bold;
+    font-size: larger;
+    margin: 0em!important;
+    padding: 0em;
+}
+
+/* type number zonder default  waarde en min/max */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
+/* Skittles */
+
+#list {
+    margin: 0;
+    padding: var(--spacer) 0em;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacer);
+    list-style: none;
+}
+
+#list li label figure{
+    display: flex;
+    flex-direction: row;
+    margin: 0em;
+}
+
+
+#list li label figure img {
+    width: 10%;
+    height: auto;
+    margin-right: var(--spacer);
+}
+
+
+
+
+
+/* INPUT ZOEK */
+
+.resulaatPagina form,
+.zoekPagina form,
+.favo form{
+    display: flex;
+    flex-direction: row;
+    
+    margin-bottom: 2rem;
+
+}
+
+
+.favo form{
+    margin-top: 2rem;
+}
+
+
+.resulaatPagina input, 
+.zoekPagina input,
+.favo input{
+    background-color: transparent;
+    color: var(--f-color);
+    font-weight: var(--fw-n);
+    font-size:var(--fs-Input) ;
+
+    margin: 1rem 1rem 0 2rem;
+    width: 60vw;
+    height: 5vh;
+
+}
+
+.resulaatPagina form hr,
+.zoekPagina form hr,
+.favo form hr{
+    width: 60vw; 
+    margin-left: var(--mar-standaard);
+}
+
+
+.resulaatPagina form button,
+.zoekPagina form button,
+.favo form button{
+    background-color: var(--main-color);
+
+    color: var(--f-color);
+    font-weight: bold;
+    /* border: 0; */
+   
+    width: 6rem;
+    height: 3rem;
+
+    align-self: center;  
+}
+
+
+
+/* RESULTATEN VAN ZOEKEN */
+.resulaatPagina section article div,
+.favo section:nth-of-type(2) article div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-bottom: 1rem;
+    position: relative;
+    bottom: 2rem;
+}
+
+.resulaatPagina section:nth-of-type(1) a,
+.resulaatPagina section:nth-of-type(2) a,
+.favo section:nth-of-type(2) a{
+    position: relative;
+    bottom: 4rem;
+    left: 21rem;
+}
+
+.resulaatPagina section:nth-of-type(1) a img,
+.resulaatPagina section:nth-of-type(2) a img,
+.favo section:nth-of-type(2) a img{
+    width: 4rem;
+}
+
+.resulaatPagina section:nth-of-type(1) h2,
+.resulaatPagina section:nth-of-type(1) p,
+.resulaatPagina section:nth-of-type(2) h2,
+.resulaatPagina section:nth-of-type(2) p,
+.favo section:nth-of-type(2) h2,
+.favo section:nth-of-type(2) div a
+{
+    font-size: 1.3rem;
+    align-self: center;
+    color: var(--f-color);
+    margin: 0 1rem;
+}
+
+.favo section:nth-of-type(2) div a{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    font-size: var(--fs-p);
+}
+
+
+
+
+
+/* ACCOUNT */
+.accountPagina img{
+    width: 100vw;
+}
+
+
+
+/* FAVORIETEN */
+
+.favo section:nth-of-type(1){
+    overflow: hidden;
+}
+
+
+.favo section ul{
+    display: flex;
+    flex-direction: row;
+
+
+    position: relative;
+    animation: 15s Slider;
+	animation-iteration-count: infinite;
+   
+
+    height: 80vh;
+    margin-bottom:2rem ;
+    
+}
+
+
+.favo section ul li{
+    margin: 0;
+    padding: 0;
+    
+  
+}
+
+.favo section ul li img{
+    height: 80vh;
+    width: 100vw;
+    object-fit: cover;
+
+}
+
+
+.favo section:nth-of-type(2) img {
+	width: 100vw;
+}
+
+.favo ul li p {
+	position: relative;
+	left: 0;
+    bottom: -1em;
+
+	width: 90vw;
+
+	margin-top: -7em;
+	padding-bottom: 5em;
+}
+
+.favo ul li p:first-of-type {
+	margin-top: -6em;
+
+	text-transform: uppercase;
+	background-color: transparent;
+}
+
+
+
+
+
+/* ***** INFORMATION PAGE ***** */
+
+
+.InformatiePagina,
+.resulaatPagina,
+.zoekPagina{
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+.InformatiePagina section:nth-of-type(1){
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+}
+
+#zoomContainer {
+   display: flex;
+   flex-direction: column;
+    width: 100vw;
+    max-height: 45vh;
+    overflow: hidden;
+    justify-content:center;
+  }
+
+
+.InformatiePagina section:nth-of-type(1) img{
+    width: 100%;
+    height: auto;
+  
+    object-fit: cover;
+    transform-origin:center ;
+    height: 100%;
+  
+}
+
+.InformatiePagina .zoomContainer{
+    overflow: hidden;
+}
+
+.InformatiePagina section:nth-of-type(1) h1 {
+    width: 90vw;
+    
+}
+
+.InformatiePagina section:nth-of-type(1) p{
+    width: 80vw;
+    color: var(--f-color);
+    margin: 0 0 2rem 0;
+}
+
+
+.InformatiePagina section:nth-of-type(1) button img{
+    width: 8rem;
+}
+
+
+.text{
+    color: var(--f-color);
+    animation: textColor linear;
+    animation-timeline: view();
+}
+
+.popup-container{  
+    display: none;  
+}
+
+.InformatiePagina section:nth-of-type(2) article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.InformatiePagina section:nth-of-type(2) h2{
+    width: 90vw;
+}
+
+.InformatiePagina section:nth-of-type(2) ul{
+    width: 90vw;
+}
+
+
+.InformatiePagina section:nth-of-type(3){
+   margin:0  2rem;
+}
+
+.sliders h2{
+    margin-left: 0;
+}
+.slider-container{
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+.slider-container ul{
+    display: flex;
+    transition: transform 0.5s ease;
+    margin: 0 0 5rem;
+}
+
+
+.slider-container  ul li{
+    width: 90vw;
+    height: 20vh;
+    margin-right: 2rem
+}
+
+
+
+/* resultaat pagina */
+
+.resulaatPagina header,
+.zoekPagina header{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.resulaatPagina header h2{
+    font-size: 1rem;
+    margin: 1rem 2rem;
+    align-self: flex-end;
+}
+
+.resulaatPagina h1{
+    font-size: 1.5rem;
+    margin: 0 1rem 1.5rem;
+}
+
+.resulaatPagina section:nth-of-type(1) p,
+.resulaatPagina section:nth-of-type(2) p{
+    font-size:1rem;
+}
+
+
+
+
+
+
+
+/* Zoek Pagina */
+
+
+
+.zoekPagina section:nth-of-type(1){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+.scrollerContainer{
+    max-width: 90vw;
+    overflow: hidden;
+    mask: linear-gradient(
+      90deg,
+      transparent,
+      white 20%,
+      white 80%,
+      transparent
+    );
+    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+   
+}
+
+  
+  .scroller {
+    display: flex;
+    flex-direction: row;
+    height: 8rem;
+    padding: 0;
+    margin: 0;
+
+   
+  }
+  
+  .scrollerContainer[data-animated="true"] {
+    overflow: hidden;
+    -webkit-mask: linear-gradient(
+      90deg,
+      transparent,
+      white 20%,
+      white 80%,
+      transparent
+    );
+    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+  }
+  
+  .scrollerContainer[data-animated="true"] .scroller{
+    width: max-content;
+    flex-wrap: nowrap;
+    animation: scroll var(--_animation-duration, 40s)
+      var(--_animation-direction, forwards) linear infinite;
+  }
+  
+  .scrollerContainer[data-direction="right"] {
+    --_animation-direction: reverse;
+  }
+  
+  .scrollerContainer[data-direction="left"] {
+    --_animation-direction: forwards;
+  }
+  
+  .scrollerContainer[data-speed="fast"] {
+    --_animation-duration: 20s;
+  }
+  
+  .scrollerContainer[data-speed="slow"] {
+    --_animation-duration: 60s;
+  }
+  
+  
+
+
+
+
+.zoekPagina section:nth-of-type(1) ul li {
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+.zoekPagina section:nth-of-type(1) ul li img{
+    width: 2rem;
+    height: 2rem;
+    background-color: #9C9C9C;
+    padding: 1rem;
+    box-shadow: 0 0.5rem 1rem -0.25rem #161616 ;
+    border-radius: 3rem;
+}
+
+.zoekPagina section:nth-of-type(1) ul li h2{
+    font-size: 1rem;
+    font-weight: normal;
+    margin: .5rem 0;
+}
+
+
+.zoekPagina section:nth-of-type(2) h3{
+    font-size: 1rem;
+    margin: 0 0 0 2rem;
+} 
+
+
+
+.zoekPagina section:nth-of-type(2) p{
+    color: var(--bg-color);
+    font-size: .5rem;
+    background-color: var(--f-color);
+    margin-left: 2rem;
+    padding: .5rem;
+}
+
+.zoekPagina section:nth-of-type(2) ul {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+
+.zoekPagina section:nth-of-type(2) ul li:nth-of-type(1){
+    max-width: 60vw;
+    max-height: 32vh;
+    overflow: hidden;
+}
+.zoekPagina section:nth-of-type(2) ul li:nth-of-type(1) img{
+    max-width: 60vw;
+   
+    height: 32.5vh;
+   animation: fade-in-out 12s infinite alternate;
+   animation-duration: 20s;
+}
+
+
+.zoekPagina section:nth-of-type(2) ul li:nth-of-type(2) img{
+    width: 40vw;
+    animation: fade-in-out 12s infinite alternate;
+    animation-duration: 20s;
+    animation-delay: -4s;
+}
+
+.zoekPagina section:nth-of-type(2) ul li:nth-of-type(2){
+    max-width: 40vw;
+    max-height: 32vh;
+    overflow: hidden;
+}
+
+.zoekPagina section:nth-of-type(2) div{
+    position: relative;
+    bottom: 5rem;
+}
+
+
+  
+ 
+/* quizresults */
+
+.quizResults .pError{
+    font-weight: bold;
+    background-color: var(--error-color);
+    padding: .5em;
+    border-radius: 2px;
+    margin: var(--spacer);
+}
+
+
+.quizResults a, input[type=submit], button{
+    font-size: var(--fs-p);
+    font-weight: bold;
+    background-color: var(--main-color);
+    padding: var(--btn-padding);
+    border: none;
+    cursor:pointer;
+    transition: .3s ease-in-out;
+}
+
+.quizResults a:hover, input[type=submit]:hover, button:hover, a:focus, input[type=submit]:focus, button:focus {
+    background-color: var(--f-color);
+    color: var(--bg-color);
+}
+
+.quizResults .subBtn{
+    font-size: var(--fs-p);
+    font-weight: normal;
+    background-color: transparent;
+    padding: 0em 0em .3em 0em;
+    border: none;
+    cursor:pointer;
+    position: relative;
+}
+
+.quizResults .subBtn:hover, .subBtn:focus{
+    background-color: transparent;
+  
+}
+
+.quizResults .subBtn::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--f-color);
+    bottom: 0;
+    left: 0;
+    transform: scale(0);
+    transform-origin: left;
+    transition: .3s all ease-out;
+}
+
+
+.quizResults .subBtn:hover:after, .subBtn:focus:after {
+    transform: scale(1);
+}
+
+
+
+
+.quizResults section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.quizResults form {
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacer-md);
+    width: 80vw;
+}
+
+
+.quizResults form input:not([type=submit]){
+    margin: 3px 0em var(--spacer) 0em;
+    height: var(--spacer-md);
+    border: none;
+    border-bottom: 1px solid var(--bg-color-light);
+    outline: none;
+    background-color: var(--bg-color);
+    background-size: 0 1px;
+    position: relative;
+    transition: .3s ease-in-out;
+
+}
+
+.quizResults form input:not([type=submit]):focus{
+    border-bottom: 1px solid var(--f-color);
+}
+
+.quizResults form input[type=submit]{
+    margin-top: var(--spacer);
+}
+
+
+.quizResults label {
+    transform: translateY(1.2em);
+    transition: 0.3s ease-in-out;
+    color: var(--bg-color-light);
+    z-index: 10;
+    cursor: text;
+}
+
+.quizResults label.focus {
+    transform: translateY(0em);
+    color: var(--f-color);
+}
+
+
+/* MAIN */
+.quizResults main {
+    display: flex;
+    flex-direction: column;
+     
+}
+
+.quizResults main h2 {
+    font-size: 1em;
+   text-align: center;
+}
+
+.quizResults main h3 {
+    font-size: 2em;
+    text-align: center;
+}
+
+.quizResults main p {
+    font-size: 1em;
+    text-align: center;
+}
+
+
+.quizResults main img {
+    max-width: 90%;
+    
+    
+}
+
+#kunstwerkFoto {
+    filter: blur(3px);
+    
+}
+
+#kunstwerkButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.quizResults .visuallyHidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+ 
+#kunstwerkPlek {
+    display: flex;
+    flex-direction: column;
+    max-width: 40%;
+}
+
+#kunstResultaat{
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+}
+
+#plekEnResultaat {
+    display: flex;
+    flex-direction: row;
+}
+
+.quizResults .fullscreen {
+    position: fixed;
+    top: 0;
+    left: 20px;
+    scale: 115%;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
+}
+
+.quizResults input[type="text"]{
+    width: 70%;
+    height: 2em;
+    background-color: rgb(190, 190, 190);
+    color: #D55140;
+    
+}
+
+#confirmButton {
+    margin-bottom: 1em;
+}
+
+
+
+.quizResults input {
+    margin-top: .5em;
+    margin-bottom: 1.5em;
+}
+
+.quizResults {
+    margin: 8px;
+}
+
+
+
+
+
+.startQuizCenter img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: absolute;
+}
+
+body {
+    height: 100vh;
+    margin: 4%;
+}
+
+a.startQuizButton {
+    /* dit is de start quiz knop */
+    font-family: var(--ff);
+    text-decoration: none;
+    font-size: x-large;
+    color: var(--f-color);
+    background-color: var(--main-color);
+    padding: var(--btn-padding);
+    margin: 0em;
+    border: none;
+    position: absolute;
+    z-index: 100;
+}
+
+.homeArtikelen ul{
+    margin-top: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.textFransHals {
+    z-index: 100;
+    padding-top: 100%;
+    margin-left: -30%;
+}
+
+.textExpressYourself{
+    z-index: 100;
+    padding-top: 110%;
+    margin-left: 25%;
+}
+
+.startQuizCenter h3{    
+    font-size: large;
+    margin-left: 0;
+    padding: 0;
+}
+
+.startQuizCenter p{
+    font-size: small;
+    margin-left: 0;
+    padding: 0;
+    margin-top: 0;
+}
+
+.homeArtikelen ul li {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+section .imgFransHals {
+    height: auto;
+    width: 68vw;  
+    margin: 0;
+    margin-left: -15%;
+    margin-top: -15%;
+}
+
+section .imgExpressYourself {
+    height: auto;
+    width: 39.5vw;
+    margin: 0;
+    margin-left: 5%;
+    margin-top: -15%;
+}
 

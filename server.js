@@ -5,6 +5,8 @@ const session = require('express-session');
 const app = express();
 const path = require('path');
 const { connectDB, usersCollection, vragenCollection } = require('./database');
+const axios = require('axios');
+const bodyParser = require('body-parser');
 
 connectDB()
 
@@ -21,6 +23,10 @@ app.use(session({
     cookie: { maxAge: 60000 * 60 * 8}
 }));
 
+// Gebruik body-parser middleware om aanvraaglichamen te parseren
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 // Start the server
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`)
@@ -30,29 +36,59 @@ app.listen(process.env.PORT, () => {
   
 // FUNCTIONS ____________________________________________________________________________________________________________________
 
-const dashboardRoutes = require('./routes/dashboard')({ usersCollection, vragenCollection });
+const indexdRoutes = require('./routes/index')({ usersCollection, vragenCollection });
 const loginRoutes = require('./routes/login')({ usersCollection, vragenCollection });
 const quizResultatenRoutes = require('./routes/quizResultaten')({ usersCollection, vragenCollection });
 const vragenRoutes = require('./routes/vragen')({ usersCollection, vragenCollection });
 const registerRoutes = require('./routes/register')({ usersCollection, vragenCollection });
 const logOutRoutes = require('./routes/logOut')({ usersCollection, vragenCollection });
-const skipRoutes =  require('./routes/quizSkip')({ usersCollection, vragenCollection });
+const favoritesRoutes = require('./routes/favorites')({ usersCollection, vragenCollection });
+const accountRoutes = require('./routes/account')({ usersCollection, vragenCollection });
 
-
-app.use('/dashboard/:id', dashboardRoutes);
+app.use('/', indexdRoutes);
 app.use('/login', loginRoutes);
 app.use('/quizResultaten', quizResultatenRoutes);
 app.use('/vragen', vragenRoutes);
 app.use('/register', registerRoutes);
 app.use('/logout', logOutRoutes);
-app.use('/skip', skipRoutes)
+app.use('/favorites', favoritesRoutes);
+app.use('/account', accountRoutes);
 
 
-// INDEX
 
-app.get('/', (req, res) => {
-    res.render('index');
+// INFO
+// als ik een eigen route maakt, wilt hij de urlencoded middleware niet mee nemen, dus moest het hier...
+
+app.get('/info/:artObjectNumber', async (req, res) => {
+    const user = req.session.user;
+    if (user) {
+        try {
+            let fetchedCollection = {};
+            let fetchedDetails = {};
+    
+            const objectNumber = req.params.artObjectNumber;            
+            const apiKey = process.env.RIJKS_API_KEY;
+    
+            const fetchCollection = await axios.get(`https://www.rijksmuseum.nl/api/nl/collection?key=${apiKey}&objectNumber=${objectNumber}&imgonly=True&ondisplay=True&st=Objects`);
+            const fetchDetails = await axios.get(`https://www.rijksmuseum.nl/api/nl/collection/${objectNumber}?key=${apiKey}&imgonly=True&ondisplay=True&st=Objects`);
+
+            console.log(fetchCollection, fetchDetails);
+
+            fetchedCollection = fetchCollection.data;
+            fetchedDetails = fetchDetails.data;
+    
+            res.render('info', {
+                fetchedCollection,
+                fetchedDetails
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    } else {
+        res.render('login');
+    }
 });
+
 
 
 // SERVER ERRORS ____________________________________________________________________________________________________________________

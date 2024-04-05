@@ -1,13 +1,12 @@
 <%- include('partials/head') %>
 
 <body>
-    <%- include('partials/header') %>
-
+    
     <main>
         <section>
             <h1>Login</h1>
             <p>Log in of meld u aan</p>
-            
+
             <form action="/login" method="post">
                 <label for="username">gebruikersnaam:</label>
                 <input type="text" id="username" name="username" required>
@@ -20,7 +19,7 @@
 
 
             <% if (typeof error !== 'undefined' && error !== null) { %>
-                <p class="pError"><%= error %></p>
+            <p class="pError"><%= error %></p>
             <% } %>
 
             <p>Of</p>
@@ -33,4 +32,5 @@
 
     <script src="/script/script.js"></script>
 </body>
+
 </html>

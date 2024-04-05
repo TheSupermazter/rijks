@@ -1,0 +1,39 @@
+<%- include('partials/head') %>
+
+<body class="accountPagina">
+    <%- include('partials/header') %>
+
+    <main class="account">
+        <section>
+            <article>
+                <img src="<%= userData.profilePicture %>" alt="profielfoto">
+            </article>
+            <ul>
+                <li>
+                    <p>Naam:</p>
+                    <p><%= userData.name %></p>
+                </li>
+
+                <li>
+                  <p>Username:</p>
+                  <p><%= userData.username %></p>
+              </li>
+
+                <li>
+                    <p>Email:</p>
+                    <p><%= userData.email %></p>
+                </li>
+                <li>
+                  <a href="/">Home</a>
+                  <a href="/favorites">Mijn Kunstwerken</a>
+                  <a class="footerButton" href="/logout">Uitloggen</a>
+
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+
+</body>
+</html>

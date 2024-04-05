@@ -1,17 +1,63 @@
 <%- include('partials/head') %>
 
-<body>
-    <%- include('partials/header') %>
+<body class="quizResults">
+  <main>
+    <section id="plekEnResultaat">
+      <section id="kunstResultaat">
 
-    <h1>Quiz resultaten</h1>
+        <h2>Jouw kunstwerk is:</h2>
+        <% let keys = Object.keys(fetchedData); %>
+        <% let randomKey = keys[Math.floor(Math.random() * keys.length)]; %>
+        <% if(fetchedData[randomKey].artObjects && fetchedData[randomKey].artObjects.length > 0) { %>
+        <% let randomIndex = Math.floor(Math.random() * fetchedData[randomKey].artObjects.length); %>
+        <% let artObjects = fetchedData[randomKey].artObjects[randomIndex]; %>
+        <% if(artObjects.webImage && artObjects.webImage.url) { %>
+        <img id="kunstwerkFoto" src="<%= artObjects.webImage.url %>" alt="<%= artObjects.title %>" class="<%= artObjects.objectNumber %>">
+        <% } %>
 
-    <div>
-        <!-- Weergave van de gefetchte data -->
-        <pre><%= JSON.stringify(fetchedData, null, 2) %></pre>
-    </div>
+        <section id="kunstwerkInfo" class="visuallyHidden">
+          <h3><%= artObjects.title %></h3>
+          <p><%= artObjects.principalOrFirstMaker %></p>
+
+          <% if(fetchedDetails && fetchedDetails.artObject) { %>
+            <p><%= fetchedDetails.artObject.dating.presentingDate %></p>
+          <% } %>
+          <a href="info/<%= fetchedDetails.artObject.objectNumber %>">Meer info</a>
+          <input type="hidden" id="artTitle" value="<%= artObjects.title %>">
+        </section>
+
+        <section id="kunstwerkPlek">
+          <h2>Jouw kunstwerk is te vinden op:</h2>
+          <% if(fetchedDetails && fetchedDetails.artObject) { %>
+            <p><%= fetchedDetails.artObject.location %></p>
+          <% } %>
+        </section>
+        <% } %>
+
+      </section>
+
+    </section>
+
+    <section id="kunstPassword">
+      <h3>Wat is de naam van dit kunstwerk?</h3>
+        <input id="invulveld" type="text" name="" id="">
+        <input id="confirmButton" type="submit" value="Naam proberen">
+    </section>
 
 
-    <%- include('partials/footer') %>
+
+    <section id="kunstwerkButtons">
+      <button id="shuffleButton">Ander kunstwerk</button>
+
+      <form action="/quizResultaten" method="post">
+        <input type="hidden" id="answerStatus" name="answerStatus">
+        <button type="submit" id="addKnop">Toevoegen aan mijn kunstwerken</button>
+      </form>
+    </section>
+
+  </main>
+
+  <script src="/script/quizResults.js"></script>
 
 </body>
 

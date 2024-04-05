@@ -292,33 +292,17 @@ function confettiPoppen() {
 
 // EINDE CONFETTI TEMPLATE
 
-function showKunstwerk() {
-  var userInput = document.getElementById("invulveld").value;
-  var title = document.getElementById("artTitle").value;
+    function showKunstwerk() {
+        var kunstPassword = document.getElementById("kunstPassword");
+        var kunstwerkInfo = document.getElementById("kunstwerkInfo");
+        kunstPassword.classList.add("visuallyHidden");
+        kunstwerkInfo.classList.remove("visuallyHidden");
+        var kunstwerkFoto = document.querySelector('#kunstwerkFoto');
+        kunstwerkFoto.style.filter = 'blur(0px)';
+        var kunstwerkPlek = document.getElementById("kunstwerkPlek");
+        kunstwerkPlek.classList.add("visuallyHidden");
+        confettiPoppen()
 
-  if (userInput === title) {
-    // If they match, continue with form submission or next steps
-    alert("Titles match! Proceeding...");
-    // You can add code here to continue the process
-    var kunstPassword = document.getElementById("kunstPassword");
-    var kunstwerkInfo = document.getElementById("kunstwerkInfo");
-    
-    kunstPassword.classList.add("visuallyHidden");
-    kunstwerkInfo.classList.remove("visuallyHidden");
-    
-    var kunstwerkPlek = document.getElementById("kunstwerkPlek");
-    kunstwerkPlek.classList.add("visuallyHidden");
-    confettiPoppen();
-    
-  } else {
-    // If they don't match, prevent the form from submitting and alert the user
-    //   event.preventDefault();
-    alert("Titles do not match. Please try again.");
-    
-    
-  }
-}
+        document.getElementById('answerStatus').value = 'true';
 
-document
-  .getElementById("confirmButton")
-  .addEventListener("click", showKunstwerk);
+    }

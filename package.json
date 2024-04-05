@@ -21,11 +21,13 @@
   "dependencies": {
     "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "mongodb": "^6.3.0",
+    "mongoose": "^8.3.0",
     "node": "^21.7.1",
     "nodemon": "^3.1.0",
     "xss": "^1.0.15"
