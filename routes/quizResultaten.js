@@ -10,6 +10,9 @@ module.exports = ({ usersCollection }) => {
     // QUIZRESULTATEN
 
     router.get('/', async (req, res) => {
+        const user = req.session.user;
+
+        if (user) {
         try {
             const fetchedData = {};
             const user = req.session.user;
@@ -63,6 +66,9 @@ module.exports = ({ usersCollection }) => {
         } catch (error) {
             console.log(error);
         }
+    } else {
+        res.render('login');
+    }
     });
 
     router.post('/', async (req, res) => {

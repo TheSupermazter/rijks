@@ -13,8 +13,6 @@ module.exports = ({ usersCollection }) => {
         if (user) {
             const userData = await usersCollection.findOne({ _id: new ObjectId(user._id) });
 
-            console.log(userData);
-
             res.render('account', {
                 userData
             });

@@ -25,7 +25,7 @@
           <% if(fetchedDetails && fetchedDetails.artObject) { %>
             <p><%= fetchedDetails.artObject.dating.presentingDate %></p>
           <% } %>
-          <button>Meer info</button>
+          <a href="info/<%= fetchedDetails.artObject.objectNumber %>">Meer info</a>
           <input type="hidden" id="artTitle" value="<%= artObjects.title %>">
         </section>
 

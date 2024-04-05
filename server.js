@@ -43,7 +43,6 @@ const vragenRoutes = require('./routes/vragen')({ usersCollection, vragenCollect
 const registerRoutes = require('./routes/register')({ usersCollection, vragenCollection });
 const logOutRoutes = require('./routes/logOut')({ usersCollection, vragenCollection });
 const favoritesRoutes = require('./routes/favorites')({ usersCollection, vragenCollection });
-const notFoundFavoritesRoutes = require('./routes/notFoundFavorites')({ usersCollection, vragenCollection });
 const accountRoutes = require('./routes/account')({ usersCollection, vragenCollection });
 
 
@@ -54,7 +53,6 @@ app.use('/vragen', vragenRoutes);
 app.use('/register', registerRoutes);
 app.use('/logout', logOutRoutes);
 app.use('/favorites', favoritesRoutes);
-app.use('/notFoundFavorites/:artObjectNumber', notFoundFavoritesRoutes);
 app.use('/account', accountRoutes);
 
 
@@ -64,29 +62,117 @@ app.use('/account', accountRoutes);
 // als ik een eigen route maakt, wilt hij de urlencoded middleware niet mee nemen, dus moest het hier...
 
 app.get('/info/:artObjectNumber', async (req, res) => {
-    try {
-        let fetchedCollection = {};
-        let fetchedDetails = {};
+    const user = req.session.user;
+    if (user) {
+        try {
+            let fetchedCollection = {};
+            let fetchedDetails = {};
+    
+            const objectNumber = req.params.artObjectNumber;            
+            const apiKey = process.env.RIJKS_API_KEY;
+    
+            const fetchCollection = await axios.get(`https://www.rijksmuseum.nl/api/nl/collection?key=${apiKey}&objectNumber=${objectNumber}&imgonly=True&ondisplay=True&st=Objects`);
+            const fetchDetails = await axios.get(`https://www.rijksmuseum.nl/api/nl/collection/${objectNumber}?key=${apiKey}&imgonly=True&ondisplay=True&st=Objects`);
 
-        const objectNumber = req.params.artObjectNumber;          
-        const apiKey = process.env.RIJKS_API_KEY;
+            console.log(fetchCollection, fetchDetails);
 
-        const fetchCollection = await axios.get(`https://www.rijksmuseum.nl/api/nl/collection?key=${apiKey}&imgonly=True&ondisplay=True&st=Objects`);
-        const fetchDetails = await axios.get(`https://www.rijksmuseum.nl/api/nl/collection/${objectNumber}?key=${apiKey}`);
+            fetchedCollection = fetchCollection.data;
+            fetchedDetails = fetchDetails.data;
+    
+            res.render('info', {
+                fetchedCollection,
+                fetchedDetails
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    } else {
+        res.render('login');
+    }
+});
 
-        console.log(fetchCollection);
-        console.log(fetchDetails);
+const { ObjectId } = require('mongodb');
 
-        fetchedCollection = fetchCollection.data;
-        fetchedDetails = fetchDetails.data;
+app.get('/notFoundFavorites/:artObjectNumber', async (req, res) => {
+    const user = req.session.user;
+    if (user) {
+        try {
+            const userData = await usersCollection.findOne({ _id: new ObjectId(user._id) });
 
-        res.render('info', {
-            fetchedCollection,
-            fetchedDetails
-        });
+            let fetchedDetails = {};
+
+            const artObjectNumber = req.params.artObjectNumber;
+            const apiKey = process.env.RIJKS_API_KEY;
+
+            const getCollectionDetails = await axios.get(`https://www.rijksmuseum.nl/api/nl/collection/${artObjectNumber}?key=${apiKey}`);
+            fetchedDetails = getCollectionDetails.data
+
+            res.render('notFoundFavorites', {
+                userData,
+                fetchedDetails
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    } else {
+        res.render('login');
+    }
+});
+
+
+app.post('/notFoundFavorites/:artObjectNumber', async (req, res) => {
+    const user = req.session.user;
+    const userId = user._id; // Haal de gebruikers-ID uit de sessie
+    const answerStatus = req.body.answerStatus === 'true'; // Haal de status van het antwoord op
+
+    try {    
+        let artObjectNumber = req.session.artObjectNumber; // Haal het objectnummer uit het verzoek
+        let artObject = user.mijnArtObjecten.find(obj => obj.objectNumber === artObjectNumber); // kijk of het object al bestaat in de DB
+
+        if (artObject) { // Als het object al bestaat in de DB, update het
+            const result = await usersCollection.updateOne({
+                _id: new ObjectId(userId),
+                'mijnArtObjecten.objectNumber': artObjectNumber
+            }, {
+                $set: {
+                    'mijnArtObjecten.$.objectFound': answerStatus
+                }
+            });
+
+            if (result.modifiedCount === 1) {
+                console.log('Successfully updated the object');
+            } else {
+                console.log('Object update failed');
+            }
+        } else { // Als het object niet bestaat in de DB, voeg het toe
+            const result = await usersCollection.updateOne({
+                _id: new ObjectId(userId)
+            }, {
+                $push: {
+                    mijnArtObjecten: {
+                        objectNumber: artObjectNumber,
+                        objectFound: answerStatus
+                    }
+                }
+            });
+
+            if (result.modifiedCount === 1) {
+                console.log('Successfully added the object');
+                if (answerStatus ==  true) {
+                    res.redirect(`/info/${artObjectNumber}`);
+                } else {
+                    res.redirect(`/favorites`);
+                }
+            } else {
+                console.error(err);
+            }
+        }
+
     } catch (err) {
         console.error(err);
     }
+
+
 });
 
 

@@ -8,10 +8,15 @@ module.exports = ( {usersCollection, vragenCollection} ) => {
     // VRAGEN
     
     router.get('/:number', async (req, res) => {
+        const user = req.session.user;
+        if (user) {
         const number = parseInt(req.params.number, 10);
         const vraag = await vragenCollection.findOne({ "number": number });
    
         res.render('vragen', { vraag: vraag, nextId: number + 1, prevId: number - 1});
+        } else {
+            res.render('login');
+        }
     });
 
     
