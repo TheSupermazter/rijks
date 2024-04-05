@@ -124,14 +124,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-  getArt("etsen");
-  async function getArt(technique) {
-    const response = await fetch("https://www.rijksmuseum.nl/api/nl/collection?key=IwHqQrUI&technique=" + technique);
-    const artList = await response.json();
-    console.log(artList);
-    document.getElementsByClassName("popup-container")[0].getElementsByTagName("li")[0].getElementsByTagName("h3")[0].innerHTML = (artList.count);
-    console.log(artList);
-  }
 
 
 
