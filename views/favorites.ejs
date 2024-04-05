@@ -39,7 +39,7 @@
               <% if (object.objectFound) { %>
                   <% const artwork = object.details.artObject; %>
                   <article>
-                    <a href="/notFoundFavorites/<%= artwork.objectNumber %>">
+                    <a href="/info/<%= artwork.objectNumber %>">
                       <img src="<%= artwork.webImage.url %>" alt="Image <%= artwork.title %>">
                       <p><%= artwork.title %></p>
                     </a>

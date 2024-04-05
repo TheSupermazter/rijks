@@ -125,11 +125,93 @@ body {
 
 /* VANAF HIER START MIJN EIGEN CODE */
 /* Start quiz pagina */
+/* index */
 header img {
     width: 60%;
     height: auto;
     margin-top: 6%;
-    margin-left: 4%;
+    position: absolute;
+    z-index: 100;
+}
+
+header section img{
+    width: 5%;
+    height: auto;
+}
+
+header section{
+    margin: 0;
+    padding: 0;
+    margin-top: -5%;
+    padding-bottom: 5%;
+}
+
+a.startQuizButton {
+    /* dit is de start quiz knop */
+    font-family: var(--ff);
+    text-decoration: none;
+    font-size: x-large;
+    color: var(--f-color);
+    background-color: var(--main-color);
+    padding: var(--btn-padding);
+    margin: 0em;
+    border: none;
+    position: absolute;
+    z-index: 100;
+}
+
+.homeArtikelen ul{
+    margin-top: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.textFransHals {
+    z-index: 100;
+    padding-top: 100%;
+    margin-left: -30%;
+}
+
+.textExpressYourself{
+    z-index: 100;
+    padding-top: 110%;
+    margin-left: 25%;
+}
+
+.startQuizCenter h3{    
+    font-size: large;
+    margin-left: 0;
+    padding: 0;
+}
+
+.startQuizCenter p{
+    font-size: small;
+    margin-left: 0;
+    padding: 0;
+    margin-top: 0;
+}
+
+.homeArtikelen ul li {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+section .imgFransHals {
+    height: auto;
+    width: 68vw;  
+    margin: 0;
+    margin-left: -15%;
+    margin-top: -15%;
+}
+
+section .imgExpressYourself {
+    height: auto;
+    width: 39.5vw;
+    margin: 0;
+    margin-left: 5%;
+    margin-top: -15%;
 }
 
 .bodyStartQuiz {
@@ -138,6 +220,13 @@ header img {
     background-size: cover;
     height: 100vh;
     background-position-x: 30%;
+}
+
+.startQuizCenter img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: absolute;
 }
 
 body {
