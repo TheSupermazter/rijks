@@ -116,7 +116,7 @@ module.exports = ({ usersCollection }) => {
                     if (answerStatus ==  true) {
                         res.redirect(`/info/${artObjectNumber}`);
                     } else {
-                        res.redirect(`/notFoundFavorites/${artObjectNumber}`);
+                        res.redirect(`/info/${artObjectNumber}`);
                     }
                 } else {
                     console.error(err);
