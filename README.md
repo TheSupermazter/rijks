@@ -11,15 +11,15 @@ De Rijks ArtMatcher matcht kunstwerken in de collectie van het Rijksmuseum dat o
 
 ## Installatie
 1. Clone de repo door het in de terminal de clonen met het `git clone` command.
-2. Dan, run `npm install` in deze folder om de juiste modules te installeren
+2. Dan, run`npm init` `npm install` in deze folder om de juiste modules te installeren
 3. Vraag ons via teams de `.env` file details en voeg dit bestand + de content erin toe aan de directory
-4. run `node server.js` om het project op te starten
-5. open je browser naar keuze en zoek op `localhost:8000` (of een andere port, als je een ander portnummer hebt ingevuld in de .env)
+4. run `npm run dev` om het project op te starten
+5. open je browser naar keuze en zoek op `localhost:4200` (of een andere port, als je een ander portnummer hebt ingevuld in de .env)
 
 ## Gebruik
-1. registreer je als gebruiker > je komt in je dashboard
-2. Ga terug naar de index > `localhost:8000/
-3. Log in met je opgegeven gegevens > je komt in je dashboard
+1. registreer je als gebruiker > log in > Je bent in de index
+2. Vanaf de index kan je de quiz maken > kom je op je quiz resultaten en kan je deze opslaan in je favorieten
+3. Via je account pagina kan je naar favorieten, uitloggen, je gegevens bekijken en terug naar de index.
 
 ## Bijdragen
 
@@ -33,7 +33,12 @@ Bedankt voor je interesse in het bijdragen aan dit project! Hier zijn een paar r
 
 ## Contributors
 - Kim Dekker [Github](https://github.com/Kimdekker/)
-....
+- Lin Greefkens [Github](https://github.com/LinGreefkens/)
+- Ryan de Vries [Github](https://github.com/VriesRS)
+- Thomas Norden [Github](https://github.com/TheSupermazter)
+- Michelle Witlox [Github](https://github.com/ciliamae)
+
+
 
 ## Licentie
 
