@@ -42,4 +42,4 @@ Bedankt voor je interesse in het bijdragen aan dit project! Hier zijn een paar r
 
 ## Licentie
 
-This project is provided under the [MIT](/LICENSE) License
+This project is provided under the MIT License
