@@ -7,17 +7,17 @@
       <section>
         <h2>Nog te zoeken</h2>
         <section>
-            <% combinedDetails.forEach(function(object) { %>
-                <% if (!object.objectFound) { %>
-                    <% const artwork = object.details.artObject; %>
-                    <article>
-                      <a class="knop" href="/info/<%= artwork.objectNumber %>">
-                        <img class="favoimg" src="<%= artwork.webImage.url %>" alt="Image <%= artwork.title %>">
-                        <p><%= artwork.title %></p>
-                      </a>
-                    </article>
-                <% } %>
-            <% }); %>
+          <% combinedDetails.forEach(function(object) { %>
+            <% if (object.details.artObject.webImage && !object.objectFound) { %>
+                <% const artwork = object.details.artObject; %>
+                <article>
+                  <a class="knop" href="/info/<%= artwork.objectNumber %>">
+                    <img class="favoimg" src="<%= artwork.webImage.url %>" alt="Image <%= artwork.title %>">
+                    <p><%= artwork.title %></p>
+                  </a>
+                </article>
+            <% } %>
+        <% }); %>        
         </section>
     </section>
     
@@ -34,17 +34,17 @@
     <section>
       <h2>Gevonden werken</h2>
       <section>
-          <% combinedDetails.forEach(function(object) { %>
-              <% if (object.objectFound) { %>
-                  <% const artwork = object.details.artObject; %>
-                  <article>
-                    <a class="knop" href="/info/<%= artwork.objectNumber %>">
-                      <img class="favoimg" src="<%= artwork.webImage.url %>" alt="Image <%= artwork.title %>">
-                      <p><%= artwork.title %></p>
-                    </a>
-                  </article>
-              <% } %>
-          <% }); %>
+        <% combinedDetails.forEach(function(object) { %>
+          <% if (object.details.artObject.webImage && !object.objectFound) { %>
+              <% const artwork = object.details.artObject; %>
+              <article>
+                <a class="knop" href="/info/<%= artwork.objectNumber %>">
+                  <img class="favoimg" src="<%= artwork.webImage.url %>" alt="Image <%= artwork.title %>">
+                  <p><%= artwork.title %></p>
+                </a>
+              </article>
+          <% } %>
+      <% }); %>        
       </section>
   </section>
     </main>
