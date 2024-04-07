@@ -6,6 +6,8 @@ module.exports = ( {usersCollection, vragenCollection} ) => {
     const router = express.Router();
 
     // VRAGEN
+
+    
     
     router.get('/:number', async (req, res) => {
         const user = req.session.user;
@@ -24,8 +26,12 @@ module.exports = ( {usersCollection, vragenCollection} ) => {
         const questionNumber = req.body.questionNumber; //nummer van de vraag > nodig om de geantwoordde  vraag aan het juiste vraagnummer te koppelen
         const antwoord = req.body.answer; //een antwoord in de form
         const navigate = req.body.navigate; // navigate is de buttonnaam van de next en prev buttons > zodat ik elke waarde kan opslaan in de DB
-    
         const user = req.session.user;
+
+        let newUser = {
+            // andere eigenschappen...
+            quizAntwoorden: {}
+        };
     
         if (user) { //als de user is verbonden en ingelogd
             const result = await usersCollection.updateOne( //update het volgende in de DB
