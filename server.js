@@ -90,6 +90,26 @@ app.get('/info/:artObjectNumber', async (req, res) => {
 });
 
 
+app.get('/zoek', async (req, res) => {
+    const user = req.session.user;
+    if (user) {
+        res.render('zoek');
+    } else {
+        res.render('login');
+    }
+});
+
+
+app.get('/zoekResultaten', async (req, res) => {
+    const user = req.session.user;
+    if (user) {
+        res.render('resultaaten');
+    } else {
+        res.render('login');
+    }
+});
+
+
 
 // SERVER ERRORS ____________________________________________________________________________________________________________________
 
