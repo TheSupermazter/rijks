@@ -1,0 +1,88 @@
+<%- include('partials/head') %>
+
+<body class="resultaatPagina">
+    
+  <%- include('partials/header') %>
+    <header>
+        <hr>
+        <h1>Zoeken</h1>
+        <form id="form" role="search">
+
+            <div>
+                <input type="search" id="query" name="q" placeholder="Waar ben je naar opzoek?">
+                <hr>
+            </div>
+            <button>Zoek </button>
+        </form>
+        <h2>.... Resultaten</h2>
+
+    </header>
+    <main>
+        <h2>Zoekresultaten</h2>
+        <hr>
+        <section>
+            <article>
+                <img src="../img/meisje.png" alt="schilderij van">
+                <a href class="knop"><img src="../img/knop.png" alt="knop om verder te gaan naar volgende pagina"></a>
+                <div>
+                    <h2> Man in oosterse kleding </h2>
+                    <p>Rembrand van Rijn, 1635 </p>
+                </div>
+            </article>
+            <hr>
+            <article>
+                <img src="../img/meisje.png" alt="schilderij van">
+                <a href class="knop"><img src="../img/knop.png" alt="knop om verder te gaan naar volgende pagina"></a>
+                <div>
+                    <h2> De waardijns</h2>
+                    <p>Rembrand van Rijn, 1662 </p>
+                </div>
+            </article>
+            <hr>
+            <article>
+                <img src="../img/meisje.png" alt="schilderij van">
+                <a href class="knop"><img src="../img/knop.png" alt="knop om verder te gaan naar volgende pagina"></a>
+                <div>
+                    <h2> Nachtwacht </h2>
+                    <p>Rembrand van Rijn, 1642 </p>
+                </div>
+            </article>
+            <hr>
+        </section>
+        <button class="openButton">Zie meer </button>
+        <section class="popup-container">
+            <article>
+                <img src="../img/meisje.png" alt="schilderij van">
+                <a href class="knop"><img src="../img/knop.png" alt="knop om verder te gaan naar volgende pagina"></a>
+                <div>
+                    <h2> Portret van een vrouw </h2>
+                    <p>Rembrand van Rijn, 1639 </p>
+                </div>
+            </article>
+            <hr>
+            <article>
+                <img src="../img/meisje.png" alt="schilderij van">
+                <a href class="knop"><img src="../img/knop.png" alt="knop om verder te gaan naar volgende pagina"></a>
+                <div>
+                    <h2> Het joodse bruidje </h2>
+                    <p>Rembrand van Rijn, ca 1665- ca 1669 </p>
+                </div>
+            </article>
+            <hr>
+            <article>
+                <img src="../img/meisje.png" alt="schilderij van">
+                <a href class="knop"><img src="../img/knop.png" alt="knop om verder te gaan naar volgende pagina"></a>
+                <div>
+                    <h2> Zelf portret </h2>
+                    <p>Rembrand van Rijn, ca 1628 </p>
+                </div>
+            </article>
+        </section>
+    </main>
+    <%- include('partials/footer') %>
+
+    <script src="/script/resultaat.js"></script>
+ 
+</body>
+
+</html>
