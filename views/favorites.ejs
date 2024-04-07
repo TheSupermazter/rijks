@@ -11,8 +11,8 @@
                 <% if (!object.objectFound) { %>
                     <% const artwork = object.details.artObject; %>
                     <article>
-                      <a href="/info/<%= artwork.objectNumber %>">
-                        <img src="<%= artwork.webImage.url %>" alt="Image <%= artwork.title %>">
+                      <a class="knop" href="/info/<%= artwork.objectNumber %>">
+                        <img class="favoimg" src="<%= artwork.webImage.url %>" alt="Image <%= artwork.title %>">
                         <p><%= artwork.title %></p>
                       </a>
                     </article>
@@ -38,8 +38,8 @@
               <% if (object.objectFound) { %>
                   <% const artwork = object.details.artObject; %>
                   <article>
-                    <a href="/info/<%= artwork.objectNumber %>">
-                      <img src="<%= artwork.webImage.url %>" alt="Image <%= artwork.title %>">
+                    <a class="knop" href="/info/<%= artwork.objectNumber %>">
+                      <img class="favoimg" src="<%= artwork.webImage.url %>" alt="Image <%= artwork.title %>">
                       <p><%= artwork.title %></p>
                     </a>
                   </article>
@@ -52,18 +52,6 @@
     <%- include('partials/footer') %>
 
     <script src="/script/ryan.js"></script>
-    <script>
-        const containerZoom = document.getElementById("zoomContainer");
-        const img = document.getElementsByClassName("zoom");
-
-        containerZoom.addEventListener("touchmove", (e) => {
-            const x = e.clientX - e.target.offsetLeft;
-            const y = e.clientY - e.target.offsetTop;
-            console.log("x")
-            img.style.transformOrigin = '${x}px ${y}px';
-            img.style.transorm = "scale(2)"; 
-        });
-    </script>
  
 </body>
 
