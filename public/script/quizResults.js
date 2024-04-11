@@ -297,7 +297,7 @@ function showKunstwerk() {
     var kunstPassword = document.getElementById("kunstPassword");
     var kunstwerkInfo = document.getElementById("kunstwerkInfo");
     var kunstwerkPlek = document.getElementById("kunstwerkPlek");
-    
+    img.style.filter = "blur(0px)"
     kunstPassword.classList.add("visuallyHidden");
     kunstwerkPlek.classList.add("visuallyHidden");
     kunstwerkInfo.classList.remove("visuallyHidden");
