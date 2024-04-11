@@ -1,14 +1,10 @@
-let shuffleValue = 2;
-
-document
-  .getElementById("shuffleButton")
-  .addEventListener("click", updateButton);
-document.getElementById("addKnop").addEventListener("click", mijnKunstwerk);
+document.getElementById("shuffleButton").addEventListener("click", updateButton);
 
 function updateButton() {
-  let button = document.getElementById("shuffleButton");
   location.reload()
 }
+
+document.getElementById("addKnop").addEventListener("click", mijnKunstwerk);
 
 let fave = 0;
 
@@ -297,27 +293,21 @@ function showKunstwerk() {
   var title = document.getElementById("artTitle").value;
 
   if (userInput === title) {
-    // If they match, continue with form submission or next steps
     alert("Goed gevonden!");
-    // You can add code here to continue the process
     var kunstPassword = document.getElementById("kunstPassword");
     var kunstwerkInfo = document.getElementById("kunstwerkInfo");
+    var kunstwerkPlek = document.getElementById("kunstwerkPlek");
     
     kunstPassword.classList.add("visuallyHidden");
-    kunstwerkInfo.classList.remove("visuallyHidden");
-    
-    var kunstwerkPlek = document.getElementById("kunstwerkPlek");
     kunstwerkPlek.classList.add("visuallyHidden");
+    kunstwerkInfo.classList.remove("visuallyHidden");
+
     confettiPoppen();
     
-  } else {
-    // If they don't match, prevent the form from submitting and alert the user
-    //   event.preventDefault();
+  } 
+  else {
     alert("Dit antwoord is niet juist, probeer het nog eens!");
-
     document.getElementById('answerStatus').value = 'true';
-    
-    
   }
 }
 document.getElementById("confirmButton").addEventListener("click", showKunstwerk);
